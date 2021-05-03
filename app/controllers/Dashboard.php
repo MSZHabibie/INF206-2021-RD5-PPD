@@ -1,12 +1,12 @@
 <?php 
 
-class Home extends Controller
+class Dashboard extends Controller
 {
     public function index()
     {
-        $data['judul'] = 'Home';
+        $data['judul'] = 'Dashboard';
         $this->view('templates/header', $data);
-        $this->view('home/index');
+        $this->view('dashboard/index');
         $this->view('templates/footer');
     }
 }
