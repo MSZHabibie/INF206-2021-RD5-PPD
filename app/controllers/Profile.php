@@ -13,8 +13,9 @@ class Profile extends Controller
     public function admin()
     {
         $data['judul'] = 'Profile Admin';
+        $data['nama'] = $this->model('Admin_model')->getUser();
         $this->view('templates/header', $data);
-        $this->view('profile/admin');
+        $this->view('profile/admin', $data);
         $this->view('templates/footer');
     }
 }
