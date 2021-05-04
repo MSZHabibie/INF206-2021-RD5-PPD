@@ -1,9 +1,12 @@
 <?php 
+session_start();
 
 class Profile extends Controller
 {
     public function index()
     {
+        $this->hasSession();
+
         $data['judul'] = 'Profile';
         $this->view('templates/header', $data);
         $this->view('profile/index');
@@ -12,8 +15,9 @@ class Profile extends Controller
 
     public function admin()
     {
+        $this->hasSession();
+
         $data['judul'] = 'Profile Admin';
-        $data['nama'] = $this->model('Admin_model')->getUser();
         $this->view('templates/header', $data);
         $this->view('profile/admin', $data);
         $this->view('templates/footer');

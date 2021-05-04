@@ -17,6 +17,10 @@ class Warga_model
 
     public function createAccount($data)
     {
+        if ( !isset($data['submit']) ) {
+            return false;
+        }
+
         $email = $data['email'];
         $username = $data['username'];
         $password = $data['password'];
@@ -69,12 +73,16 @@ class Warga_model
 
     public function signIn($data)
     {
+        if ( !isset($data['submit']) ) {
+            return false;
+        }
+
         $email = $data['email'];
         $password = $data['password'];
         $result = $this->cekEmail($email);
-
+        
         // cek email ada atau tidak
-        if( !count($result) > 0) {
+        if( $result === false) {
             return false;
         }
 
@@ -82,7 +90,7 @@ class Warga_model
         if( !password_verify($password, $result['password']) ) {
             return false;
         }
-
+        
         return true;
     }
 }
