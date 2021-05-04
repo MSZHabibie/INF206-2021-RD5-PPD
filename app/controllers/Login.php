@@ -1,9 +1,12 @@
 <?php 
+session_start();
 
 class Login extends Controller
 {
     public function index()
     {
+        $this->hasNoSession();
+
         $data['judul'] = 'Login';
         $this->view('templates/header', $data);
         $this->view('login/index');
@@ -12,7 +15,11 @@ class Login extends Controller
 
     public function signin()
     {
-        if ( $this->model('Warga_model')->signIn($_POST) > 0) {
+        if ( $this->model('Warga_model')->signIn($_POST) === true) {
+
+            // set session
+            $_SESSION['login'] = true;
+
             header('Location: ' . BASEURL . '/dashboard');
             exit;
         }
