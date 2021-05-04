@@ -1,8 +1,8 @@
 <?php 
 
-class User_model
+class Admin_model
 {
-    private $nama = 'Admin Pegawai';
+    private $nama = 'Sukaryawan Habibie';
 
     public function getUser()
     {

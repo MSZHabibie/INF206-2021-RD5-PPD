@@ -9,4 +9,13 @@ class Register extends Controller
         $this->view('register/index');
         $this->view('templates/footer');
     }
+
+    public function create()
+    {
+        if ( $this->model('Warga_model')->createAccount($_POST) > 0) {
+            header('Location: ' . BASEURL . '/login');
+            exit;
+        }
+        $this->index();
+    }
 }
