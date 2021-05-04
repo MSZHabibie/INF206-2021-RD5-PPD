@@ -20,6 +20,6 @@
         <label for="InputPassword2" class="form-label">Confirm Password</label>
         <input type="password" class="form-control" id="InputPassword2" name="password2">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Sign Up</button>
     </form>
 </div>
