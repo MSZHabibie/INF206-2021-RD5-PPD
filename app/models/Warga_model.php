@@ -22,8 +22,13 @@ class Warga_model
         $password = $data['password'];
         $password2 = $data['password2'];
 
-        // cek email dan username
-        if( $this->cekEmailDanUsername($email, $username) > 0) {
+        // cek email
+        if( $this->cekEmail($email) > 0) {
+            return false;
+        }
+
+        // cek username
+        if( $this->cekUsername($username) > 0) {
             return false;
         }
 
@@ -44,13 +49,40 @@ class Warga_model
         return $this->db->rowCount();
     }
 
-    public function cekEmailDanUsername($email, $username)
+    public function cekEmail($email)
     {
-        $this->db->query("SELECT * FROM $this->table WHERE email=:email OR username=:username");
+        $this->db->query("SELECT * FROM $this->table WHERE email=:email");
         $this->db->bind('email', $email);
+        $this->db->execute();
+
+        return $this->db->single();
+    }
+    
+    public function cekUsername($username)
+    {
+        $this->db->query("SELECT * FROM $this->table WHERE username=:username");
         $this->db->bind('username', $username);
         $this->db->execute();
 
         return $this->db->rowCount();
+    }
+
+    public function signIn($data)
+    {
+        $email = $data['email'];
+        $password = $data['password'];
+        $result = $this->cekEmail($email);
+
+        // cek email ada atau tidak
+        if( !count($result) > 0) {
+            return false;
+        }
+
+        // cek password benar atau salah
+        if( !password_verify($password, $result['password']) ) {
+            return false;
+        }
+
+        return true;
     }
 }
