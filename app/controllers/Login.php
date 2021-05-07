@@ -7,9 +7,19 @@ class Login extends Controller
     {
         $this->hasNoSession();
 
+        // $data['judul'] = 'Login';
+        // $this->view('templates/header', $data);
+        $this->view('login/index');
+        // $this->view('templates/footer');
+    }
+
+    public function index2()
+    {
+        $this->hasNoSession();
+
         $data['judul'] = 'Login';
         $this->view('templates/header', $data);
-        $this->view('login/index');
+        $this->view('login/index2');
         $this->view('templates/footer');
     }
 
