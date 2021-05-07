@@ -10,9 +10,22 @@ class Warga_model
         $this->db = new Database;
     }
 
-    public function getUser()
+    public function getUserById($id)
     {
-        return $this->nama;
+        $this->db->query("SELECT * FROM $this->table WHERE id=:id");
+        $this->db->bind('id', $id);
+        $this->db->execute();
+
+        return $this->db->single();
+    }
+
+    public function getUserByUsername($username)
+    {
+        $this->db->query("SELECT * FROM $this->table WHERE username=:username");
+        $this->db->bind('username', $username);
+        $this->db->execute();
+
+        return $this->db->single();
     }
 
     public function createAccount($data)

@@ -29,6 +29,7 @@ class Login extends Controller
 
             // set session
             $_SESSION['login'] = true;
+            $_SESSION['warga'] = $this->model('Warga_model')->getUserByUsername($_POST['username']);
 
             header('Location: ' . BASEURL . '/dashboard');
             exit;
