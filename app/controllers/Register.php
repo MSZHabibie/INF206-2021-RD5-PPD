@@ -7,9 +7,16 @@ class Register extends Controller
     {
         $this->hasNoSession();
 
+        $this->view('register/index');
+    }
+
+    public function index2()
+    {
+        $this->hasNoSession();
+
         $data['judul'] = 'Register';
         $this->view('templates/header', $data);
-        $this->view('register/index');
+        $this->view('register/index2');
         $this->view('templates/footer');
     }
 
