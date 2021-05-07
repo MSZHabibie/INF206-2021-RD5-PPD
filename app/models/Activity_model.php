@@ -30,11 +30,27 @@ class Activity_model
 
     public function daftar($id_warga, $id_aktivitas)
     {
+        $aktivitas = $this->getActivityById($id_aktivitas);
+
+        if( $aktivitas['peserta'] >= $aktivitas['maks_peserta']) {
+            return false;
+        }
+
         $this->db->query("INSERT INTO $this->table2 VALUES (:id_warga, :id_aktivitas)");
         $this->db->bind('id_warga', $id_warga);
         $this->db->bind('id_aktivitas', $id_aktivitas);
         $this->db->execute();
 
         return $this->db->rowCount();
+    }
+
+    public function updatePeserta($id_aktivitas)
+    {
+        $peserta = $this->getActivityById($id_aktivitas)['peserta'];
+        $peserta++;
+        $this->db->query("UPDATE $this->table SET peserta = :peserta WHERE id = :id_aktivitas");
+        $this->db->bind('peserta', $peserta);
+        $this->db->bind('id_aktivitas', $id_aktivitas);
+        $this->db->execute();
     }
 }

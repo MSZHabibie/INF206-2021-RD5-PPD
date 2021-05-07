@@ -41,8 +41,9 @@ class Activity extends Controller
     public function daftar($id_warga, $id_aktivitas)
     {
         if ( $this->model('Activity_model')->daftar($id_warga, $id_aktivitas) > 0) {
-            header('Location: ' . BASEURL . '/activity');
-            exit;
+            $this->model('Activity_model')->updatePeserta($id_aktivitas);
         }
+        header('Location: ' . BASEURL . '/activity');
+        exit;
     }
 }
