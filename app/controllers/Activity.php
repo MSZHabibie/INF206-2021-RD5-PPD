@@ -32,6 +32,8 @@ class Activity extends Controller
         $data['judul'] = 'Activity Detail';
         $data['aktivitas'] = $this->model('Activity_model')->getActivityById($id);
         $data['warga'] = $_SESSION['warga'];
+        $data['aktivitas_warga'] = $this->model('Activity_model')->cekActivityWarga($data['warga']['id'], $data['aktivitas']['id']);
+        
         $this->view('templates/header', $data);
         $this->view('activity/detail', $data);
         $this->view('templates/footer');
@@ -40,8 +42,12 @@ class Activity extends Controller
 
     public function daftar($id_warga, $id_aktivitas)
     {
-        if ( $this->model('Activity_model')->daftar($id_warga, $id_aktivitas) > 0) {
-            $this->model('Activity_model')->updatePeserta($id_aktivitas);
+        $this->hasSession();
+
+        if ( $this->model('Activity_model')->daftar($_POST, $id_warga, $id_aktivitas) > 0 ) {
+            $this->model('Activity_model')->updatePeserta($id_aktivitas, true);
+        } elseif ( $this->model('Activity_model')->batal_daftar($_POST, $id_warga, $id_aktivitas) > 0 ) {
+            $this->model('Activity_model')->updatePeserta($id_aktivitas, false);
         }
         header('Location: ' . BASEURL . '/activity');
         exit;

@@ -28,8 +28,22 @@ class Activity_model
         return $this->db->single();
     }
 
-    public function daftar($id_warga, $id_aktivitas)
+    public function cekActivityWarga($id_warga, $id_aktivitas)
     {
+        $this->db->query("SELECT * FROM $this->table2 WHERE id_warga=:id_warga AND id_aktivitas=:id_aktivitas");
+        $this->db->bind('id_warga', $id_warga);
+        $this->db->bind('id_aktivitas', $id_aktivitas);
+        $this->db->execute();
+
+        return $this->db->rowCount()>0? true:false;
+    }
+
+    public function daftar($data, $id_warga, $id_aktivitas)
+    {
+        if( !isset($data['daftar']) ) {
+            return false;
+        }
+
         $aktivitas = $this->getActivityById($id_aktivitas);
 
         if( $aktivitas['peserta'] >= $aktivitas['maks_peserta']) {
@@ -44,10 +58,26 @@ class Activity_model
         return $this->db->rowCount();
     }
 
-    public function updatePeserta($id_aktivitas)
+    public function batal_daftar($data, $id_warga, $id_aktivitas)
+    {
+        if( !isset($data['batal_daftar']) ) {
+            return false;
+        }
+
+        $this->db->query("DELETE FROM $this->table2 WHERE id_warga=:id_warga AND id_aktivitas=:id_aktivitas");
+        $this->db->bind('id_warga', $id_warga);
+        $this->db->bind('id_aktivitas', $id_aktivitas);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function updatePeserta($id_aktivitas, $tambah)
     {
         $peserta = $this->getActivityById($id_aktivitas)['peserta'];
-        $peserta++;
+
+        $tambah ? $peserta++ : $peserta--;
+
         $this->db->query("UPDATE $this->table SET peserta = :peserta WHERE id = :id_aktivitas");
         $this->db->bind('peserta', $peserta);
         $this->db->bind('id_aktivitas', $id_aktivitas);

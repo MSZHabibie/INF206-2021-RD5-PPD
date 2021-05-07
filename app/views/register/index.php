@@ -20,7 +20,7 @@
         <div class="square" style="--i:4";></div>
         <div class="container">
             <div class="form">
-                <h2>Register</h2>
+                <h2>REGISTER</h2>
                 <form action="<?= BASEURL; ?>/register/create" method="post">
                     <div class="inputBox">
                         <input type="email" placeholder="Email" name="email" required>
@@ -35,9 +35,8 @@
                         <input type="password" placeholder="Confirm Password" name="password2" required>
                     </div>
                     <div class="inputBox">
-                        <input type="submit" value="Login" name="submit">
+                        <input type="submit" value="Sign Up" name="submit">
                     </div>
-                    <p class="forget">Forgot password ? <a href="#" target="_self">Click Here</a></p>     
                     <p class="forget">have an account ? <a href="<?= BASEURL; ?>/login">Sign In</a></p>
                 </form>
             </div>
