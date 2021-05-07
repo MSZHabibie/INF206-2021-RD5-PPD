@@ -16,8 +16,12 @@
             </li>
         </ul>
         <div class="card-body">
+            <form action="<?= BASEURL; ?>/activity/daftar/<?= $data['warga']['id']; ?>/<?= $data['aktivitas']['id']; ?>" method="post">
             <a href="<?= BASEURL; ?>/activity" class="btn btn-primary">Kembali</a>
-            <a href="<?= BASEURL; ?>/activity/daftar/<?= $data['warga']['id']; ?>/<?= $data['aktivitas']['id']; ?>" class="btn btn-primary">Daftar</a>
+            <button type="submit" class="btn btn-primary" name="<?= !$data['aktivitas_warga'] ? 'daftar':'batal_daftar';?>" <?= $data['aktivitas']['peserta'] == $data['aktivitas']['maks_peserta'] ? 'disabled':''; ?>><?= !$data['aktivitas_warga'] ? 'Daftar':'Batal Daftar';?></button>
+            
+            </form>
+            
         </div>
     </div>
 
