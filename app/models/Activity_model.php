@@ -99,4 +99,42 @@ class Activity_model
 
         return $this->db->rowCount();
     }
+
+    public function deleteActivity($id)
+    {
+        $this->db->query("DELETE FROM $this->table WHERE id=:id");
+        $this->db->bind('id', $id);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function updateActivity($data)
+    {
+        $query = "UPDATE aktivitas SET 
+                    nama = :nama, 
+                    deskripsi = :deskripsi, 
+                    syarat = :syarat, 
+                    maks_peserta = :maks_peserta, 
+                    waktu = :waktu, 
+                    tempat = :tempat, 
+                    poin = :poin, 
+                    gambar = :gambar
+                WHERE id = :id";
+        
+        $this->db->query($query);
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('deskripsi', $data['deskripsi']);
+        $this->db->bind('syarat', $data['syarat']);
+        $this->db->bind('maks_peserta', $data['maks_peserta']);
+        $this->db->bind('waktu', $data['waktu']);
+        $this->db->bind('tempat', $data['tempat']);
+        $this->db->bind('poin', $data['poin']);
+        $this->db->bind('gambar', $data['gambar']);
+        $this->db->bind('id', $data['id']);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 }

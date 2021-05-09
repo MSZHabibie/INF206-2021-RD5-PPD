@@ -17,7 +17,8 @@
         </ul>
         <div class="card-body">
             <a href="<?= BASEURL; ?>/activity/admin" class="btn btn-primary">Kembali</a>
-            <a href="<?= BASEURL; ?>/activity/edit" class="btn btn-primary">Edit</a>            
+            <a href="<?= BASEURL; ?>/activity/edit/<?= $activity['id'] ?>" class="btn btn-primary tampilModalEdit" data-bs-toggle="modal" data-bs-target="#formModal">Edit</a>
+            <a href="<?= BASEURL; ?>/activity/hapus/<?= $activity['id'] ?>" class="btn btn-danger" onclick="return confirm('hapus aktivitas ini?');">Hapus</a>          
         </div>
     </div>
 </div>

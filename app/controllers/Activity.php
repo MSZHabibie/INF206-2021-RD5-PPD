@@ -81,9 +81,31 @@ class Activity extends Controller
             exit;
         }
     }
-
+    
+    public function hapus($id)
+    {
+        $this->hasSession();
+        $this->isNotAdmin($this);
+        
+        if( $this->model('Activity_model')->deleteActivity($id) > 0 ) {
+            header('Location: ' . BASEURL . '/activity/admin');
+            exit;
+        }
+    }
+    
+    public function getDataEdit()
+    {
+        echo json_encode($this->model('Activity_model')->getActivityById($_POST['id']));
+    }
+    
     public function edit()
     {
-        # code...
+        $this->hasSession();
+        $this->isNotAdmin($this);
+
+        if( $this->model('Activity_model')->updateActivity($_POST) > 0 ) {
+            header('Location: ' . BASEURL . '/activity/admin');
+            exit;
+        }
     }
 }
