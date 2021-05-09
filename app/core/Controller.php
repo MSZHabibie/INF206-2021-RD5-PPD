@@ -28,4 +28,20 @@ class Controller {
             exit;
         }
     }
+
+    public function isAdmin($controller)
+    {
+        if( isset($_SESSION['admin']) ) {
+            header('Location: ' . BASEURL . '/' . $controller . '/admin');
+            exit;
+        }
+    }
+
+    public function isNotAdmin($controller)
+    {
+        if( !isset($_SESSION['admin']) ) {
+            header('Location: ' . BASEURL . '/' . $controller);
+            exit;
+        }
+    }
 }

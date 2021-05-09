@@ -6,6 +6,7 @@ class Activity extends Controller
     public function index()
     {
         $this->hasSession();
+        $this->isAdmin(get_class($this));
 
         $data['judul'] = 'Activity';
         $data['aktivitas'] = $this->model('Activity_model')->getAllActivity();
@@ -18,8 +19,11 @@ class Activity extends Controller
     public function admin()
     {
         $this->hasSession();
+        $this->isNotAdmin(get_class($this));
 
         $data['judul'] = 'Activity Admin';
+        $data['aktivitas'] = $this->model('Activity_model')->getAllActivity();
+        $data['admin'] = $_SESSION['admin'];
         $this->view('templates/header', $data);
         $this->view('activity/admin', $data);
         $this->view('templates/footer');
@@ -28,6 +32,7 @@ class Activity extends Controller
     public function detail($id)
     {
         $this->hasSession();
+        $this->isAdmin($this);
 
         $data['judul'] = 'Activity Detail';
         $data['aktivitas'] = $this->model('Activity_model')->getActivityById($id);
@@ -51,5 +56,56 @@ class Activity extends Controller
         }
         header('Location: ' . BASEURL . '/activity');
         exit;
+    }
+
+    public function detailAdmin($id)
+    {
+        $this->hasSession();
+        $this->isNotAdmin($this);
+
+        $data['judul'] = 'Activity Detail';
+        $data['aktivitas'] = $this->model('Activity_model')->getActivityById($id);
+        
+        $this->view('templates/header', $data);
+        $this->view('activity/detailAdmin', $data);
+        $this->view('templates/footer');
+    }
+
+    public function tambah()
+    {
+        $this->hasSession();
+        $this->isNotAdmin($this);
+
+        if( $this->model('Activity_model')->addActivity($_POST) > 0 ) {
+            header('Location: ' . BASEURL . '/activity/admin');
+            exit;
+        }
+    }
+    
+    public function hapus($id)
+    {
+        $this->hasSession();
+        $this->isNotAdmin($this);
+        
+        if( $this->model('Activity_model')->deleteActivity($id) > 0 ) {
+            header('Location: ' . BASEURL . '/activity/admin');
+            exit;
+        }
+    }
+    
+    public function getDataEdit()
+    {
+        echo json_encode($this->model('Activity_model')->getActivityById($_POST['id']));
+    }
+    
+    public function edit()
+    {
+        $this->hasSession();
+        $this->isNotAdmin($this);
+
+        if( $this->model('Activity_model')->updateActivity($_POST) > 0 ) {
+            header('Location: ' . BASEURL . '/activity/admin');
+            exit;
+        }
     }
 }

@@ -26,12 +26,18 @@ class Login extends Controller
     public function signin()
     {
         if ( $this->model('Warga_model')->signIn($_POST) === true) {
-
             // set session
             $_SESSION['login'] = true;
             $_SESSION['warga'] = $this->model('Warga_model')->getUserByUsername($_POST['username']);
 
             header('Location: ' . BASEURL . '/dashboard');
+            exit;
+        } elseif ( $this->model('Admin_model')->signIn($_POST) === true ) {
+            // set session
+            $_SESSION['login'] = true;
+            $_SESSION['admin'] = $this->model('Admin_model')->getUserByUsername($_POST['username']);
+
+            header('Location: ' . BASEURL . '/dashboard/admin');
             exit;
         }
         $this->index();
