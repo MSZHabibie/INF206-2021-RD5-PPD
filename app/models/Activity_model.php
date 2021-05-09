@@ -83,4 +83,20 @@ class Activity_model
         $this->db->bind('id_aktivitas', $id_aktivitas);
         $this->db->execute();
     }
+
+    public function addActivity($data)
+    {
+        $this->db->query("INSERT INTO $this->table VALUES ('', :nama, :deskripsi, :syarat, 0, :maks_peserta, :waktu, :tempat, :poin, :gambar)");
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('deskripsi', $data['deskripsi']);
+        $this->db->bind('syarat', $data['syarat']);
+        $this->db->bind('maks_peserta', $data['maks_peserta']);
+        $this->db->bind('waktu', $data['waktu']);
+        $this->db->bind('tempat', $data['tempat']);
+        $this->db->bind('poin', $data['poin']);
+        $this->db->bind('gambar', $data['gambar']);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 }
