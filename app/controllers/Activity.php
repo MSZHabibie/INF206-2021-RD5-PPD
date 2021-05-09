@@ -26,6 +26,7 @@ class Activity extends Controller
         $data['admin'] = $_SESSION['admin'];
         $this->view('templates/header', $data);
         $this->view('activity/admin', $data);
+        $this->view('templates/modal-aktivitas');
         $this->view('templates/footer');
     }
 
@@ -68,6 +69,7 @@ class Activity extends Controller
         
         $this->view('templates/header', $data);
         $this->view('activity/detailAdmin', $data);
+        $this->view('templates/modal-aktivitas');
         $this->view('templates/footer');
     }
 
