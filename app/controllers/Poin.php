@@ -27,4 +27,35 @@ class Poin extends Controller
     $this->view('poin/admin', $data);
     $this->view('templates/footer');
   }
+  public function tambah()
+  {
+    $this->hasSession();
+    $this->isNotAdmin($this);
+
+    if ($this->model('Poin_model')->addVoucher($_POST) > 0) {
+      header('Location: ' . BASEURL . '/poin/admin');
+      exit;
+    }
+  }
+
+  public function hapus($id)
+  {
+    $this->hasSession();
+    $this->isNotAdmin($this);
+
+    if ($this->model('Poin_model')->deleteVoucher($id) > 0) {
+      header('Location: ' . BASEURL . '/poin/admin');
+      exit;
+    }
+  }
+  public function edit()
+  {
+    $this->hasSession();
+    $this->isNotAdmin($this);
+
+    if ($this->model('Poin')->updatePoin($_POST) > 0) {
+      header('Location: ' . BASEURL . '/poin/admin');
+      exit;
+    }
+  }
 }
