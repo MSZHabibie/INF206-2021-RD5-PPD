@@ -5,7 +5,7 @@ class Dashboard extends Controller
 {
     public function index()
     {
-        $this->hasNoSession();
+        $this->hasSession();
         $this->isAdmin(get_class($this));
 
         $data['judul'] = 'Dashboard';
@@ -16,7 +16,7 @@ class Dashboard extends Controller
 
     public function admin()
     {
-        $this->hasNoSession();
+        $this->hasSession();
         $this->isNotAdmin(get_class($this));
 
         $data['judul'] = 'Dashboard Admin';
