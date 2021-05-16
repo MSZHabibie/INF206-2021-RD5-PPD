@@ -2,11 +2,7 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="<?= BASEURL; ?>/js/bootstrap.js"></script>
 <script src="<?= BASEURL; ?>/js/script.js"></script>
-<nav class="navbar fixed-bottom navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">@Copyright 2021</a>
-  </div>
-</nav>
+
 </body>
 
 </html>
