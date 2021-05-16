@@ -1,0 +1,2 @@
+# INF206-2021-RD5-PPD
+Pensejahteraan Pemuda Desa (PPD) Merupakan sebuah platform berbasis website yang menyediakan layanan  berupa kegiatan-kegiatan yang dapat diikuti oleh para pemuda-pemudi pada suatu desa. Pada website ini terdapat sistem point yang dimana point tersebut bisa didapatkan dengan mengikuti berbagai kegiatan desa yang kemudian digunakan untuk ditukarkan dengan berbagai promo menarik yang dapat menunjang kebutuhan para pemuda-pemudi.
