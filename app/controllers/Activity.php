@@ -12,7 +12,7 @@ class Activity extends Controller
         $data['aktivitas'] = $this->model('Activity_model')->getAllActivity();
         $data['warga'] = $_SESSION['warga'];
         //$this->view('templates/header', $data);
-        $this->view('activity/activity', $data);
+        $this->view('activity/index', $data);
         //$this->view('templates/footer');
     }
 
