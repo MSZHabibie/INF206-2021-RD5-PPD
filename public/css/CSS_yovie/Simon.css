@@ -244,7 +244,7 @@ section .color:nth-child(3)
 {
 	background: #fff;
 	color: #000;
-	max-width: 300px;
+	max-width: 150px;
 	cursor: pointer;
 	margin-bottom: 20px;
 	font-weight: 600;
