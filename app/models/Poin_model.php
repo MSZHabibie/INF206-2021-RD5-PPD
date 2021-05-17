@@ -2,7 +2,7 @@
 
 class Poin_model
 {
-    private $table = 'poin';
+    private $table = 'warga';
     private $table2 = 'voucher';
     private $db;
 
@@ -21,7 +21,7 @@ class Poin_model
 
     public function getAllPoin()
     {
-        $this->db->query("SELECT * FROM $this->table2");
+        $this->db->query("SELECT * FROM $this->table");
         $this->db->execute();
 
         return $this->db->resultSet();
@@ -38,11 +38,12 @@ class Poin_model
     }
     public function addVoucher($data)
     {
-        $this->db->query("INSERT INTO $this->table VALUES ('', :nama, :deskripsi, 0, :poin, :gambar)");
+        $this->db->query("INSERT INTO $this->table2 VALUES ('', :nama, :deskripsi, :poin, :gambar)");
         $this->db->bind('nama', $data['nama']);
-        $this->db->bind('deskripsi', $data['deskripsi']);
-        $this->db->bind('poin', $data['poin']);
         $this->db->bind('gambar', $data['gambar']);
+        $this->db->bind('poin', $data['poin']);
+        $this->db->bind('deskripsi', $data['deskripsi']);
+
         $this->db->execute();
 
         return $this->db->rowCount();
@@ -50,7 +51,7 @@ class Poin_model
 
     public function deleteVoucher($id)
     {
-        $this->db->query("DELETE FROM $this->table WHERE id=:id");
+        $this->db->query("DELETE FROM $this->table2 WHERE id=:id");
         $this->db->bind('id', $id);
         $this->db->execute();
 

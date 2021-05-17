@@ -1,15 +1,16 @@
 <?php
+session_start();
 
 class Poin extends Controller
 {
-  public function index($id)
+  public function index()
   {
     $this->hasSession();
     $this->isAdmin(get_class($this));
 
     $data['judul'] = 'Poin';
-    $data['poin'] = $this->model('Poin_model')->getPoinId($id);
     $data['voucher'] = $this->model('Poin_model')->getAllVoucher();
+    $data['warga'] = $_SESSION['warga'];
     $this->view('templates/header', $data);
     $this->view('Poin/index', $data);
     $this->view('templates/footer');
@@ -53,7 +54,7 @@ class Poin extends Controller
     $this->hasSession();
     $this->isNotAdmin($this);
 
-    if ($this->model('Poin')->updatePoin($_POST) > 0) {
+    if ($this->model('Poin')->updateVoucher($_POST) > 0) {
       header('Location: ' . BASEURL . '/poin/admin');
       exit;
     }
