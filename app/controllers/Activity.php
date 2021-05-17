@@ -12,7 +12,7 @@ class Activity extends Controller
         $data['aktivitas'] = $this->model('Activity_model')->getAllActivity();
         $data['warga'] = $_SESSION['warga'];
         //$this->view('templates/header', $data);
-        $this->view('activity/activity', $data);
+        $this->view('activity/index', $data);
         //$this->view('templates/footer');
     }
 
@@ -24,10 +24,10 @@ class Activity extends Controller
         $data['judul'] = 'Activity Admin';
         $data['aktivitas'] = $this->model('Activity_model')->getAllActivity();
         $data['admin'] = $_SESSION['admin'];
-        $this->view('templates/header', $data);
+        //$this->view('templates/header', $data);
         $this->view('activity/admin', $data);
         $this->view('templates/modal-aktivitas');
-        $this->view('templates/footer');
+        //$this->view('templates/footer');
     }
 
     public function detail($id)
