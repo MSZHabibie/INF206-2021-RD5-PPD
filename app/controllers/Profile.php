@@ -13,6 +13,11 @@ class Profile extends Controller
         $this->view('templates/footer');
     }
 
+    public function edit()
+    {
+        $this->view('profile/edit');
+    }
+
     public function admin()
     {
         $this->hasSession();
