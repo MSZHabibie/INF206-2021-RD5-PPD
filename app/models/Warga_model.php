@@ -10,9 +10,22 @@ class Warga_model
         $this->db = new Database;
     }
 
-    public function getUser()
+    public function getUserById($id)
     {
-        return $this->nama;
+        $this->db->query("SELECT * FROM $this->table WHERE id=:id");
+        $this->db->bind('id', $id);
+        $this->db->execute();
+
+        return $this->db->single();
+    }
+
+    public function getUserByUsername($username)
+    {
+        $this->db->query("SELECT * FROM $this->table WHERE username=:username");
+        $this->db->bind('username', $username);
+        $this->db->execute();
+
+        return $this->db->single();
     }
 
     public function createAccount($data)
@@ -68,7 +81,7 @@ class Warga_model
         $this->db->bind('username', $username);
         $this->db->execute();
 
-        return $this->db->rowCount();
+        return $this->db->single();
     }
 
     public function signIn($data)
@@ -77,11 +90,11 @@ class Warga_model
             return false;
         }
 
-        $email = $data['email'];
+        $username = $data['username'];
         $password = $data['password'];
-        $result = $this->cekEmail($email);
-        
-        // cek email ada atau tidak
+        $result = $this->cekUsername($username);
+
+        // cek username ada atau tidak
         if( $result === false) {
             return false;
         }
