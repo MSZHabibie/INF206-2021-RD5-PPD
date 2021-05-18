@@ -3,7 +3,6 @@
                     <h1 class="section-header">
                         <div>Activity</div>
                     </h1>
-
                 </section>
 
                 <table width="300">
