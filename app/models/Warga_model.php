@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Warga_model
 {
@@ -30,7 +30,7 @@ class Warga_model
 
     public function createAccount($data)
     {
-        if ( !isset($data['submit']) ) {
+        if (!isset($data['submit'])) {
             return false;
         }
 
@@ -40,24 +40,24 @@ class Warga_model
         $password2 = $data['password2'];
 
         // cek email
-        if( $this->cekEmail($email) > 0) {
+        if ($this->cekEmail($email) > 0) {
             return false;
         }
 
         // cek username
-        if( $this->cekUsername($username) > 0) {
+        if ($this->cekUsername($username) > 0) {
             return false;
         }
 
         // cek password dan konfirmasinya
-        if( $password !== $password2 ) {
+        if ($password !== $password2) {
             return false;
         }
 
         // hash password
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $this->db->query("INSERT INTO $this->table VALUES ('', :email, :username, :password)");
+        $this->db->query("INSERT INTO $this->table (email, username, password) VALUES (:email, :username, :password)");
         $this->db->bind('email', $email);
         $this->db->bind('username', $username);
         $this->db->bind('password', $password);
@@ -74,7 +74,7 @@ class Warga_model
 
         return $this->db->single();
     }
-    
+
     public function cekUsername($username)
     {
         $this->db->query("SELECT * FROM $this->table WHERE username=:username");
@@ -86,7 +86,7 @@ class Warga_model
 
     public function signIn($data)
     {
-        if ( !isset($data['submit']) ) {
+        if (!isset($data['submit'])) {
             return false;
         }
 
@@ -95,15 +95,15 @@ class Warga_model
         $result = $this->cekUsername($username);
 
         // cek username ada atau tidak
-        if( $result === false) {
+        if ($result === false) {
             return false;
         }
 
         // cek password benar atau salah
-        if( !password_verify($password, $result['password']) ) {
+        if (!password_verify($password, $result['password'])) {
             return false;
         }
-        
+
         return true;
     }
 }

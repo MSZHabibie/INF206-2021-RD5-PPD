@@ -8,6 +8,7 @@ class Activity extends Controller
         $this->hasSession();
         $this->isAdmin(get_class($this));
 
+        $data['class'] = get_class($this);
         $data['judul'] = 'Activity';
         $data['aktivitas'] = $this->model('Activity_model')->getAllActivity();
         $data['warga'] = $_SESSION['warga'];
@@ -22,13 +23,14 @@ class Activity extends Controller
         $this->hasSession();
         $this->isNotAdmin(get_class($this));
 
+        $data['class'] = get_class($this);
         $data['judul'] = 'Activity Admin';
         $data['aktivitas'] = $this->model('Activity_model')->getAllActivity();
         $data['admin'] = $_SESSION['admin'];
         $data['user'] = $_SESSION['admin'];
         $this->view('templates/appheader', $data);
         $this->view('activity/admin', $data);
-        //$this->view('templates/modal-aktivitas');
+        $this->view('templates/modal-aktivitas');
         $this->view('templates/appfooter');
     }
 

@@ -20,6 +20,10 @@
 <script src="<?= BASEURL; ?>/js/js_yovie/js/scripts.js"></script>
 <script src="<?= BASEURL; ?>/js/js_yovie/js/custom.js"></script>
 <script src="<?= BASEURL; ?>/js/js_yovie/js/demo.js"></script>
+
+<script src="<?= BASEURL; ?>/js/bootstrap.js"></script>
+<script src="<?= BASEURL; ?>/js/script.js"></script>
+
 </body>
 
 </html>

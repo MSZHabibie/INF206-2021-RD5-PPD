@@ -8,6 +8,7 @@
     <!--favicon-->
     <link rel="icon" href="<?= BASEURL; ?>/img/img_yovie/img/avatar/icones.ico" type="image">
     <link rel="stylesheet" href="<?= BASEURL; ?>/modules/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/modules/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/modules/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/modules/summernote/summernote-lite.css">
@@ -82,7 +83,7 @@
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand"> <a href="index.html">PPD</a> </div>
                     <div class="sidebar-user">
-                        <div class="sidebar-user-picture"> <img alt="image" src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-5.jpeg"> </div>
+                        <div class="sidebar-user-picture"> <img alt="image" src="<?= BASEURL; ?>/img/profile/<?= $data['user']['profile']; ?>"> </div>
                         <div class="sidebar-user-details">
                             <div class="user-name"><?= $data['user']['username']; ?></div>
                             <div class="user-role"><?= isset($data['admin']) ? 'Admin' : 'Warga'; ?> </div>
@@ -94,7 +95,7 @@
                         <li class="menu-header">Profile</li>
                         <li> <a href="#"><i class="fas fa-users"></i><span>Profile</span></a></li>
                         <li class="menu-header">Activity</li>
-                        <li class="active"> <a href="<?= BASEURL; ?>/activity/index"><i class="fas fa-american-sign-language-interpreting"></i><span>Activity</span></a></li>
+                        <li class="<?= $data['class'] === 'Activity' ? "active" : ""; ?>"> <a href="<?= BASEURL; ?>/activity/index"><i class="fas fa-american-sign-language-interpreting"></i><span>Activity</span></a></li>
                         <li> <a href="#"><i class="fas fa-burn"></i><span>Points</span></a></li>
                         <li> <a href="table.html"><i class="far fa-address-card"></i><span>Community</span></a> </li>
 
