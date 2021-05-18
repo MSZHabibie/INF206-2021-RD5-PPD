@@ -83,7 +83,7 @@
                 <aside id="sidebar-wrapper">
                     <div class="sidebar-brand"> <a href="index.html">PPD</a> </div>
                     <div class="sidebar-user">
-                        <div class="sidebar-user-picture"> <img alt="image" src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-5.jpeg"> </div>
+                        <div class="sidebar-user-picture"> <img alt="image" src="<?= BASEURL; ?>/img/profile/<?= $data['user']['profile']; ?>"> </div>
                         <div class="sidebar-user-details">
                             <div class="user-name"><?= $data['user']['username']; ?></div>
                             <div class="user-role"><?= isset($data['admin']) ? 'Admin' : 'Warga'; ?> </div>

@@ -35,7 +35,7 @@
                     <?php foreach ($data['aktivitas'] as $aktivitas) : ?>
                         <div class="col mb-3">
                             <div class="card h-100" style="width: 18rem;">
-                                <img src="<?= BASEURL; ?>/img/<?= $aktivitas['gambar'] ?>" class="card-img-top" alt="">
+                                <img src="<?= BASEURL; ?>/img/activity/<?= $aktivitas['gambar'] ?>" class="card-img-top" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title"><?= $aktivitas['nama'] ?></h5>
                                     <p class="card-text"><?= $aktivitas['deskripsi'] ?></p>
