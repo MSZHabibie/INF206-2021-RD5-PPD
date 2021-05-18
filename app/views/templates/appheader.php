@@ -8,6 +8,7 @@
     <!--favicon-->
     <link rel="icon" href="<?= BASEURL; ?>/img/img_yovie/img/avatar/icones.ico" type="image">
     <link rel="stylesheet" href="<?= BASEURL; ?>/modules/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/modules/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/modules/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/modules/summernote/summernote-lite.css">

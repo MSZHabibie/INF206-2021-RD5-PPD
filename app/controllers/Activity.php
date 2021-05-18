@@ -28,7 +28,7 @@ class Activity extends Controller
         $data['user'] = $_SESSION['admin'];
         $this->view('templates/appheader', $data);
         $this->view('activity/admin', $data);
-        //$this->view('templates/modal-aktivitas');
+        $this->view('templates/modal-aktivitas');
         $this->view('templates/appfooter');
     }
 
