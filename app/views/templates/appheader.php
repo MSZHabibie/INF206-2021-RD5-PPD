@@ -95,7 +95,7 @@
                         <li class="menu-header">Profile</li>
                         <li> <a href="#"><i class="fas fa-users"></i><span>Profile</span></a></li>
                         <li class="menu-header">Activity</li>
-                        <li class="active"> <a href="<?= BASEURL; ?>/activity/index"><i class="fas fa-american-sign-language-interpreting"></i><span>Activity</span></a></li>
+                        <li class="<?= $data['class'] === 'Activity' ? "active" : ""; ?>"> <a href="<?= BASEURL; ?>/activity/index"><i class="fas fa-american-sign-language-interpreting"></i><span>Activity</span></a></li>
                         <li> <a href="#"><i class="fas fa-burn"></i><span>Points</span></a></li>
                         <li> <a href="table.html"><i class="far fa-address-card"></i><span>Community</span></a> </li>
 
