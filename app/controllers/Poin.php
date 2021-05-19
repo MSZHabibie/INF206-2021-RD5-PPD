@@ -12,6 +12,7 @@ class Poin extends Controller
     $data['judul'] = 'Poin';
     $data['voucher'] = $this->model('Poin_model')->getAllVoucher();
     $data['warga'] = $_SESSION['warga'];
+    $data['warga'] = $this->model('Poin_model')->getPoinById($data['warga']['id']);
     $this->view('templates/header', $data);
     $this->view('Poin/index', $data);
     $this->view('templates/footer');
@@ -35,6 +36,11 @@ class Poin extends Controller
     $this->isNotAdmin($this);
 
     if ($this->model('Poin_model')->addVoucher($_POST) > 0) {
+      Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+      header('Location: ' . BASEURL . '/poin/admin');
+      exit;
+    } else {
+      Flasher::setFlash('gagal', 'ditambahkan', 'danger');
       header('Location: ' . BASEURL . '/poin/admin');
       exit;
     }
@@ -46,6 +52,11 @@ class Poin extends Controller
     $this->isNotAdmin($this);
 
     if ($this->model('Poin_model')->deleteVoucher($id) > 0) {
+      Flasher::setFlash('berhasil', 'dihapus', 'success');
+      header('Location: ' . BASEURL . '/poin/admin');
+      exit;
+    } else {
+      Flasher::setFlash('gagal', 'dihapus', 'danger');
       header('Location: ' . BASEURL . '/poin/admin');
       exit;
     }
@@ -62,6 +73,11 @@ class Poin extends Controller
     $this->isNotAdmin($this);
 
     if ($this->model('Poin_model')->updateVoucher($_POST) > 0) {
+      Flasher::setFlash('berhasil', 'diedit', 'success');
+      header('Location: ' . BASEURL . '/poin/admin');
+      exit;
+    } else {
+      Flasher::setFlash('gagal', 'diedit', 'danger');
       header('Location: ' . BASEURL . '/poin/admin');
       exit;
     }
@@ -73,7 +89,11 @@ class Poin extends Controller
     $this->isAdmin($this);
 
     if ($this->model('Poin_model')->beliVoucher($id_warga, $id_voucher) > 0) {
-      echo $warga['poin'];
+      Flasher::setFlash('berhasil', 'dibeli', 'success');
+      header('Location: ' . BASEURL . '/poin');
+      exit;
+    } else {
+      Flasher::setFlash('gagal', 'dibeli', 'danger');
       header('Location: ' . BASEURL . '/poin');
       exit;
     }

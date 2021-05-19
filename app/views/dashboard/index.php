@@ -94,7 +94,7 @@
 						<li> <a href="#"><i class="fas fa-users"></i><span>Profile</span></a></li>
 						<li class="menu-header">Activity</li>
 						<li> <a href="#"><i class="fas fa-american-sign-language-interpreting"></i><span>Activity</span></a></li>
-						<li> <a href="#"><i class="fas fa-burn"></i><span>Points</span></a></li>
+						<li> <a href="<?= BASEURL; ?>/poin"><i class="fas fa-burn"></i><span>Points</span></a></li>
 						<li> <a href="table.html"><i class="far fa-address-card"></i><span>Community</span></a> </li>
 
 
