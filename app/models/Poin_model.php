@@ -4,6 +4,8 @@ class Poin_model
 {
     private $table = 'warga';
     private $table2 = 'voucher';
+    private $table3 = 'voucher_warga';
+
     private $db;
 
     public function __construct()
@@ -69,7 +71,7 @@ class Poin_model
 
     public function updateVoucher($data)
     {
-        $query = "UPDATE aktivitas SET 
+        $query = "UPDATE voucher SET 
                     nama = :nama, 
                     deskripsi = :deskripsi, 
                     poin = :poin, 
@@ -82,6 +84,32 @@ class Poin_model
         $this->db->bind('poin', $data['poin']);
         $this->db->bind('gambar', $data['gambar']);
         $this->db->bind('id', $data['id']);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function beliVoucher($id_warga, $id_voucher)
+    {
+        $warga = $this->getPoinById($id_warga);
+        $voucher = $this->getVoucherById($id_voucher);
+
+        if (($warga['poin'] - $voucher['poin']) < 0) {
+            return false;
+        }
+
+        $poin_baru = $warga['poin'] - $voucher['poin'];
+
+        // mengupdate jumlah poin di table warga
+        $this->db->query("UPDATE $this->table SET poin = :poin WHERE id = :id");
+        $this->db->bind('poin', $poin_baru);
+        $this->db->bind('id', $warga['id']);
+
+        // Menambah data pembelian di table voucher_warga
+        $this->db->query("INSERT INTO $this->table3 VALUES (:id_warga, :id_voucher)");
+        $this->db->bind('id_warga', $id_warga);
+        $this->db->bind('id_voucher', $id_voucher);
 
         $this->db->execute();
 
