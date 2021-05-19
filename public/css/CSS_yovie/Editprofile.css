@@ -167,7 +167,8 @@ section::after
     height: 100%;
 
 }
-.container .row100 .col input[type="submit"]
+.container .row100 .col input[type="submit"],
+.container .row100 .col a
 {
     border: none;
     padding: 10px 40px;
@@ -178,6 +179,11 @@ section::after
     font-weight: 600;
     font-size: 18px;
     border-radius: 2px;
+}
+
+.container .row100 .col a
+{
+    text-decoration: none;
 }
 
 @media (max-width: 768px)
