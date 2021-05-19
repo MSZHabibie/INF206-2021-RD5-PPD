@@ -11,13 +11,6 @@ class Poin_model
         $this->db = new Database;
     }
 
-    public function getAllVoucher()
-    {
-        $this->db->query("SELECT * FROM $this->table2");
-        $this->db->execute();
-
-        return $this->db->resultSet();
-    }
 
     public function getAllPoin()
     {
@@ -27,7 +20,6 @@ class Poin_model
         return $this->db->resultSet();
     }
 
-
     public function getPoinById($id)
     {
         $this->db->query("SELECT * FROM $this->table WHERE id=:id");
@@ -36,6 +28,23 @@ class Poin_model
 
         return $this->db->single();
     }
+    public function getAllVoucher()
+    {
+        $this->db->query("SELECT * FROM $this->table2");
+        $this->db->execute();
+
+        return $this->db->resultSet();
+    }
+
+    public function getVoucherById($id)
+    {
+        $this->db->query("SELECT * FROM " . $this->table2 . " WHERE id =:id");
+        $this->db->bind('id', $id);
+        $this->db->execute();
+
+        return $this->db->single();
+    }
+
     public function addVoucher($data)
     {
         $this->db->query("INSERT INTO $this->table2 VALUES ('', :nama, :deskripsi, :poin, :gambar)");
