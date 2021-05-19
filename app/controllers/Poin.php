@@ -49,6 +49,12 @@ class Poin extends Controller
       exit;
     }
   }
+
+  public function getDataEdit()
+  {
+    echo json_encode($this->model('Poin_model')->getVoucherById($_POST['id']));
+  }
+
   public function edit()
   {
     $this->hasSession();
