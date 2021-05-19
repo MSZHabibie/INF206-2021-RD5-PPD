@@ -44,4 +44,40 @@ $(function() {
 
     });
 
+    $('.tombolTambahVoucher').on('click', function() {
+        $('#judulModal2').html('Tambah Voucher');
+        $('.modal-footer button[type=submit]').html('Tambah');
+        $('.modal-body form').attr('action', baseurl.concat('/poin/tambah'));
+        $('#nama').val('');
+        $('#deskripsi').val('');
+        $('#poin').val('');
+        $('#gambar').val('');
+                
+    });
+
+    $('.tampilModalEdit2').on('click', function () {
+        
+        $('#judulModal2').html('Edit Voucher');
+        $('.modal-footer button[type=submit]').html('Simpan');
+        $('.modal-body form').attr('action', baseurl.concat('/poin/edit'));
+
+        const id = $(this).data('id');
+        
+        $.ajax({
+            url: baseurl.concat('/poin/getDataEdit'),
+            data: {id : id},
+            method: 'post',
+            dataType: 'json',
+            success: function(data) {
+                $('#id').val(data.id);
+                $('#nama').val(data.nama);
+                $('#deskripsi').val(data.deskripsi);
+                $('#poin').val(data.poin);
+                $('#gambar').val(data.gambar);
+          
+            }
+        });
+
+    });
+
 });
