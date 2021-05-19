@@ -3,6 +3,7 @@ session_start();
 
 class Poin extends Controller
 {
+
   public function index()
   {
     $this->hasSession();
@@ -49,13 +50,31 @@ class Poin extends Controller
       exit;
     }
   }
+
+  public function getDataEdit()
+  {
+    echo json_encode($this->model('Poin_model')->getVoucherById($_POST['id']));
+  }
+
   public function edit()
   {
     $this->hasSession();
     $this->isNotAdmin($this);
 
-    if ($this->model('Poin')->updateVoucher($_POST) > 0) {
+    if ($this->model('Poin_model')->updateVoucher($_POST) > 0) {
       header('Location: ' . BASEURL . '/poin/admin');
+      exit;
+    }
+  }
+
+  public function pembelian($id_warga, $id_voucher)
+  {
+    $this->hasSession();
+    $this->isAdmin($this);
+
+    if ($this->model('Poin_model')->beliVoucher($id_warga, $id_voucher) > 0) {
+      echo $warga['poin'];
+      header('Location: ' . BASEURL . '/poin');
       exit;
     }
   }

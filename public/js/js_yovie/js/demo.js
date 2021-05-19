@@ -6,7 +6,7 @@ var skin = function(color) {
 	if(color == 'default') return;
 	$("head").append($("<link/>", {
 		rel: 'stylesheet',
-		href: baseurl + '/css/CSS_yovie/css/skins/' + color + '.css',
+		href: 'css/CSS_yovie/css/skins/' + color + '.css',
 		id: 'skin-css'
 	}));
 }
