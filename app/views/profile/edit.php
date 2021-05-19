@@ -70,7 +70,7 @@
 
             <div class="row100">
                 <div class="col">
-                    <input type="submit" value="Cancel">
+                    <a href="<?= BASEURL; ?>/profile">Cancel</a>
                 </div>
                 <div class="col">
                     <input type="submit" value="Save">

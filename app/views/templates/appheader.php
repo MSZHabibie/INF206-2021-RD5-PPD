@@ -73,7 +73,7 @@
                             <div class="d-sm-none d-lg-inline-block">Hi, <?= $data['user']['username']; ?></div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a href="#" class="dropdown-item has-icon"> <i class="ion ion-android-person"></i> Profile </a>
+                            <a href="<?= BASEURL; ?>/profile" class="dropdown-item has-icon"> <i class="ion ion-android-person"></i> Profile </a>
                             <a href="<?= BASEURL; ?>/logout" class="dropdown-item has-icon"> <i class="ion ion-log-out"></i> Logout </a>
                         </div>
                     </li>
@@ -91,13 +91,13 @@
                     </div>
                     <ul class="sidebar-menu">
                         <li class="menu-header">Dashboard</li>
-                        <li> <a href="<?= BASEURL; ?>/dashboard/index"><i class="ion ion-speedometer"></i><span>Dashboard</span></a> </li>
+                        <li class="<?= $data['class'] === 'Dashboard' ? "active" : ""; ?>"> <a href="<?= BASEURL; ?>/dashboard"><i class="ion ion-speedometer"></i><span>Dashboard</span></a> </li>
                         <li class="menu-header">Profile</li>
-                        <li> <a href="#"><i class="fas fa-users"></i><span>Profile</span></a></li>
+                        <li class="<?= $data['class'] === 'Profile' ? "active" : ""; ?>"> <a href="<?= BASEURL; ?>/profile"><i class="fas fa-users"></i><span>Profile</span></a></li>
                         <li class="menu-header">Activity</li>
-                        <li class="<?= $data['class'] === 'Activity' ? "active" : ""; ?>"> <a href="<?= BASEURL; ?>/activity/index"><i class="fas fa-american-sign-language-interpreting"></i><span>Activity</span></a></li>
-                        <li> <a href="#"><i class="fas fa-burn"></i><span>Points</span></a></li>
-                        <li> <a href="table.html"><i class="far fa-address-card"></i><span>Community</span></a> </li>
+                        <li class="<?= $data['class'] === 'Activity' ? "active" : ""; ?>"> <a href="<?= BASEURL; ?>/activity"><i class="fas fa-american-sign-language-interpreting"></i><span>Activity</span></a></li>
+                        <li class="<?= $data['class'] === 'Poin' ? "active" : ""; ?>"> <a href="<?= BASEURL; ?>/poin"><i class="fas fa-burn"></i><span>Points</span></a></li>
+                        <li class="<?= $data['class'] === 'Community' ? "active" : ""; ?>"> <a href="<?= BASEURL; ?>/community"><i class="far fa-address-card"></i><span>Community</span></a> </li>
 
                         <li class="menu-header">More</li>
                         <li> <a href="#" class="has-dropdown"><i class="ion ion-ios-nutrition"></i> About as</a>
