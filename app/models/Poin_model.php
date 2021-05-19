@@ -99,12 +99,13 @@ class Poin_model
             return false;
         }
 
-        $poin_baru = $warga['poin'] - $voucher['poin'];
+        $warga['poin'] = $warga['poin'] - $voucher['poin'];
 
         // mengupdate jumlah poin di table warga
         $this->db->query("UPDATE $this->table SET poin = :poin WHERE id = :id");
-        $this->db->bind('poin', $poin_baru);
+        $this->db->bind('poin', $warga['poin']);
         $this->db->bind('id', $warga['id']);
+        $this->db->execute();
 
         // Menambah data pembelian di table voucher_warga
         $this->db->query("INSERT INTO $this->table3 VALUES (:id_warga, :id_voucher)");
