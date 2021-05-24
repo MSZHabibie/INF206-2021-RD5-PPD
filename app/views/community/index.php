@@ -92,7 +92,7 @@
 						<li class="menu-header">Profile</li>
 						<li> <a href="#" ><i class="fas fa-users"></i><span>Profile</span></a></li>
 						<li class="menu-header">Activity</li>
-						
+						<li> <a href="#" ><i class="fas fa-burn"></i><span></span></a></li>
 						<li> <a href="#" ><i class="fas fa-burn"></i><span>Points</span></a></li>
 						<li class="active"> <a href="<?= BASEURL; ?>/community/index" ><i class="fas fa-american-sign-language-interpreting"></i><span>Community</span></a></li>
 						
