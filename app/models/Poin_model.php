@@ -108,7 +108,7 @@ class Poin_model
         $this->db->execute();
 
         // Menambah data pembelian di table voucher_warga
-        $this->db->query("INSERT INTO $this->table3 VALUES (:id_warga, :id_voucher)");
+        $this->db->query("INSERT INTO $this->table3 VALUES (:id_warga, :id_voucher, NOW())");
         $this->db->bind('id_warga', $id_warga);
         $this->db->bind('id_voucher', $id_voucher);
 

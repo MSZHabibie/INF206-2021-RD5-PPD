@@ -13,9 +13,9 @@ class Poin extends Controller
     $data['voucher'] = $this->model('Poin_model')->getAllVoucher();
     $data['warga'] = $_SESSION['warga'];
     $data['warga'] = $this->model('Poin_model')->getPoinById($data['warga']['id']);
-    $this->view('templates/header', $data);
+    $this->view('templates/appheader', $data);
     $this->view('Poin/index', $data);
-    $this->view('templates/footer');
+    $this->view('templates/appfooter');
   }
   public function admin()
   {

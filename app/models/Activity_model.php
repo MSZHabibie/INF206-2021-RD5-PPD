@@ -50,7 +50,7 @@ class Activity_model
             return false;
         }
 
-        $this->db->query("INSERT INTO $this->table2 VALUES (:id_warga, :id_aktivitas)");
+        $this->db->query("INSERT INTO $this->table2 VALUES (:id_warga, :id_aktivitas, NOW())");
         $this->db->bind('id_warga', $id_warga);
         $this->db->bind('id_aktivitas', $id_aktivitas);
         $this->db->execute();
