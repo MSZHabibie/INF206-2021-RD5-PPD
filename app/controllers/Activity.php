@@ -72,6 +72,7 @@ class Activity extends Controller
         $data['class'] = get_class($this);
         $data['judul'] = 'Activity Detail';
         $data['aktivitas'] = $this->model('Activity_model')->getActivityById($id);
+        $data['peserta'] = $this->model('Activity_model')->getPeserta($id);
         $data['admin'] = $_SESSION['admin'];
         $data['user'] = $_SESSION['admin'];
 

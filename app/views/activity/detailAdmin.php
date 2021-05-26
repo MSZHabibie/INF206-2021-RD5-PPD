@@ -53,3 +53,25 @@
             </td>
         </tr>
     </table>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Nama/Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">No HP</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $nomor = 1 ?>
+            <?php foreach ($data['peserta'] as $peserta) : ?>
+                <tr>
+                    <th scope="row"><?= $nomor++; ?></th>
+                    <td><?= $peserta['nama'] ?> / <?= $peserta['username'] ?></td>
+                    <td><?= $peserta['email'] ?></td>
+                    <td><?= $peserta['no_hp'] ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>

@@ -24,10 +24,6 @@
         </tr>
 
         <tr>
-            <td>Waktu: <?= $data['aktivitas']['waktu'] ?></td>
-        </tr>
-
-        <tr>
             <td>Tanggal: <?= $data['aktivitas']['tanggal'] ?></td>
         </tr>
 

@@ -4,6 +4,7 @@ class Activity_model
 {
     private $table = 'aktivitas';
     private $table2 = 'aktivitas_warga';
+    private $table3 = 'warga';
     private $db;
 
     public function __construct()
@@ -126,7 +127,7 @@ class Activity_model
 
     public function updateActivity($data)
     {
-        $query = "UPDATE aktivitas SET 
+        $query = "UPDATE $this->table SET 
                     nama = :nama, 
                     deskripsi = :deskripsi, 
                     syarat = :syarat, 
@@ -153,5 +154,17 @@ class Activity_model
         $this->db->execute();
 
         return $this->db->rowCount();
+    }
+
+    public function getPeserta($id_aktivitas)
+    {
+        $query = "SELECT nama, username, email, no_hp FROM $this->table3 WHERE id IN
+                (SELECT id_warga FROM $this->table2 WHERE id_aktivitas = :id_aktivitas )";
+
+        $this->db->query($query);
+        $this->db->bind('id_aktivitas', $id_aktivitas);
+        $this->db->execute();
+
+        return $this->db->resultSet();
     }
 }

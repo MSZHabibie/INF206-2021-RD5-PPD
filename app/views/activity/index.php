@@ -32,6 +32,14 @@
 								<div class="text-center">
 									<a href="<?= BASEURL; ?>/activity/detail/<?= $aktivitas['id'] ?>" class="btn btn-primary btn-round">Detail</a>
 								</div>
+								<div class="text-right">
+									<?php $waktu = round((strtotime($aktivitas['tanggal']) - strtotime(date("Y-m-d"))) / (60 * 60 * 24)); ?>
+									<?php if ($waktu >= 0) : ?>
+										<small><?= $waktu ?> Hari Lagi</small>
+									<?php else : ?>
+										<small>Selesai</small>
+									<?php endif; ?>
+								</div>
 							</td>
 						<?php endforeach; ?>
 					</tr>
