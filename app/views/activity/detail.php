@@ -24,11 +24,11 @@
         </tr>
 
         <tr>
-            <td>Waktu: <?= $data['aktivitas']['waktu'] ?></td>
+            <td>Tanggal: <?= $data['aktivitas']['tanggal'] ?></td>
         </tr>
 
         <tr>
-            <td>Tempat: <?= $data['aktivitas']['tempat'] ?></td>
+            <td>Jam: <?= $data['aktivitas']['jam'] ?></td>
         </tr>
 
         <tr>
