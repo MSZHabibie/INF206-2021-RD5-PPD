@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Activity_model
 {
@@ -35,22 +35,22 @@ class Activity_model
         $this->db->bind('id_aktivitas', $id_aktivitas);
         $this->db->execute();
 
-        return $this->db->rowCount()>0? true:false;
+        return $this->db->rowCount() > 0 ? true : false;
     }
 
     public function daftar($data, $id_warga, $id_aktivitas)
     {
-        if( !isset($data['daftar']) ) {
+        if (!isset($data['daftar'])) {
             return false;
         }
 
         $aktivitas = $this->getActivityById($id_aktivitas);
 
-        if( $aktivitas['peserta'] >= $aktivitas['maks_peserta']) {
+        if ($aktivitas['peserta'] >= $aktivitas['maks_peserta']) {
             return false;
         }
 
-        $this->db->query("INSERT INTO $this->table2 VALUES (:id_warga, :id_aktivitas)");
+        $this->db->query("INSERT INTO $this->table2 (id_warga, id_aktivitas, waktu) VALUES (:id_warga, :id_aktivitas, NOW())");
         $this->db->bind('id_warga', $id_warga);
         $this->db->bind('id_aktivitas', $id_aktivitas);
         $this->db->execute();
@@ -60,7 +60,7 @@ class Activity_model
 
     public function batal_daftar($data, $id_warga, $id_aktivitas)
     {
-        if( !isset($data['batal_daftar']) ) {
+        if (!isset($data['batal_daftar'])) {
             return false;
         }
 
@@ -86,12 +86,27 @@ class Activity_model
 
     public function addActivity($data)
     {
-        $this->db->query("INSERT INTO $this->table VALUES ('', :nama, :deskripsi, :syarat, 0, :maks_peserta, :waktu, :tempat, :poin, :gambar)");
+        $query = "INSERT INTO $this->table 
+                    (nama, deskripsi, syarat, maks_peserta, tanggal, jam, tempat, poin, gambar)
+                VALUES (
+                    :nama, 
+                    :deskripsi, 
+                    :syarat, 
+                    :maks_peserta, 
+                    :tanggal, 
+                    :jam, 
+                    :tempat, 
+                    :poin, 
+                    :gambar
+                )";
+
+        $this->db->query($query);
         $this->db->bind('nama', $data['nama']);
         $this->db->bind('deskripsi', $data['deskripsi']);
         $this->db->bind('syarat', $data['syarat']);
         $this->db->bind('maks_peserta', $data['maks_peserta']);
-        $this->db->bind('waktu', $data['waktu']);
+        $this->db->bind('tanggal', $data['tanggal']);
+        $this->db->bind('jam', $data['jam']);
         $this->db->bind('tempat', $data['tempat']);
         $this->db->bind('poin', $data['poin']);
         $this->db->bind('gambar', $data['gambar']);
@@ -116,18 +131,20 @@ class Activity_model
                     deskripsi = :deskripsi, 
                     syarat = :syarat, 
                     maks_peserta = :maks_peserta, 
-                    waktu = :waktu, 
+                    tanggal = :tanggal, 
+                    jam = :jam, 
                     tempat = :tempat, 
                     poin = :poin, 
                     gambar = :gambar
                 WHERE id = :id";
-        
+
         $this->db->query($query);
         $this->db->bind('nama', $data['nama']);
         $this->db->bind('deskripsi', $data['deskripsi']);
         $this->db->bind('syarat', $data['syarat']);
         $this->db->bind('maks_peserta', $data['maks_peserta']);
-        $this->db->bind('waktu', $data['waktu']);
+        $this->db->bind('tanggal', $data['tanggal']);
+        $this->db->bind('jam', $data['jam']);
         $this->db->bind('tempat', $data['tempat']);
         $this->db->bind('poin', $data['poin']);
         $this->db->bind('gambar', $data['gambar']);
