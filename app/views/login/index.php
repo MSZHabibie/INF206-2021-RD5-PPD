@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PPD | Login</title>
+    <link rel="icon" href="<?= BASEURL; ?>/img/logo.png" type="image">
     <link rel="stylesheet" href="<?= BASEURL; ?>/css/CSS_yovie/Simon.css">
 </head>
 

@@ -4,9 +4,9 @@
 <head>
 	<meta charset="UTF-8">
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" name="viewport">
-	<title>PPD</title>
+	<title>PPD | Dashboard</title>
 	<!--favicon-->
-	<link rel="icon" href="<?= BASEURL; ?>/img/img_yovie/img/img_yovie/img/avatar/icones.ico" type="image">
+	<link rel="icon" href="<?= BASEURL; ?>/img/logo.png" type="image">
 	<link rel="stylesheet" href="<?= BASEURL; ?>/modules/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="<?= BASEURL; ?>/modules/ionicons/css/ionicons.min.css">
 	<link rel="stylesheet" href="<?= BASEURL; ?>/modules/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
@@ -91,9 +91,9 @@
 						<li class="menu-header">Dashboard</li>
 						<li class="active"> <a href="index.html"><i class="ion ion-speedometer"></i><span>Dashboard</span></a> </li>
 						<li class="menu-header">Profile</li>
-						<li> <a href="#"><i class="fas fa-users"></i><span>Profile</span></a></li>
+						<li> <a href="<?= BASEURL; ?>/profile"><i class="fas fa-users"></i><span>Profile</span></a></li>
 						<li class="menu-header">Activity</li>
-						<li> <a href="#"><i class="fas fa-american-sign-language-interpreting"></i><span>Activity</span></a></li>
+						<li> <a href="<?= BASEURL; ?>/activity"><i class="fas fa-american-sign-language-interpreting"></i><span>Activity</span></a></li>
 						<li> <a href="<?= BASEURL; ?>/poin"><i class="fas fa-burn"></i><span>Points</span></a></li>
 						<li> <a href="table.html"><i class="far fa-address-card"></i><span>Community</span></a> </li>
 
