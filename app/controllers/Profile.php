@@ -33,4 +33,37 @@ class Profile extends Controller
         $data['user'] = isset($_SESSION['admin']) ? $_SESSION['admin'] : $_SESSION['warga'];
         $this->view('profile/edit', $data);
     }
+
+    public function update()
+    {
+        $this->hasSession();
+
+        if ($this->model('Warga_model')->updateProfile($_POST) > 0) {
+            // update data warga di $_SESSION
+            $_SESSION['warga'] = $this->model('Warga_model')->getUserById($_SESSION['warga']['id']);
+            $data['user'] = $_SESSION['warga'];
+
+            header('Location: ' . BASEURL . '/profile');
+            exit;
+        }
+        header('Location: ' . BASEURL . '/profile');
+        exit;
+    }
+
+    public function updateAdmin()
+    {
+        $this->hasSession();
+
+        if ($this->model('Admin_model')->updateProfile($_POST) > 0) {
+            // update data admin di $_SESSION
+            $_SESSION['admin'] = $this->model('Admin_model')->getUserById($_SESSION['admin']['id']);
+            $data['user'] = $_SESSION['admin'];
+
+            header('Location: ' . BASEURL . '/profile');
+            exit;
+        }
+
+        header('Location: ' . BASEURL . '/profile');
+        exit;
+    }
 }
