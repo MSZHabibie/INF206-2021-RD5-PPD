@@ -26,8 +26,12 @@
                         <input type="number" class="form-control" id="maks_peserta" name="maks_peserta">
                     </div>
                     <div class="form-group mb-3">
-                        <label for="waktu" class="form-label">Waktu</label>
-                        <input type="text" class="form-control" id="waktu" name="waktu">
+                        <label for="tanggal" class="form-label">Tanggal</label>
+                        <input type="date" class="form-control" id="tanggal" name="tanggal">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="jam" class="form-label">Jam</label>
+                        <input type="time" class="form-control" id="jam" name="jam">
                     </div>
                     <div class="form-group mb-3">
                         <label for="tempat" class="form-label">Tempat</label>

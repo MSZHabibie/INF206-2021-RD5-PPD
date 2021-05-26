@@ -10,7 +10,8 @@ $(function() {
         $('#gambar').val('');
         $('#syarat').val('');
         $('#maks_peserta').val('');
-        $('#waktu').val('');
+        $('#tanggal').val('');
+        $('#jam').val('');
         $('#tempat').val('');
         $('#poin').val('');
         $('#deskripsi').val('');
@@ -35,7 +36,8 @@ $(function() {
                 $('#gambar').val(data.gambar);
                 $('#syarat').val(data.syarat);
                 $('#maks_peserta').val(data.maks_peserta);
-                $('#waktu').val(data.waktu);
+                $('#tanggal').val(data.tanggal);
+                $('#jam').val(data.jam);
                 $('#tempat').val(data.tempat);
                 $('#poin').val(data.poin);
                 $('#deskripsi').val(data.deskripsi);
