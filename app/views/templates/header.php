@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>PPD | <?= $data['judul']; ?></title>
+    <link rel="icon" href="<?= BASEURL; ?>/img/logo.png" type="image">
     <link rel="stylesheet" href="<?= BASEURL; ?>/css/bootstrap.css">
 </head>
 
