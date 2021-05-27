@@ -74,6 +74,7 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="<?= BASEURL; ?>/profile" class="dropdown-item has-icon"> <i class="ion ion-android-person"></i> Profile </a>
+                            <a href="<?= BASEURL; ?>/profile/ubahPassword" class="dropdown-item has-icon"> <i class="ion ion-android-person"></i> Ubah Password </a>
                             <a href="<?= BASEURL; ?>/logout" class="dropdown-item has-icon"> <i class="ion ion-log-out"></i> Logout </a>
                         </div>
                     </li>

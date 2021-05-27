@@ -133,4 +133,32 @@ class Warga_model
 
         return $this->db->rowCount();
     }
+
+    public function updatePassword($data)
+    {
+
+        $passwordLama = $data['passwordLama'];
+        $password = $data['passwordBaru'];
+        $password2 = $data['confirmPasswordBaru'];
+
+        // cek password benar atau salah
+        if (!password_verify($passwordLama, $_SESSION['warga']['password'])) {
+            return false;
+        }
+
+        // cek password baru dan konfirmasinya
+        if ($password !== $password2) {
+            return false;
+        }
+
+        // hash password
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        $this->db->query("UPDATE $this->table SET password=:password WHERE id=:id");
+        $this->db->bind('password', $password);
+        $this->db->bind('id', $_SESSION['warga']['id']);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 }
