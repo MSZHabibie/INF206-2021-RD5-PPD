@@ -50,12 +50,12 @@ class Admin_model
 
         // cek username ada atau tidak
         if ($result === false) {
-            return false;
+            return -1;
         }
 
         // cek password benar atau salah
         if (!password_verify($password, $result['password'])) {
-            return false;
+            return -2;
         }
 
         return true;

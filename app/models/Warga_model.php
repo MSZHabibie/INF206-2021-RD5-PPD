@@ -41,17 +41,17 @@ class Warga_model
 
         // cek email
         if ($this->cekEmail($email) > 0) {
-            return false;
+            return -1;
         }
 
         // cek username
         if ($this->cekUsername($username) > 0) {
-            return false;
+            return -2;
         }
 
         // cek password dan konfirmasinya
         if ($password !== $password2) {
-            return false;
+            return -3;
         }
 
         // hash password
@@ -96,12 +96,12 @@ class Warga_model
 
         // cek username ada atau tidak
         if ($result === false) {
-            return false;
+            return -1;
         }
 
         // cek password benar atau salah
         if (!password_verify($password, $result['password'])) {
-            return false;
+            return -2;
         }
 
         return true;
