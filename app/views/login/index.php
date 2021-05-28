@@ -24,6 +24,11 @@
             <div class="container">
                 <div class="form">
                     <h2>LOGIN</h2>
+                    <?php if (isset($_POST['submit'])) : ?>
+                        <div class="alert alert-danger" role="alert">
+                            Username atau password yang Anda masukkan salah!
+                        </div>
+                    <?php endif; ?>
                     <form action="<?= BASEURL; ?>/login/signin" method="post">
                         <div class="inputBox">
                             <input type="text" placeholder="Username" name="username" required>
