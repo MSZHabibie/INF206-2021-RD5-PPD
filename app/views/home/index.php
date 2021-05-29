@@ -3,8 +3,10 @@
 
 <head>
     <title>PPD | Home</title>
+    <link rel="icon" href="<?= BASEURL; ?>/img/logo.png" type="image">
     <link rel="stylesheet" type="text/css" href="<?= BASEURL; ?>/css/CSS_yovie/style.css">
 </head>
+
 <body>
     <div class="hero">
         <div class="head">

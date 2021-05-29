@@ -106,4 +106,31 @@ class Warga_model
 
         return true;
     }
+
+    public function updateProfile($data)
+    {
+        $query = "UPDATE $this->table SET 
+                    nama = :nama, 
+                    umur = :umur, 
+                    tempat_lahir = :tempat_lahir, 
+                    tanggal_lahir = :tanggal_lahir, 
+                    no_hp = :no_hp, 
+                    bio = :bio, 
+                    alamat = :alamat
+                WHERE id = :id";
+
+        $this->db->query($query);
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('umur', $data['umur']);
+        $this->db->bind('tempat_lahir', $data['tempat_lahir']);
+        $this->db->bind('tanggal_lahir', $data['tanggal_lahir']);
+        $this->db->bind('no_hp', $data['no_hp']);
+        $this->db->bind('bio', $data['bio']);
+        $this->db->bind('alamat', $data['alamat']);
+        $this->db->bind('id', $data['id']);
+
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 }
