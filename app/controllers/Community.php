@@ -1,16 +1,17 @@
 <?php
+session_start();
 
 class Community extends Controller
 {
-    public function index()
-    {
-        $this->hasSession();
-        $this->isAdmin(get_class($this));
+  public function index()
+  {
+    $this->hasSession();
+    $this->isAdmin(get_class($this));
 
-        $data['judul'] = 'Daftar Komunitas';
-        $data['com'] = $this->model('Komunitas_model')->getAllCommunity();
-        $this->view('templates/header', $data);
-        $this->view('community/index', $data);
-        $this->view('templates/footer');
-    }
+    $data['judul'] = 'Community';
+    $data['komunitas'] = $this->model('Community_model')->getAllCommunity();
+    $this->view('templates/header', $data);
+    $this->view('community/index', $data);
+    $this->view('templates/footer');
+  }
 }

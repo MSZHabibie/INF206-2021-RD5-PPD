@@ -9,9 +9,9 @@ class Dashboard extends Controller
         $this->isAdmin(get_class($this));
 
         $data['judul'] = 'Dashboard';
-        $this->view('templates/header', $data);
+        // $this->view('templates/header', $data);
         $this->view('dashboard/index');
-        $this->view('templates/footer');
+        // $this->view('templates/footer');
     }
 
     public function admin()

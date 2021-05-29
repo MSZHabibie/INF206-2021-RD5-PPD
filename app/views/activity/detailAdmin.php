@@ -1,24 +1,77 @@
-<div class="container mt-5">
+<div class="main-content">
+    <section class="section">
+        <h1 class="section-header">
+            <div>Activity</div>
+        </h1>
+    </section>
+    <table border="1" align="center" width="300">
+        <tr>
+            <td>
+                <img width="300px" height="200px" src="<?= BASEURL; ?>/img/activity/<?= $data['aktivitas']['gambar'] ?>" alt="<?= $data['aktivitas']['nama'] ?>">
+            </td>
+        </tr>
 
-    <div class="card" style="width: 18rem;">
-        <img src="<?= BASEURL; ?>/img/<?= $data['aktivitas']['gambar'] ?>" class="card-img-top" alt="">
-        <div class="card-body">
-            <h5 class="card-title"><?= $data['aktivitas']['nama'] ?></h5>
-        </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">Persyaratan: <?= $data['aktivitas']['syarat'] ?></li>
-            <li class="list-group-item">Peserta: <?= $data['aktivitas']['peserta'] ?>/<?= $data['aktivitas']['maks_peserta'] ?></li>
-            <li class="list-group-item">Waktu: <?= $data['aktivitas']['waktu'] ?></li>
-            <li class="list-group-item">Tempat: <?= $data['aktivitas']['tempat'] ?></li>
-            <li class="list-group-item">Point: <?= $data['aktivitas']['poin'] ?></li>
-            <li class="list-group-item">Deskripsi: 
-            <p class="card-text"><?= $data['aktivitas']['deskripsi'] ?></p>
-            </li>
-        </ul>
-        <div class="card-body">
-            <a href="<?= BASEURL; ?>/activity/admin" class="btn btn-primary">Kembali</a>
-            <a href="<?= BASEURL; ?>/activity/edit/<?= $data['aktivitas']['id'] ?>" class="btn btn-primary tampilModalEdit" data-bs-toggle="modal" data-bs-target="#formModal" data-id="<?= $data['aktivitas']['id']; ?>">Edit</a>
-            <a href="<?= BASEURL; ?>/activity/hapus/<?= $data['aktivitas']['id'] ?>" class="btn btn-danger" onclick="return confirm('hapus aktivitas ini?');">Hapus</a>
-        </div>
-    </div>
-</div>
+        <tr align="center">
+            <td><b><?= $data['aktivitas']['nama'] ?></b></td>
+        </tr>
+
+        <tr>
+            <td>Persyaratan: <?= $data['aktivitas']['syarat'] ?></td>
+        </tr>
+
+        <tr>
+            <td>Peserta: <?= $data['aktivitas']['peserta'] ?>/<?= $data['aktivitas']['maks_peserta'] ?></td>
+        </tr>
+
+        <tr>
+            <td>Tanggal: <?= $data['aktivitas']['tanggal'] ?></td>
+        </tr>
+
+        <tr>
+            <td>Jam: <?= $data['aktivitas']['jam'] ?></td>
+        </tr>
+
+        <tr>
+            <td>Tempat: <?= $data['aktivitas']['tempat'] ?></td>
+        </tr>
+
+        <tr>
+            <td>Point: <?= $data['aktivitas']['poin'] ?></td>
+        </tr>
+
+        <tr>
+            <td><b>Deskripsi:</b><br><?= $data['aktivitas']['deskripsi'] ?></br></td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="text-center">
+                    <a href="<?= BASEURL; ?>/activity/admin" class="btn btn-primary btn-round">Kembali</a>
+                    <a href="<?= BASEURL; ?>/activity/edit/<?= $data['aktivitas']['id'] ?>" class="btn btn-primary btn-round tampilModalEdit" data-bs-toggle="modal" data-bs-target="#formModal" data-id="<?= $data['aktivitas']['id']; ?>">Edit</a>
+                    <a href="<?= BASEURL; ?>/activity/hapus/<?= $data['aktivitas']['id'] ?>" class="btn btn-danger btn-round" onclick="return confirm('hapus aktivitas ini?');">Hapus</a>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Nama/Username</th>
+                <th scope="col">Email</th>
+                <th scope="col">No HP</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $nomor = 1 ?>
+            <?php foreach ($data['peserta'] as $peserta) : ?>
+                <tr>
+                    <th scope="row"><?= $nomor++; ?></th>
+                    <td><?= $peserta['nama'] ?> / <?= $peserta['username'] ?></td>
+                    <td><?= $peserta['email'] ?></td>
+                    <td><?= $peserta['no_hp'] ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>

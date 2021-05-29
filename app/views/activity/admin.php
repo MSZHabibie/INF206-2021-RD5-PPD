@@ -1,24 +1,48 @@
-<h1>Halaman Activity Admin</h1>
+            <div class="main-content">
+                <section class="section">
+                    <h1 class="section-header">
+                        <div>Activity</div>
+                    </h1>
+                </section>
 
-<div class="container mt-5">
+                <button type="button" class="btn btn-primary mb-4 tombolTambahAktivitas" data-bs-toggle="modal" data-bs-target="#formModal">Tambah</button>
 
-    <!-- <button type="button" class="btn btn-primary" onclick="location.href='<?= BASEURL; ?>/activity/tambah'" >Tambah</button> -->
-    <div class="row">
-        <div class="col-6">
-        <button type="button" class="btn btn-primary tombolTambahAktivitas" data-bs-toggle="modal" data-bs-target="#formModal">Tambah</button>
-        <br><br>
-            <ul class="list-group">
-                <?php foreach( $data['aktivitas'] as $activity ) : ?>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <?= $activity['nama']; ?>
-                        <div>
-                            <a href="<?= BASEURL; ?>/activity/detailAdmin/<?= $activity['id'] ?>" class="badge bg-primary">detail</a>
-                            <a href="<?= BASEURL; ?>/activity/edit/<?= $activity['id'] ?>" class="badge bg-primary tampilModalEdit" data-bs-toggle="modal" data-bs-target="#formModal" data-id="<?= $activity['id']; ?>">edit</a>
-                            <a href="<?= BASEURL; ?>/activity/hapus/<?= $activity['id'] ?>" class="badge bg-danger" onclick="return confirm('hapus aktivitas ini?');">hapus</a>
-                        </div>                
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    </div>
-</div>
+                <table width="300">
+                    <tr>
+                        <?php foreach ($data['aktivitas'] as $aktivitas) : ?>
+                            <td>
+                                <img width="300px" height="200px" src="<?= BASEURL; ?>/img/activity/<?= $aktivitas['gambar'] ?>" alt="<?= $aktivitas['nama'] ?>">
+                            </td>
+                        <?php endforeach; ?>
+                    </tr>
+
+                    <tr align="center">
+                        <?php foreach ($data['aktivitas'] as $aktivitas) : ?>
+                            <td><b><?= $aktivitas['nama'] ?></b></td>
+                        <?php endforeach; ?>
+                    </tr>
+
+                    <tr>
+                        <?php foreach ($data['aktivitas'] as $aktivitas) : ?>
+                            <td><?= $aktivitas['deskripsi'] ?></td>
+                        <?php endforeach; ?>
+                    </tr>
+
+                    <tr>
+                        <?php foreach ($data['aktivitas'] as $aktivitas) : ?>
+                            <td>
+                                <div class="text-center">
+                                    <a href="<?= BASEURL; ?>/activity/detailAdmin/<?= $aktivitas['id'] ?>" class="btn btn-primary btn-round">Detail</a>
+                                </div>
+                                <div class="text-right">
+                                    <?php $waktu = round((strtotime($aktivitas['tanggal']) - strtotime(date("Y-m-d"))) / (60 * 60 * 24)); ?>
+                                    <?php if ($waktu >= 0) : ?>
+                                        <small><?= $waktu ?> Hari Lagi</small>
+                                    <?php else : ?>
+                                        <small>Selesai</small>
+                                    <?php endif; ?>
+                                </div>
+                            </td>
+                        <?php endforeach; ?>
+                    </tr>
+                </table>
