@@ -74,6 +74,8 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="<?= BASEURL; ?>/profile" class="dropdown-item has-icon"> <i class="ion ion-android-person"></i> Profile </a>
+                            <a href="<?= BASEURL; ?>/riwayat" class="dropdown-item has-icon"> <i class="ion ion-document-text"></i> Riwayat </a>
+                            <a href="<?= BASEURL; ?>/riwayat" class="dropdown-item has-icon"> <i class="ion ion-ios-bell"></i> Notifikasi </a>
                             <a href="<?= BASEURL; ?>/logout" class="dropdown-item has-icon"> <i class="ion ion-log-out"></i> Logout </a>
                         </div>
                     </li>
@@ -100,7 +102,7 @@
                         <li class="<?= $data['class'] === 'Community' ? "active" : ""; ?>"> <a href="<?= BASEURL; ?>/community"><i class="far fa-address-card"></i><span>Community</span></a> </li>
 
                         <li class="menu-header">More</li>
-                        <li> <a href="#" class="has-dropdown"><i class="ion ion-ios-nutrition"></i> About as</a>
+                        <li> <a href="#" class="has-dropdown"><i class="ion ion-ios-nutrition"></i> About us</a>
                             <ul class="menu-dropdown">
                                 <li><a href="#"><i class="ion ion-ios-circle-outline"></i> Menu 1</a></li>
                                 <li><a href="#" class="has-dropdown"><i class="ion ion-ios-circle-outline"></i> Menu 2</a>

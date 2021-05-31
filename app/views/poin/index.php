@@ -16,7 +16,7 @@
       <div class="card-group">
         <?php foreach ($data['voucher'] as $voucher) : ?>
           <div class="card">
-            <img src=" <?= BASEURL; ?>/img/activity/<?= $voucher['gambar']; ?>" class="card-img-top" alt="<?= $voucher['gambar']; ?> ">
+            <img src=" <?= BASEURL; ?>/img/poin/<?= $voucher['gambar']; ?>" class="card-img-top" alt="<?= $voucher['gambar']; ?> ">
             <div class="card-body">
               <h5 class="card-title"><?= $voucher['nama']; ?></h5>
               <p class="card-text"><?= $voucher['deskripsi']; ?></p>

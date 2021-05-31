@@ -24,7 +24,7 @@
       <div class="card-group">
         <?php foreach ($data['voucher'] as $voucher) : ?>
           <div class="card">
-            <img src=" <?= BASEURL; ?>/img/activity/<?= $voucher['gambar']; ?>" class="card-img-top" alt="<?= $voucher['gambar']; ?> ">
+            <img src=" <?= BASEURL; ?>/img/poin/<?= $voucher['gambar']; ?>" class="card-img-top" alt="<?= $voucher['gambar']; ?> ">
             <div class="card-body">
               <h5 class="card-title"><?= $voucher['nama']; ?></h5>
               <p class="card-text"><?= $voucher['deskripsi']; ?></p>
@@ -67,6 +67,10 @@
           <div class="mb-3">
             <label for="gambar" class="form-label">Gambar</label>
             <input type="text" class="form-control" id="gambar" name="gambar" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="jumlah" class="form-label">Jumlah</label>
+            <input type="text" class="form-control" id="jumlah" name="jumlah" aria-describedby="emailHelp">
           </div>
       </div>
       <div class="modal-footer">

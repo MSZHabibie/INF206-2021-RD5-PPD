@@ -54,6 +54,7 @@ $(function() {
         $('#deskripsi').val('');
         $('#poin').val('');
         $('#gambar').val('');
+        $('#jumlah').val('');
                 
     });
 
@@ -76,6 +77,7 @@ $(function() {
                 $('#deskripsi').val(data.deskripsi);
                 $('#poin').val(data.poin);
                 $('#gambar').val(data.gambar);
+                $('#jumlah').val(data.jumlah);
           
             }
         });
