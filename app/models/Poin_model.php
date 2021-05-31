@@ -98,6 +98,10 @@ class Poin_model
         $warga = $this->getPoinById($id_warga);
         $voucher = $this->getVoucherById($id_voucher);
 
+        // Voucher tidak tersedia
+        if ($voucher['jumlah'] <= 0) {
+            return false;
+        }
 
         if (($warga['poin'] - $voucher['poin']) < 0) {
             return false;
