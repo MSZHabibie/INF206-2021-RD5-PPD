@@ -154,7 +154,7 @@
 				<span></span>
 				<span></span>
 				<div class="isian">
-					<img class="gambar" src="Asset/belanja.png" alt="belanja">
+				    <img src="<?= BASEURL; ?>/img/img_yovie/belanja.png" >
 					<h2>Minuman</h2>
 					<h3>Post Title</h3>
 					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -168,7 +168,7 @@
 				<span></span>
 				<span></span>
 				<div class="isian">
-					<img class="gambar" src="Asset/bie.png" alt="makanan">
+					<img src="<?= BASEURL; ?>/img/img_yovie/bie.png" >
 					<h2>Makanan</h2>
 					<h3>Post Title</h3>
 					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -182,7 +182,7 @@
 				<span></span>
 				<span></span>
 				<div class="isian">
-					<img class="gambar" src="Asset/jaringan.png" alt="paket">
+					<img src="<?= BASEURL; ?>/img/img_yovie/jaringan.png" >
 					<h2>Paket</h2>
 					<h3>Post Title</h3>
 					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.

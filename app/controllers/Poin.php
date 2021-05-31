@@ -98,4 +98,8 @@ class Poin extends Controller
       exit;
     }
   }
+  public function test()
+  {
+    $this->view('poin/Point');
+  }
 }
