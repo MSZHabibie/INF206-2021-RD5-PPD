@@ -20,6 +20,15 @@ class Community_model
         return $this->db->resultSet();
     }
 
+    public function getCommunityById($id)
+    {
+        $this->db->query("SELECT * FROM $this->table WHERE id=:id");
+        $this->db->bind('id', $id);
+        $this->db->execute();
+
+        return $this->db->single();
+    }
+
     public function getWargaAktif()
     {
         $query = "SELECT id_warga FROM $this->table2 GROUP BY(id_warga) HAVING COUNT(id_warga) >= 2";
@@ -57,15 +66,17 @@ class Community_model
     public function addCommunity($data)
     {
         $query = "INSERT INTO $this->table 
-                    (nama, kegiatan)
+                    (nama, kegiatan, link_join)
                 VALUES (
                     :nama, 
-                    :kegiatan
+                    :kegiatan,
+                    :linkjoin
                 )";
 
         $this->db->query($query);
         $this->db->bind('nama', $data['nama']);
         $this->db->bind('kegiatan', $data['kegiatan']);
+        $this->db->bind('linkjoin', $data['linkjoin']);
         
         $this->db->execute();
 
@@ -76,6 +87,25 @@ class Community_model
     {
         $this->db->query("DELETE FROM $this->table WHERE id=:id");
         $this->db->bind('id', $id);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function updateCommunity($data)
+    {
+        $query = "UPDATE $this->table SET 
+                    nama = :nama, 
+                    kegiatan = :kegiatan,
+                    link_join = :linkjoin
+                WHERE id = :id";
+
+        $this->db->query($query);
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('kegiatan', $data['kegiatan']);
+        $this->db->bind('linkjoin', $data['linkjoin']);
+        $this->db->bind('id', $data['id']);
+
         $this->db->execute();
 
         return $this->db->rowCount();

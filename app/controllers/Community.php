@@ -77,6 +77,11 @@ class Community extends Controller
     }
   }
 
+  public function getDataEdit()
+  {
+      echo json_encode($this->model('Community_model')->getCommunityById($_POST['id']));
+  }
+
   public function edit()
   {
     $this->hasSession();
@@ -86,5 +91,8 @@ class Community extends Controller
       header('Location: ' . BASEURL . '/community/admin');
       exit;
     }
+
+    header('Location: ' . BASEURL . '/community/admin');
+    exit;
   }
 }

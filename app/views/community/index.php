@@ -57,17 +57,8 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							<div class="float-right">
-								<form>
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="Search">
-										<div class="input-group-btn">
-											<button class="btn btn-secondary"><i class="ion ion-search"></i></button>
-										</div>
-									</div>
-								</form>
-							</div>
-							<h4>PPD COMMUNITIES</h4> </div>
+							<h4>PPD COMMUNITIES</h4>
+						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-striped">

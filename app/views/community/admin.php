@@ -58,7 +58,7 @@
 					<div class="card">
 						<div class="card-header">
 							<div class="float-right">
-                                <button type="button" class="btn btn-primary mb-4 tombolTambahKomunitas" data-bs-toggle="modal" data-bs-target="#modalTambahKomunitas">Tambah</button>
+                                <button type="button" class="btn btn-primary mb-4 tampilTambahKomunitas" data-bs-toggle="modal" data-bs-target="#modalKomunitas">Tambah</button>
 							</div>
 							<h4>PPD COMMUNITIES</h4> </div>
 						<div class="card-body">
@@ -86,7 +86,7 @@
 										</td>
 										<td width="13%">
                                             <div class="d-flex justify-content-between">
-                                                <a class="btn btn-action btn-success tombolJoinKomunitas" data-bs-toggle="modal" data-bs-target="#modalJoin" data-link-join="<?= $community['link_join']; ?>" data-id-warga="<?= $_SESSION['warga']['id'] ?>" data-id-komunitas="<?= $community['id']; ?>">Edit</a>
+                                                <a href="<?= BASEURL; ?>/community/edit/<?= $community['id'] ?>" class="btn btn-action btn-success tampilEditKomunitas" data-bs-toggle="modal" data-bs-target="#modalKomunitas" data-id="<?= $community['id']; ?>">Edit</a>
                                                 <a href="<?= BASEURL; ?>/community/hapus/<?= $community['id'] ?>" class="btn btn-action btn-danger" onclick="return confirm('hapus komunitas ini?');">Hapus</a>
                                             </div>
                                         </td>
@@ -103,11 +103,11 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modalTambahKomunitas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="judulModal" aria-hidden="true">
+<div class="modal fade" id="modalKomunitas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="judulModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="judulModal">Tambah Komunitas</h5>
+                <h5 class="modal-title" id="judulModalKomunitas">Tambah Komunitas</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -120,6 +120,10 @@
                     <div class="form-group mb-3">
                         <label for="kegiatan" class="form-label">Kegiatan</label>
                         <textarea class="form-control" id="kegiatan" name="kegiatan" rows="3"></textarea>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="linkjoin" class="form-label">Link Grup Whatsapp/Telegram</label>
+                        <input type="text" class="form-control" id="linkjoin" name="linkjoin" required>
                     </div>
             </div>
             <div class="modal-footer">
