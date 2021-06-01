@@ -44,7 +44,7 @@
 								<ul class="pagination mb-0">
 									<li class="page-item<?= $data['halaman_aktif'] == 1 ? ' disabled':'' ?>"> <a class="page-link" href="<?= BASEURL; ?>/community/index/<?= ($data['halaman_aktif'] - 1) ?>" tabindex="-1"><i class="ion ion-chevron-left"></i></a> </li>
 									<?php for ($i=1; $i <= $data['jumlahPagination']; $i++) : ?>
-										<li class="page-item <?= $data['halaman_aktif'] == $i ? active : ''; ?>"><a class="page-link" href="<?= BASEURL; ?>/community/index/<?= $i ?>"><?= $i ?></a></li>
+										<li class="page-item <?= $data['halaman_aktif'] == $i ? 'active' : ''; ?>"><a class="page-link" href="<?= BASEURL; ?>/community/index/<?= $i ?>"><?= $i ?></a></li>
 									<?php endfor; ?>
 									<li class="page-item<?= $data['halaman_aktif'] == $data['jumlahPagination'] ? ' disabled':'' ?>"> <a class="page-link" href="<?= BASEURL; ?>/community/index/<?= ($data['halaman_aktif'] + 1) ?>"><i class="ion ion-chevron-right"></i></a> </li>
 								</ul>
