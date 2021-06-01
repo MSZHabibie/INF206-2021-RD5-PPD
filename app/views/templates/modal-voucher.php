@@ -25,6 +25,10 @@
                   <label for="gambar" class="form-label">Gambar</label>
                   <input type="text" class="form-control" id="gambar" name="gambar" aria-describedby="emailHelp">
                </div>
+               <div class="mb-3">
+                  <label for="jumlah" class="form-label">Jumlah</label>
+                  <input type="text" class="form-control" id="jumlah" name="jumlah" aria-describedby="emailHelp">
+               </div>
          </div>
          <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

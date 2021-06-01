@@ -49,11 +49,12 @@ class Poin_model
 
     public function addVoucher($data)
     {
-        $this->db->query("INSERT INTO $this->table2 VALUES ('', :nama, :deskripsi, :poin, :gambar)");
+        $this->db->query("INSERT INTO $this->table2 VALUES ('', :nama, :deskripsi, :poin, :gambar, :jumlah)");
         $this->db->bind('nama', $data['nama']);
         $this->db->bind('gambar', $data['gambar']);
         $this->db->bind('poin', $data['poin']);
         $this->db->bind('deskripsi', $data['deskripsi']);
+        $this->db->bind('jumlah', $data['jumlah']);
 
         $this->db->execute();
 
@@ -75,7 +76,8 @@ class Poin_model
                     nama = :nama, 
                     deskripsi = :deskripsi, 
                     poin = :poin, 
-                    gambar = :gambar
+                    gambar = :gambar,
+                    jumlah = :jumlah
                 WHERE id = :id";
 
         $this->db->query($query);
@@ -83,6 +85,7 @@ class Poin_model
         $this->db->bind('deskripsi', $data['deskripsi']);
         $this->db->bind('poin', $data['poin']);
         $this->db->bind('gambar', $data['gambar']);
+        $this->db->bind('jumlah', $data['jumlah']);
         $this->db->bind('id', $data['id']);
 
         $this->db->execute();
@@ -95,11 +98,19 @@ class Poin_model
         $warga = $this->getPoinById($id_warga);
         $voucher = $this->getVoucherById($id_voucher);
 
+
         if (($warga['poin'] - $voucher['poin']) < 0) {
             return false;
         }
 
+        // Mengurangi jumlah poin dan voucher di database
         $warga['poin'] = $warga['poin'] - $voucher['poin'];
+        $voucher['jumlah'] -= 1;
+
+        // Menghapus Voucher ketika jumlah = 0
+        if ($voucher['jumlah'] <= 0) {
+            $this->deleteVoucher($id_voucher);
+        }
 
         // mengupdate jumlah poin di table warga
         $this->db->query("UPDATE $this->table SET poin = :poin WHERE id = :id");
@@ -107,8 +118,14 @@ class Poin_model
         $this->db->bind('id', $warga['id']);
         $this->db->execute();
 
+        // mengupdate jumlah voucher di table voucher
+        $this->db->query("UPDATE $this->table2 SET jumlah = :jumlah WHERE id = :id");
+        $this->db->bind('jumlah', $voucher['jumlah']);
+        $this->db->bind('id', $voucher['id']);
+        $this->db->execute();
+
         // Menambah data pembelian di table voucher_warga
-        $this->db->query("INSERT INTO $this->table3 VALUES (:id_warga, :id_voucher)");
+        $this->db->query("INSERT INTO $this->table3 VALUES (:id_warga, :id_voucher, NOW())");
         $this->db->bind('id_warga', $id_warga);
         $this->db->bind('id_voucher', $id_voucher);
 
