@@ -41,17 +41,17 @@ class Warga_model
 
         // cek email
         if ($this->cekEmail($email) > 0) {
-            return false;
+            return -1;
         }
 
         // cek username
         if ($this->cekUsername($username) > 0) {
-            return false;
+            return -2;
         }
 
         // cek password dan konfirmasinya
         if ($password !== $password2) {
-            return false;
+            return -3;
         }
 
         // hash password
@@ -96,12 +96,12 @@ class Warga_model
 
         // cek username ada atau tidak
         if ($result === false) {
-            return false;
+            return -1;
         }
 
         // cek password benar atau salah
         if (!password_verify($password, $result['password'])) {
-            return false;
+            return -2;
         }
 
         return true;
@@ -129,6 +129,39 @@ class Warga_model
         $this->db->bind('alamat', $data['alamat']);
         $this->db->bind('id', $data['id']);
 
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function updatePassword($data)
+    {
+
+        $passwordLama = $data['passwordLama'];
+        $password = $data['passwordBaru'];
+        $password2 = $data['confirmPasswordBaru'];
+
+        // cek password benar atau salah
+        if (!password_verify($passwordLama, $_SESSION['warga']['password'])) {
+            return -1;
+        }
+
+        // cek password baru dan konfirmasinya
+        if ($password !== $password2) {
+            return -2;
+        }
+
+        // cek password lama dan baru sama atau berbeda
+        if ($password == $passwordLama) {
+            return -3;
+        }
+
+        // hash password
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        $this->db->query("UPDATE $this->table SET password=:password WHERE id=:id");
+        $this->db->bind('password', $password);
+        $this->db->bind('id', $_SESSION['warga']['id']);
         $this->db->execute();
 
         return $this->db->rowCount();
