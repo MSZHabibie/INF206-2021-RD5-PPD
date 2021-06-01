@@ -35,4 +35,34 @@ class Community extends Controller
     header('Location: ' . BASEURL . '/community');
     exit;
   }
+
+  public function admin()
+  {
+    $this->hasSession();
+    $this->isNotAdmin(get_class($this));
+
+    $data['class'] = get_class($this);
+    $data['judul'] = 'Community';
+    $data['admin'] = $_SESSION['admin'];
+    $data['user'] = $_SESSION['admin'];
+    $data['communities'] = $this->model('Community_model')->getAllCommunity();
+    $data['allwarga'] = $this->model('Warga_model')->getAllUsers();
+    $data['warga_aktif'] = array_column($this->model('Community_model')->getWargaAktif(), 'id_warga');
+    $data['warga_komunitas'] = $this->model('Community_model')->getWargaKomunitas();
+
+    $this->view('templates/appheader', $data);
+    $this->view('community/admin', $data);
+    $this->view('templates/appfooter');
+  }
+
+  public function tambah()
+  {
+      $this->hasSession();
+      $this->isNotAdmin($this);
+
+      if ($this->model('Community_model')->addCommunity($_POST) > 0) {
+          header('Location: ' . BASEURL . '/community/admin');
+          exit;
+      }
+  }
 }

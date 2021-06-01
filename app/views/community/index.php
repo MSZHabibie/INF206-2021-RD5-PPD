@@ -8,7 +8,7 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							<h4>PPD COMMUNITY</h4> </div>
+							<h4>PPD VILLAGERS</h4> </div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table">
@@ -67,21 +67,23 @@
 									</div>
 								</form>
 							</div>
-							<h4>Kelompok PPD</h4> </div>
+							<h4>PPD COMMUNITIES</h4> </div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-striped">
 									<tr>
 										<th>No</th>
-										<th>Nama Kelompok</th>
-										<th>Anggota</th>
+										<th>Community</th>
+										<th>Activities</th>
+										<th>Member</th>
 										<th>Join</th>
 									</tr>
 									<?php $no = 1 ?>
 									<?php foreach ($data['communities'] as $community) : ?>
 									<tr>
 										<td width="5%"><?= $no++ ?></td>
-										<td width="45%"><?= $community['nama'] ?></td>
+										<td width="30%"><?= $community['nama'] ?></td>
+										<td width="30%"><?= $community['kegiatan'] ?></td>
 										<td>
 											<?php foreach ($data['warga_komunitas'] as $join) : ?>
 												<?php if($community['id'] == $join['id_komunitas']) : ?>

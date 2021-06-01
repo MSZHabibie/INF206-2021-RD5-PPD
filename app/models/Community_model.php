@@ -54,5 +54,32 @@ class Community_model
         return $this->db->rowCount();
     }
 
+    public function addCommunity($data)
+    {
+        $query = "INSERT INTO $this->table 
+                    (nama, kegiatan)
+                VALUES (
+                    :nama, 
+                    :kegiatan
+                )";
+
+        $this->db->query($query);
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('kegiatan', $data['kegiatan']);
+        
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function deleteCommunity($id)
+    {
+        $this->db->query("DELETE FROM $this->table WHERE id=:id");
+        $this->db->bind('id', $id);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
 }
 
