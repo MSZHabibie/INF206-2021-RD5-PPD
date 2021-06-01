@@ -76,8 +76,11 @@
 										<td width="30%"><?= $community['nama'] ?></td>
 										<td width="30%"><?= $community['kegiatan'] ?></td>
 										<td>
+											<?php $counter = 0 ?>
 											<?php foreach ($data['warga_komunitas'] as $join) : ?>
+												<?php if ($counter >= 5) { break(1); } ?>
 												<?php if($community['id'] == $join['id_komunitas']) : ?>
+													<?php $counter++ ?>
 													<img alt="image" src="<?= BASEURL;?>/img/profile/<?= $join['profile'] ?>" class="rounded-circle" width="35" data-toggle="title" title="<?= $join['username'] ?>">
 												<?php endif; ?>
 											<?php endforeach; ?>
