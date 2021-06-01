@@ -66,4 +66,39 @@ class Profile extends Controller
         header('Location: ' . BASEURL . '/profile');
         exit;
     }
+
+    public function ubahPassword()
+    {
+        $this->hasSession();
+
+        $data['user'] = isset($_SESSION['admin']) ? $_SESSION['admin'] : $_SESSION['warga'];
+        $this->view('templates/header');
+        $this->view('profile/ubahPassword', $data);
+        $this->view('templates/footer');
+    }
+
+    public function updatePassword()
+    {
+        $this->hasSession();
+
+        if (isset($_SESSION['warga'])) {
+            if ($this->model('Warga_model')->updatePassword($_POST) > 0) {
+                // update password warga di $_SESSION
+                $_SESSION['warga'] = $this->model('Warga_model')->getUserById($_SESSION['warga']['id']);
+
+                header('Location: ' . BASEURL . '/dashboard');
+                exit;
+            }
+        } else {
+            if ($this->model('Admin_model')->updatePassword($_POST) > 0) {
+                // update password admin di $_SESSION
+                $_SESSION['admin'] = $this->model('Admin_model')->getUserById($_SESSION['admin']['id']);
+
+                header('Location: ' . BASEURL . '/dashboard');
+                exit;
+            }
+        }
+
+        $this->ubahPassword();
+    }
 }
