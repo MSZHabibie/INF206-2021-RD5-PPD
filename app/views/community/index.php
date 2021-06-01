@@ -26,7 +26,7 @@
 										<td><?= $warga['username'] ?></td>
 										<td><?= $warga['created_at'] ?></td>
 										<td>
-											<?php if ( in_array($warga['id'], $data['warga_aktif'])) : ?>
+											<?php if ( in_array($warga['id'], $data['warga_aktif']) ) : ?>
 												<div class="badge badge-success">Active</div>
 											<?php else : ?>
 												<div class="badge badge-danger">Not Active</div>
@@ -57,17 +57,8 @@
 				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							<div class="float-right">
-								<form>
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="Search">
-										<div class="input-group-btn">
-											<button class="btn btn-secondary"><i class="ion ion-search"></i></button>
-										</div>
-									</div>
-								</form>
-							</div>
-							<h4>PPD COMMUNITIES</h4> </div>
+							<h4>PPD COMMUNITIES</h4>
+						</div>
 						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-striped">
@@ -91,7 +82,15 @@
 												<?php endif; ?>
 											<?php endforeach; ?>
 										</td>
-										<td width="10%"><a class="btn btn-action btn-secondary tombolJoinKomunitas" data-bs-toggle="modal" data-bs-target="#modalJoin" data-link-join="<?= $community['link_join']; ?>" data-id-warga="<?= $_SESSION['warga']['id'] ?>" data-id-komunitas="<?= $community['id']; ?>">Join</a></td>
+
+										<td width="10%">
+											<?php if( !in_array($community['id'], $data['komunitas_warga']) ) : ?>
+												<a class="btn btn-action btn-secondary tombolJoinKomunitas" data-bs-toggle="modal" data-bs-target="#modalJoin" data-link-join="<?= $community['link_join']; ?>" data-id-warga="<?= $_SESSION['warga']['id'] ?>" data-id-komunitas="<?= $community['id']; ?>">Join</a>
+											<?php else : ?>
+												<a href="<?= BASEURL; ?>/community/batalJoin/<?= $data['warga']['id']; ?>/<?= $community['id']; ?>" class="btn btn-action btn-secondary">Batal Join</a>
+											<?php endif; ?>
+										</td>
+
 									</tr>
 									<?php endforeach; ?>
 								</table>

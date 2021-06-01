@@ -20,6 +20,15 @@ class Community_model
         return $this->db->resultSet();
     }
 
+    public function getCommunityById($id)
+    {
+        $this->db->query("SELECT * FROM $this->table WHERE id=:id");
+        $this->db->bind('id', $id);
+        $this->db->execute();
+
+        return $this->db->single();
+    }
+
     public function getWargaAktif()
     {
         $query = "SELECT id_warga FROM $this->table2 GROUP BY(id_warga) HAVING COUNT(id_warga) >= 2";
@@ -41,6 +50,16 @@ class Community_model
         return $this->db->resultSet();
     }
 
+    public function getKomunitasWarga($id)
+    {
+        $query = "SELECT id_komunitas FROM $this->table2 WHERE id_warga=:id";
+        $this->db->query($query);
+        $this->db->bind('id', $id);
+        $this->db->execute();
+
+        return $this->db->resultSet();
+    }
+
     public function join($data)
     {
         $id_warga = $data['id_warga'];
@@ -54,18 +73,30 @@ class Community_model
         return $this->db->rowCount();
     }
 
+    public function batalJoin($id_warga, $id_komunitas)
+    {
+        $this->db->query("DELETE FROM $this->table2 WHERE id_warga=:id_warga AND id_komunitas=:id_komunitas");
+        $this->db->bind('id_warga', $id_warga);
+        $this->db->bind('id_komunitas', $id_komunitas);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
     public function addCommunity($data)
     {
         $query = "INSERT INTO $this->table 
-                    (nama, kegiatan)
+                    (nama, kegiatan, link_join)
                 VALUES (
                     :nama, 
-                    :kegiatan
+                    :kegiatan,
+                    :linkjoin
                 )";
 
         $this->db->query($query);
         $this->db->bind('nama', $data['nama']);
         $this->db->bind('kegiatan', $data['kegiatan']);
+        $this->db->bind('linkjoin', $data['linkjoin']);
         
         $this->db->execute();
 
@@ -76,6 +107,25 @@ class Community_model
     {
         $this->db->query("DELETE FROM $this->table WHERE id=:id");
         $this->db->bind('id', $id);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function updateCommunity($data)
+    {
+        $query = "UPDATE $this->table SET 
+                    nama = :nama, 
+                    kegiatan = :kegiatan,
+                    link_join = :linkjoin
+                WHERE id = :id";
+
+        $this->db->query($query);
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('kegiatan', $data['kegiatan']);
+        $this->db->bind('linkjoin', $data['linkjoin']);
+        $this->db->bind('id', $data['id']);
+
         $this->db->execute();
 
         return $this->db->rowCount();

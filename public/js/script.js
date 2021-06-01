@@ -98,4 +98,37 @@ $(function () {
         $('#modalJoin form input[name=id_komunitas]').val(id_komunitas);
     });
 
+    $('.tampilTambahKomunitas').on('click', function () {
+        $('#judulModalKomunitas').html('Tambah Komunitas');
+        $('.modal-footer button[type=submit]').html('Tambah');
+        $('.modal-body form').attr('action', baseurl.concat('/community/tambah'));
+        $('#nama').val('');
+        $('#kegiatan').val('');
+        $('#linkjoin').val('');
+    });
+
+    $('.tampilEditKomunitas').on('click', function () {
+
+        $('#judulModalKomunitas').html('Edit Komunitas');
+        $('.modal-footer button[type=submit]').html('Simpan');
+        $('.modal-body form').attr('action', baseurl.concat('/community/edit'));
+
+        const id = $(this).data('id');
+
+        $.ajax({
+            url: baseurl.concat('/community/getDataEdit'),
+            data: {
+                id: id
+            },
+            method: 'post',
+            dataType: 'json',
+            success: function (data) {
+                $('#id').val(data.id);
+                $('#nama').val(data.nama);
+                $('#kegiatan').val(data.kegiatan);
+                $('#linkjoin').val(data.link_join);
+            }
+        });
+
+    });
 });
