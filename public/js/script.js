@@ -1,8 +1,8 @@
-$(function() {
+$(function () {
 
     const baseurl = 'http://localhost/INF206-2021-RD5-PPD/public';
 
-    $('.tombolTambahAktivitas').on('click', function() {
+    $('.tombolTambahAktivitas').on('click', function () {
         $('#judulModal').html('Tambah Aktivitas');
         $('.modal-footer button[type=submit]').html('Tambah');
         $('.modal-body form').attr('action', baseurl.concat('/activity/tambah'));
@@ -18,19 +18,21 @@ $(function() {
     });
 
     $('.tampilModalEdit').on('click', function () {
-        
+
         $('#judulModal').html('Edit Aktivitas');
         $('.modal-footer button[type=submit]').html('Simpan');
         $('.modal-body form').attr('action', baseurl.concat('/activity/edit'));
 
         const id = $(this).data('id');
-    
+
         $.ajax({
             url: baseurl.concat('/activity/getDataEdit'),
-            data: {id : id},
+            data: {
+                id: id
+            },
             method: 'post',
             dataType: 'json',
-            success: function(data) {
+            success: function (data) {
                 $('#id').val(data.id);
                 $('#nama').val(data.nama);
                 $('#gambar').val(data.gambar);
@@ -46,7 +48,7 @@ $(function() {
 
     });
 
-    $('.tombolTambahVoucher').on('click', function() {
+    $('.tombolTambahVoucher').on('click', function () {
         $('#judulModal2').html('Tambah Voucher');
         $('.modal-footer button[type=submit]').html('Tambah');
         $('.modal-body form').attr('action', baseurl.concat('/poin/tambah'));
@@ -55,33 +57,40 @@ $(function() {
         $('#poin').val('');
         $('#gambar').val('');
         $('#jumlah').val('');
-                
+
     });
 
     $('.tampilModalEdit2').on('click', function () {
-        
+
         $('#judulModal2').html('Edit Voucher');
         $('.modal-footer button[type=submit]').html('Simpan');
         $('.modal-body form').attr('action', baseurl.concat('/poin/edit'));
 
         const id = $(this).data('id');
-        
+
         $.ajax({
             url: baseurl.concat('/poin/getDataEdit'),
-            data: {id : id},
+            data: {
+                id: id
+            },
             method: 'post',
             dataType: 'json',
-            success: function(data) {
+            success: function (data) {
                 $('#id').val(data.id);
                 $('#nama').val(data.nama);
                 $('#deskripsi').val(data.deskripsi);
                 $('#poin').val(data.poin);
                 $('#gambar').val(data.gambar);
                 $('#jumlah').val(data.jumlah);
-          
+
             }
         });
 
+    });
+
+    $('.tombolJoinKomunitas').on('click', function () {
+        const link_join = $(this).data('link-join');
+        $('#modalJoin .modal-body a').html(link_join);
     });
 
 });

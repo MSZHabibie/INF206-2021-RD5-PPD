@@ -89,7 +89,7 @@
 												<?php endif; ?>
 											<?php endforeach; ?>
 										</td>
-										<td width="10%"><a href="<?= BASEURL; ?>/activity/index" class="btn btn-action btn-secondary">Join</a></td>
+										<td width="10%"><a href="<?= BASEURL; ?>/community/join" class="btn btn-action btn-secondary tombolJoinKomunitas" data-bs-toggle="modal" data-bs-target="#modalJoin" data-link-join="<?= $community['link_join']; ?>">Join</a></td>
 									</tr>
 									<?php endforeach; ?>
 								</table>
@@ -100,4 +100,25 @@
 			</div>
 		</div>
 	</section>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalJoin" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modalJoinLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalJoinLabel">Link Komunitas</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+		<h5>Copy this link!</h5>
+		<p><a href="#" class="tooltip-test" title="Tooltip"></a></p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
 </div>

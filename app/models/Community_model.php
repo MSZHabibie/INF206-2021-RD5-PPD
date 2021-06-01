@@ -32,7 +32,9 @@ class Community_model
 
     public function getWargaKomunitas()
     {
-        $query = "SELECT id_komunitas, profile, username FROM $this->table3 JOIN $this->table2 ON id=id_warga";
+        $query = "SELECT id_komunitas, profile, username, link_join FROM $this->table3 AS w
+                    JOIN $this->table2 ON w.id=id_warga 
+                    JOIN $this->table AS k ON k.id=id_komunitas";
         $this->db->query($query);
         $this->db->execute();
 
