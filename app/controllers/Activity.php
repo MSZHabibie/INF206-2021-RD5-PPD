@@ -8,12 +8,14 @@ class Activity extends Controller
         $this->hasSession();
         $this->isAdmin(get_class($this));
 
+        $data['class'] = get_class($this);
         $data['judul'] = 'Activity';
         $data['aktivitas'] = $this->model('Activity_model')->getAllActivity();
         $data['warga'] = $_SESSION['warga'];
-        $this->view('templates/header', $data);
+        $data['user'] = $_SESSION['warga'];
+        $this->view('templates/appheader', $data);
         $this->view('activity/index', $data);
-        $this->view('templates/footer');
+        $this->view('templates/appfooter');
     }
 
     public function admin()
@@ -21,13 +23,15 @@ class Activity extends Controller
         $this->hasSession();
         $this->isNotAdmin(get_class($this));
 
+        $data['class'] = get_class($this);
         $data['judul'] = 'Activity Admin';
         $data['aktivitas'] = $this->model('Activity_model')->getAllActivity();
         $data['admin'] = $_SESSION['admin'];
-        $this->view('templates/header', $data);
+        $data['user'] = $_SESSION['admin'];
+        $this->view('templates/appheader', $data);
         $this->view('activity/admin', $data);
         $this->view('templates/modal-aktivitas');
-        $this->view('templates/footer');
+        $this->view('templates/appfooter');
     }
 
     public function detail($id)
@@ -35,14 +39,16 @@ class Activity extends Controller
         $this->hasSession();
         $this->isAdmin($this);
 
+        $data['class'] = get_class($this);
         $data['judul'] = 'Activity Detail';
         $data['aktivitas'] = $this->model('Activity_model')->getActivityById($id);
         $data['warga'] = $_SESSION['warga'];
         $data['aktivitas_warga'] = $this->model('Activity_model')->cekActivityWarga($data['warga']['id'], $data['aktivitas']['id']);
+        $data['user'] = $_SESSION['warga'];
 
-        $this->view('templates/header', $data);
+        $this->view('templates/appheader', $data);
         $this->view('activity/detail', $data);
-        $this->view('templates/footer');
+        $this->view('templates/appfooter');
     }
 
     public function daftar($id_warga, $id_aktivitas)
@@ -63,13 +69,17 @@ class Activity extends Controller
         $this->hasSession();
         $this->isNotAdmin($this);
 
+        $data['class'] = get_class($this);
         $data['judul'] = 'Activity Detail';
         $data['aktivitas'] = $this->model('Activity_model')->getActivityById($id);
+        $data['peserta'] = $this->model('Activity_model')->getPeserta($id);
+        $data['admin'] = $_SESSION['admin'];
+        $data['user'] = $_SESSION['admin'];
 
-        $this->view('templates/header', $data);
+        $this->view('templates/appheader', $data);
         $this->view('activity/detailAdmin', $data);
         $this->view('templates/modal-aktivitas');
-        $this->view('templates/footer');
+        $this->view('templates/appfooter');
     }
 
     public function tambah()
@@ -108,5 +118,8 @@ class Activity extends Controller
             header('Location: ' . BASEURL . '/activity/admin');
             exit;
         }
+
+        header('Location: ' . BASEURL . '/activity/admin');
+        exit;
     }
 }

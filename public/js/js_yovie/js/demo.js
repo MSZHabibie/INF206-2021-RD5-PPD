@@ -1,11 +1,12 @@
 $("body").append('<div class="demo-settings"><div class="demo-settings-toggle"><i class="ion ion-gear-a"></i></div><div class="demo-settings-options"><ul><li class="demo-toggle-skin" style="background-color: #574B90;" title="Default"></li><li class="demo-toggle-skin" style="background-color: #3F52E3;" title="Blue"></li><li class="demo-toggle-skin" style="background-color: #39065A;" title="Deep Purple"></li><li class="demo-toggle-skin" style="background-color: #3DC7BE;" title="Light Blue"></li><li class="demo-toggle-skin" style="background-color: #212330;" title="Dark Sidebar"></li></ul></div></div>');
+const baseurl = 'http://localhost/INF206-2021-RD5-PPD/public';
 
 var skin = function(color) {
 	$("#skin-css").remove();
 	if(color == 'default') return;
 	$("head").append($("<link/>", {
 		rel: 'stylesheet',
-		href: '../dist/css/skins/' + color + '.css',
+		href: baseurl + '/css/CSS_yovie/css/skins/' + color + '.css',
 		id: 'skin-css'
 	}));
 }
