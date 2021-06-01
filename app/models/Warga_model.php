@@ -28,6 +28,14 @@ class Warga_model
         return $this->db->single();
     }
 
+    public function getAllUsers()
+    {
+        $this->db->query("SELECT * FROM $this->table");
+        $this->db->execute();
+
+        return $this->db->resultSet();
+    }
+
     public function createAccount($data)
     {
         if (!isset($data['submit'])) {
