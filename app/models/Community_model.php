@@ -50,12 +50,32 @@ class Community_model
         return $this->db->resultSet();
     }
 
+    public function getKomunitasWarga($id)
+    {
+        $query = "SELECT id_komunitas FROM $this->table2 WHERE id_warga=:id";
+        $this->db->query($query);
+        $this->db->bind('id', $id);
+        $this->db->execute();
+
+        return $this->db->resultSet();
+    }
+
     public function join($data)
     {
         $id_warga = $data['id_warga'];
         $id_komunitas = $data['id_komunitas'];
 
         $this->db->query("INSERT INTO $this->table2 (id_warga, id_komunitas) VALUES (:id_warga, :id_komunitas)");
+        $this->db->bind('id_warga', $id_warga);
+        $this->db->bind('id_komunitas', $id_komunitas);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function batalJoin($id_warga, $id_komunitas)
+    {
+        $this->db->query("DELETE FROM $this->table2 WHERE id_warga=:id_warga AND id_komunitas=:id_komunitas");
         $this->db->bind('id_warga', $id_warga);
         $this->db->bind('id_komunitas', $id_komunitas);
         $this->db->execute();

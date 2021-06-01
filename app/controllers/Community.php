@@ -17,6 +17,11 @@ class Community extends Controller
     $data['allwarga'] = $this->model('Warga_model')->getAllUsers();
     $data['warga_aktif'] = array_column($this->model('Community_model')->getWargaAktif(), 'id_warga');
     $data['warga_komunitas'] = $this->model('Community_model')->getWargaKomunitas();
+    $data['komunitas_warga'] = array_column($this->model('Community_model')->getKomunitasWarga($data['warga']['id']), 'id_komunitas');
+
+    if ( !$data['komunitas_warga'] ) {
+      $data['komunitas_warga'] = [];
+    }
 
     $this->view('templates/appheader', $data);
     $this->view('community/index', $data);
@@ -28,6 +33,19 @@ class Community extends Controller
     $this->hasSession();
 
     if ($this->model('Community_model')->join($_POST) > 0 ) {
+      header('Location: ' . BASEURL . '/community');
+      exit;
+    }
+
+    header('Location: ' . BASEURL . '/community');
+    exit;
+  }
+
+  public function batalJoin($id_warga, $id_komunitas)
+  {
+    $this->hasSession();
+
+    if ($this->model('Community_model')->batalJoin($id_warga, $id_komunitas) > 0 ) {
       header('Location: ' . BASEURL . '/community');
       exit;
     }

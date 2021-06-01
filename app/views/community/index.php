@@ -26,7 +26,7 @@
 										<td><?= $warga['username'] ?></td>
 										<td><?= $warga['created_at'] ?></td>
 										<td>
-											<?php if ( in_array($warga['id'], $data['warga_aktif'])) : ?>
+											<?php if ( in_array($warga['id'], $data['warga_aktif']) ) : ?>
 												<div class="badge badge-success">Active</div>
 											<?php else : ?>
 												<div class="badge badge-danger">Not Active</div>
@@ -82,7 +82,15 @@
 												<?php endif; ?>
 											<?php endforeach; ?>
 										</td>
-										<td width="10%"><a class="btn btn-action btn-secondary tombolJoinKomunitas" data-bs-toggle="modal" data-bs-target="#modalJoin" data-link-join="<?= $community['link_join']; ?>" data-id-warga="<?= $_SESSION['warga']['id'] ?>" data-id-komunitas="<?= $community['id']; ?>">Join</a></td>
+
+										<td width="10%">
+											<?php if( !in_array($community['id'], $data['komunitas_warga']) ) : ?>
+												<a class="btn btn-action btn-secondary tombolJoinKomunitas" data-bs-toggle="modal" data-bs-target="#modalJoin" data-link-join="<?= $community['link_join']; ?>" data-id-warga="<?= $_SESSION['warga']['id'] ?>" data-id-komunitas="<?= $community['id']; ?>">Join</a>
+											<?php else : ?>
+												<a href="<?= BASEURL; ?>/community/batalJoin/<?= $data['warga']['id']; ?>/<?= $community['id']; ?>" class="btn btn-action btn-secondary">Batal Join</a>
+											<?php endif; ?>
+										</td>
+
 									</tr>
 									<?php endforeach; ?>
 								</table>
