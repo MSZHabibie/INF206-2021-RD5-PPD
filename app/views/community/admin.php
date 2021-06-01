@@ -122,7 +122,7 @@
                         <textarea class="form-control" id="kegiatan" name="kegiatan" rows="3"></textarea>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="linkjoin" class="form-label">Link Grup Whatsapp/Telegram</label>
+                        <label for="linkjoin" class="form-label">Link Grup WhatsApp/Telegram</label>
                         <input type="text" class="form-control" id="linkjoin" name="linkjoin" required>
                     </div>
             </div>
