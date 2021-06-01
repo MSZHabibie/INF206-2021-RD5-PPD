@@ -35,6 +35,16 @@ class Warga_model
 
         return $this->db->resultSet();
     }
+    
+    public function getAllUsersLimit($start, $limit)
+    {
+        $this->db->query("SELECT * FROM $this->table LIMIT :start, :limit");
+        $this->db->bind('start', $start);
+        $this->db->bind('limit', $limit);
+        $this->db->execute();
+
+        return $this->db->resultSet();
+    }
 
     public function createAccount($data)
     {
