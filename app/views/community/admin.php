@@ -22,10 +22,10 @@
 									<?php $no = 1 ?>
 									<?php foreach ($data['allwargalimit'] as $warga) : ?>
 									<tr>
-										<td><?= $no++ ?></td>
-										<td><?= $warga['username'] ?></td>
-										<td><?= $warga['created_at'] ?></td>
-										<td>
+										<td width="5%"><?= $no++ ?></td>
+										<td width="30%"><?= $warga['username'] ?></td>
+										<td width="35%"><?= $warga['created_at'] ?></td>
+										<td width="15%">
 											<?php if ( in_array($warga['id'], $data['warga_aktif'])) : ?>
 												<div class="badge badge-success">Active</div>
 											<?php else : ?>
