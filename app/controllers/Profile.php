@@ -8,11 +8,14 @@ class Profile extends Controller
         $this->hasSession();
         $this->isAdmin(get_class($this));
 
+        $data['class'] = get_class($this);
         $data['judul'] = 'Profile';
         $data['warga'] = $_SESSION['warga'];
-        $this->view('templates/header', $data);
+        $data['user'] = $_SESSION['warga'];
+
+        $this->view('templates/appheader', $data);
         $this->view('profile/index', $data);
-        $this->view('templates/footer');
+        $this->view('templates/appfooter');
     }
 
     public function admin()
