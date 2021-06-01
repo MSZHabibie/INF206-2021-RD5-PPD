@@ -76,7 +76,7 @@
                             <a href="<?= BASEURL; ?>/profile" class="dropdown-item has-icon"> <i class="ion ion-android-person"></i> Profile </a>
                             <a href="<?= BASEURL; ?>/riwayat" class="dropdown-item has-icon"> <i class="ion ion-document-text"></i> Riwayat </a>
                             <a href="<?= BASEURL; ?>/riwayat" class="dropdown-item has-icon"> <i class="ion ion-ios-bell"></i> Notifikasi </a>
-                            <a href="<?= BASEURL; ?>/profile/ubahPassword" class="dropdown-item has-icon"> <i class="ion ion-android-person"></i> Ubah Password </a>
+                            <a href="<?= BASEURL; ?>/profile/ubahPassword" class="dropdown-item has-icon"> <i class="ion ion-locked"></i> Ubah Password </a>
                             <a href="<?= BASEURL; ?>/logout" class="dropdown-item has-icon"> <i class="ion ion-log-out"></i> Logout </a>
                         </div>
                     </li>
