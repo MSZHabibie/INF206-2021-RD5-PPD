@@ -28,7 +28,19 @@
                   <a href="<?= BASEURL; ?>/poin/pembelian/<?= $data['warga']['id']; ?>/<?= $voucher['id']; ?>" class="badge bg-success " onclick="return confirm('Apakah Anda Ingin Membeli <?= $voucher['nama'] ?>');">Beli</a></small>
               </div>
             </div>
-          <?php ;}?>
+          <?php ;} else { ?>
+            <div class="card">
+              <img src=" <?= BASEURL; ?>/img/poin/<?= $voucher['gambar']; ?>" class="card-img-top" alt="<?= $voucher['gambar']; ?> ">
+              <div class="card-body">
+                <h5 class="card-title"><?= $voucher['nama']; ?></h5>
+                <p class="card-text"><?= $voucher['deskripsi']; ?></p>
+              </div>
+              <div class="card-footer ">
+                <small class="text-muted d-flex justify-content-between align-items-start">Poin : <?= $voucher['poin']; ?>
+                  <a href="#" class="badge bg-danger ">Habis</a></small>
+              </div>
+            </div>
+          <?php ;} ?>
         <?php endforeach; ?>
       </div>
     </div>
