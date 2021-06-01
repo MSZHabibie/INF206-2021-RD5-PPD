@@ -13,9 +13,10 @@ class Community extends Controller
     $data['judul'] = 'Community';
     $data['warga'] = $_SESSION['warga'];
     $data['user'] = $_SESSION['warga'];
-    $data['komunitas'] = $this->model('Community_model')->getAllCommunity();
+    $data['communities'] = $this->model('Community_model')->getAllCommunity();
     $data['allwarga'] = $this->model('Warga_model')->getAllUsers();
     $data['warga_aktif'] = array_column($this->model('Community_model')->getWargaAktif(), 'id_warga');
+    $data['warga_komunitas'] = $this->model('Community_model')->getWargaKomunitas();
 
     $this->view('templates/appheader', $data);
     $this->view('community/index', $data);

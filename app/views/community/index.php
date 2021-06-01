@@ -15,7 +15,7 @@
 								<table class="table table-striped">
 									<tr>
 										<th>No</th>
-										<th>Name/Username</th>
+										<th>Username</th>
 										<th>Created At</th>
 										<th>Status</th>
 									</tr>
@@ -23,7 +23,7 @@
 									<?php foreach ($data['allwarga'] as $warga) : ?>
 									<tr>
 										<td><?= $no++ ?></td>
-										<td><?= $warga['nama'] ?> / <?= $warga['username'] ?></td>
+										<td><?= $warga['username'] ?></td>
 										<td><?= $warga['created_at'] ?></td>
 										<td>
 											<?php if ( in_array($warga['id'], $data['warga_aktif'])) : ?>
@@ -72,99 +72,26 @@
 							<div class="table-responsive">
 								<table class="table table-striped">
 									<tr>
-										<th class="text-center">
-											<div class="custom-checkbox custom-control">
-												<input type="checkbox" data-checkboxes="mygroup" data-checkbox-role="dad" class="custom-control-input" id="checkbox-all">
-												<label for="checkbox-all" class="custom-control-label"></label>
-											</div>
-										</th>
+										<th>No</th>
 										<th>Nama Kelompok</th>
-										<th>Progress</th>
 										<th>Anggota</th>
-										<th>Due Date</th>
-										<th>Status</th>
 										<th>Join</th>
 									</tr>
+									<?php $no = 1 ?>
+									<?php foreach ($data['communities'] as $community) : ?>
 									<tr>
-										<td width="40">
-											<div class="custom-checkbox custom-control">
-												<input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-1">
-												<label for="checkbox-1" class="custom-control-label"></label>
-											</div>
-										</td>
-										<td>Kelompok 1</td>
-										<td class="align-middle">
-											<div class="progress" style="height: 4px;" data-toggle="tooltip" title="100%">
-												<div class="progress-bar bg-success" style="width: 100%;"></div>
-											</div>
-										</td>
-										<td> <img alt="image" src="<?= BASEURL;?>/img/img_yovie/img/avatar/avatar-5.jpeg" class="rounded-circle" width="35" data-toggle="title" title="Wildan Ahdian"> </td>
-										<td>00-00-0000</td>
+										<td width="5%"><?= $no++ ?></td>
+										<td width="45%"><?= $community['nama'] ?></td>
 										<td>
-											<div class="badge badge-success">Completed</div>
+											<?php foreach ($data['warga_komunitas'] as $join) : ?>
+												<?php if($community['id'] == $join['id_komunitas']) : ?>
+													<img alt="image" src="<?= BASEURL;?>/img/profile/<?= $join['profile'] ?>" class="rounded-circle" width="35" data-toggle="title" title="<?= $join['username'] ?>">
+												<?php endif; ?>
+											<?php endforeach; ?>
 										</td>
-										<td><a href="<?= BASEURL; ?>/activity/index" class="btn btn-action btn-secondary">Join</a></td>
+										<td width="10%"><a href="<?= BASEURL; ?>/activity/index" class="btn btn-action btn-secondary">Join</a></td>
 									</tr>
-									<tr>
-										<td>
-											<div class="custom-checkbox custom-control">
-												<input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-2">
-												<label for="checkbox-2" class="custom-control-label"></label>
-											</div>
-										</td>
-										<td>Kelompok 2</td>
-										<td class="align-middle">
-											<div class="progress" style="height: 4px;" data-toggle="tooltip" title="0%">
-												<div class="progress-bar" style="width: 0;"></div>
-											</div>
-										</td>
-										<td> <img alt="image" src="<?= BASEURL;?>/img/img_yovie/img/avatar/avatar-1.jpeg" class="rounded-circle" width="35" data-toggle="title" title="Hariono Yusup"> <img alt="image" src="<?= BASEURL;?>/img/img_yovie/img/avatar/avatar-3.jpeg" class="rounded-circle" width="35" data-toggle="title" title="Nur Alpiana"> <img alt="image" src="<?= BASEURL;?>/img/img_yovie/img/avatar/avatar-4.jpeg" class="rounded-circle" width="35" data-toggle="title" title="Bagus Dwi Cahya"> </td>
-										<td>00-00-0000</td>
-										<td>
-											<div class="badge badge-info">Todo</div>
-										</td>
-										<td><a href="#" class="btn btn-action btn-secondary">Join</a></td>
-									</tr>
-									<tr>
-										<td>
-											<div class="custom-checkbox custom-control">
-												<input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-3">
-												<label for="checkbox-3" class="custom-control-label"></label>
-											</div>
-										</td>
-										<td>Kelompok 3</td>
-										<td class="align-middle">
-											<div class="progress" style="height: 4px;" data-toggle="tooltip" title="70%">
-												<div class="progress-bar bg-warning" style="width: 70%;"></div>
-											</div>
-										</td>
-										<td> <img alt="image" src="<?= BASEURL;?>/img/img_yovie/img/avatar/avatar-1.jpeg" class="rounded-circle" width="35" data-toggle="title" title="Rizal Fakhri"> <img alt="image" src="<?= BASEURL;?>/img/img_yovie/img/avatar/avatar-2.jpeg" class="rounded-circle" width="35" data-toggle="title" title="Hasan Basri"> </td>
-										<td>00-00-0000</td>
-										<td>
-											<div class="badge badge-warning">In Progress</div>
-										</td>
-										<td><a href="#" class="btn btn-action btn-secondary">Join</a></td>
-									</tr>
-									<tr>
-										<td>
-											<div class="custom-checkbox custom-control">
-												<input type="checkbox" data-checkboxes="mygroup" class="custom-control-input" id="checkbox-4">
-												<label for="checkbox-4" class="custom-control-label"></label>
-											</div>
-										</td>
-										<td>Kelompok 4</td>
-										<td class="align-middle">
-											<div class="progress" style="height: 4px;" data-toggle="tooltip" title="100%">
-												<div class="progress-bar bg-success" style="width: 100%;"></div>
-											</div>
-										</td>
-										<td> <img alt="image" src="<?= BASEURL;?>/img/img_yovie/img/avatar/avatar-2.jpeg" class="rounded-circle" width="35" data-toggle="title" title="Rizal Fakhri"> <img alt="image" src="<?= BASEURL;?>/img/img_yovie/img/avatar/avatar-5.jpeg" class="rounded-circle" width="35" data-toggle="title" title="Isnap Kiswandi"> <img alt="image" src="<?= BASEURL;?>/img/img_yovie/img/avatar/avatar-4.jpeg" class="rounded-circle" width="35" data-toggle="title" title="Yudi Nawawi"> <img alt="image" src="<?= BASEURL;?>/img/img_yovie/img/avatar/avatar-1.jpeg" class="rounded-circle" width="35" data-toggle="title" title="Khaerul Anwar"> </td>
-										<td>00-00-0000</td>
-										<td>
-											<div class="badge badge-success">Completed</div>
-										</td>
-										<td><a href="#" class="btn btn-action btn-secondary">Join</a></td>
-									</tr>
+									<?php endforeach; ?>
 								</table>
 							</div>
 						</div>
