@@ -3,18 +3,26 @@ session_start();
 
 class Community extends Controller
 {
-  public function index()
-  {
-
+  public function index( $halamanAktif = 1 )
+  {  
     $this->hasSession();
     $this->isAdmin(get_class($this));
-
+    
     $data['class'] = get_class($this);
     $data['judul'] = 'Community';
     $data['warga'] = $_SESSION['warga'];
     $data['user'] = $_SESSION['warga'];
     $data['communities'] = $this->model('Community_model')->getAllCommunity();
-    $data['allwarga'] = $this->model('Warga_model')->getAllUsers();
+    
+    $jumlahWarga = count($this->model('Warga_model')->getAllUsers());
+    $limit = 5;
+    $start = ($limit * $halamanAktif) - $limit;
+    
+    $data['jumlahPagination'] = ceil($jumlahWarga/$limit);
+    $data['allwargalimit'] = $this->model('Warga_model')->getAllUsersLimit($start, $limit);
+
+    $data['halaman_aktif'] = $halamanAktif;
+    
     $data['warga_aktif'] = array_column($this->model('Community_model')->getWargaAktif(), 'id_warga');
     $data['warga_komunitas'] = $this->model('Community_model')->getWargaKomunitas();
     $data['komunitas_warga'] = array_column($this->model('Community_model')->getKomunitasWarga($data['warga']['id']), 'id_komunitas');
@@ -54,7 +62,7 @@ class Community extends Controller
     exit;
   }
 
-  public function admin()
+  public function admin($halamanAktif = 1)
   {
     $this->hasSession();
     $this->isNotAdmin(get_class($this));
@@ -64,7 +72,16 @@ class Community extends Controller
     $data['admin'] = $_SESSION['admin'];
     $data['user'] = $_SESSION['admin'];
     $data['communities'] = $this->model('Community_model')->getAllCommunity();
-    $data['allwarga'] = $this->model('Warga_model')->getAllUsers();
+
+    $jumlahWarga = count($this->model('Warga_model')->getAllUsers());
+    $limit = 5;
+    $start = ($limit * $halamanAktif) - $limit;
+
+    $data['jumlahPagination'] = ceil($jumlahWarga/$limit);
+    $data['allwargalimit'] = $this->model('Warga_model')->getAllUsersLimit($start, $limit);
+
+    $data['halaman_aktif'] = $halamanAktif;
+
     $data['warga_aktif'] = array_column($this->model('Community_model')->getWargaAktif(), 'id_warga');
     $data['warga_komunitas'] = $this->model('Community_model')->getWargaKomunitas();
 

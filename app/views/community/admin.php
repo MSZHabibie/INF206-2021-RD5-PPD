@@ -20,7 +20,7 @@
 										<th>Status</th>
 									</tr>
 									<?php $no = 1 ?>
-									<?php foreach ($data['allwarga'] as $warga) : ?>
+									<?php foreach ($data['allwargalimit'] as $warga) : ?>
 									<tr>
 										<td><?= $no++ ?></td>
 										<td><?= $warga['username'] ?></td>
@@ -42,11 +42,11 @@
 						<div class="card-footer text-right">
 							<nav class="d-inline-block">
 								<ul class="pagination mb-0">
-									<li class="page-item disabled"> <a class="page-link" href="#" tabindex="-1"><i class="ion ion-chevron-left"></i></a> </li>
-									<li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
-									<li class="page-item"> <a class="page-link" href="#">2</a> </li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"> <a class="page-link" href="#"><i class="ion ion-chevron-right"></i></a> </li>
+									<li class="page-item<?= $data['halaman_aktif'] == 1 ? ' disabled':'' ?>"> <a class="page-link" href="<?= BASEURL; ?>/community/admin/<?= ($data['halaman_aktif'] - 1) ?>" tabindex="-1"><i class="ion ion-chevron-left"></i></a> </li>
+									<?php for ($i=1; $i <= $data['jumlahPagination']; $i++) : ?>
+										<li class="page-item <?= $data['halaman_aktif'] == $i ? active : ''; ?>"><a class="page-link" href="<?= BASEURL; ?>/community/admin/<?= $i ?>"><?= $i ?></a></li>
+									<?php endfor; ?>
+									<li class="page-item<?= $data['halaman_aktif'] == $data['jumlahPagination'] ? ' disabled':'' ?>"> <a class="page-link" href="<?= BASEURL; ?>/community/admin/<?= ($data['halaman_aktif'] + 1) ?>"><i class="ion ion-chevron-right"></i></a> </li>
 								</ul>
 							</nav>
 						</div>
