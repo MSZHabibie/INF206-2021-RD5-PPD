@@ -41,5 +41,18 @@ class Community_model
         return $this->db->resultSet();
     }
 
+    public function join($data)
+    {
+        $id_warga = $data['id_warga'];
+        $id_komunitas = $data['id_komunitas'];
+
+        $this->db->query("INSERT INTO $this->table2 (id_warga, id_komunitas) VALUES (:id_warga, :id_komunitas)");
+        $this->db->bind('id_warga', $id_warga);
+        $this->db->bind('id_komunitas', $id_komunitas);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
 }
 

@@ -89,7 +89,7 @@
 												<?php endif; ?>
 											<?php endforeach; ?>
 										</td>
-										<td width="10%"><a href="<?= BASEURL; ?>/community/join" class="btn btn-action btn-secondary tombolJoinKomunitas" data-bs-toggle="modal" data-bs-target="#modalJoin" data-link-join="<?= $community['link_join']; ?>">Join</a></td>
+										<td width="10%"><a class="btn btn-action btn-secondary tombolJoinKomunitas" data-bs-toggle="modal" data-bs-target="#modalJoin" data-link-join="<?= $community['link_join']; ?>" data-id-warga="<?= $_SESSION['warga']['id'] ?>" data-id-komunitas="<?= $community['id']; ?>">Join</a></td>
 									</tr>
 									<?php endforeach; ?>
 								</table>
@@ -116,8 +116,11 @@
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+		<form action="<?= BASEURL; ?>/community/join" method="post">
+			<input type="hidden" name="id_warga" value="">
+			<input type="hidden" name="id_komunitas" value="">
+			<button type="submit" class="btn btn-primary">Join</button>
+		</form>
       </div>
     </div>
   </div>

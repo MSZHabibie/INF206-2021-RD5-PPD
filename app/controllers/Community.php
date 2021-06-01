@@ -22,4 +22,17 @@ class Community extends Controller
     $this->view('community/index', $data);
     $this->view('templates/appfooter');
   }
+
+  public function join()
+  {
+    $this->hasSession();
+
+    if ($this->model('Community_model')->join($_POST) > 0 ) {
+      header('Location: ' . BASEURL . '/community');
+      exit;
+    }
+
+    header('Location: ' . BASEURL . '/community');
+    exit;
+  }
 }

@@ -90,7 +90,12 @@ $(function () {
 
     $('.tombolJoinKomunitas').on('click', function () {
         const link_join = $(this).data('link-join');
+        const id_warga = $(this).data('id-warga');
+        const id_komunitas = $(this).data('id-komunitas');
+
         $('#modalJoin .modal-body a').html(link_join);
+        $('#modalJoin form input[name=id_warga]').val(id_warga);
+        $('#modalJoin form input[name=id_komunitas]').val(id_komunitas);
     });
 
 });
