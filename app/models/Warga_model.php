@@ -143,12 +143,17 @@ class Warga_model
 
         // cek password benar atau salah
         if (!password_verify($passwordLama, $_SESSION['warga']['password'])) {
-            return false;
+            return -1;
         }
 
         // cek password baru dan konfirmasinya
         if ($password !== $password2) {
-            return false;
+            return -2;
+        }
+
+        // cek password lama dan baru sama atau berbeda
+        if ($password == $passwordLama) {
+            return -3;
         }
 
         // hash password
