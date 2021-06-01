@@ -65,32 +65,6 @@ class Community extends Controller
           exit;
       }
   }
-}
-=======
-
-  public function admin()
-  {
-    $this->hasSession();
-    $this->isNotAdmin(get_class($this));
-
-    $data['judul'] = 'Community Admin';
-    $data['komunitas'] = $this->model('Community_model')->getAllCommunity();
-    $data['admin'] = $_SESSION['admin'];
-    $this->view('templates/header', $data);
-    $this->view('community/admin', $data);
-    $this->view('templates/footer');
-  }
-  
-  public function tambah()
-  {
-    $this->hasSession();
-    $this->isNotAdmin($this);
-
-    if ($this->model('Community_model')->addCommunity($_POST) > 0) {
-      header('Location: ' . BASEURL . '/komunitas/admin');
-      exit;
-    }
-  }
 
   public function hapus($id)
   {
@@ -98,21 +72,19 @@ class Community extends Controller
     $this->isNotAdmin($this);
 
     if ($this->model('Community_model')->deleteCommunity($id) > 0) {
-      header('Location: ' . BASEURL . '/komunitas/admin');
+      header('Location: ' . BASEURL . '/community/admin');
       exit;
     }
   }
+
   public function edit()
   {
     $this->hasSession();
     $this->isNotAdmin($this);
 
     if ($this->model('Community_model')->updateCommunity($_POST) > 0) {
-      header('Location: ' . BASEURL . '/komunitas/admin');
+      header('Location: ' . BASEURL . '/community/admin');
       exit;
     }
   }
 }
-
-
->>>>>>> 1908107010017

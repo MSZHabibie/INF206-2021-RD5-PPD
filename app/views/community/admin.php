@@ -87,7 +87,7 @@
 										<td width="13%">
                                             <div class="d-flex justify-content-between">
                                                 <a class="btn btn-action btn-success tombolJoinKomunitas" data-bs-toggle="modal" data-bs-target="#modalJoin" data-link-join="<?= $community['link_join']; ?>" data-id-warga="<?= $_SESSION['warga']['id'] ?>" data-id-komunitas="<?= $community['id']; ?>">Edit</a>
-                                                <a class="btn btn-action btn-danger tombolJoinKomunitas" data-bs-toggle="modal" data-bs-target="#modalJoin" data-link-join="<?= $community['link_join']; ?>" data-id-warga="<?= $_SESSION['warga']['id'] ?>" data-id-komunitas="<?= $community['id']; ?>">Hapus</a>
+                                                <a href="<?= BASEURL; ?>/community/hapus/<?= $community['id'] ?>" class="btn btn-action btn-danger" onclick="return confirm('hapus komunitas ini?');">Hapus</a>
                                             </div>
                                         </td>
 									</tr>
