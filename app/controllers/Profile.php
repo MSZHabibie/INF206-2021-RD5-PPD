@@ -25,10 +25,14 @@ class Profile extends Controller
         $this->hasSession();
         $this->isNotAdmin(get_class($this));
 
-        $data['judul'] = 'Profile Admin';
-        $this->view('templates/header', $data);
+        $data['class'] = get_class($this);
+        $data['judul'] = 'Profile';
+        $data['admin'] = $_SESSION['admin'];
+        $data['user'] = $_SESSION['admin'];
+        
+        $this->view('templates/appheader', $data);
         $this->view('profile/admin', $data);
-        $this->view('templates/footer');
+        $this->view('templates/appfooter');
     }
 
     public function edit()
