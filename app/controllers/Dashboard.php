@@ -19,8 +19,11 @@ class Dashboard extends Controller
         $data['jumlah_warga'] = count($this->model('Warga_model')->getAllUsers());
         $data['jumlah_admin'] = count($this->model('Admin_model')->getAllUsers());
         $data['notifikasi'] = $this->model('Notify_model')->getAllNotifyById($data['warga']['id']);
-
+        
         $data['judul'] = 'Dashboard';
+
+        // var_dump($data['riwayat']);
+        // die;
         $this->view('templates/appheader', $data);
         $this->view('dashboard/index', $data);
         $this->view('templates/appfooter');
@@ -31,6 +34,7 @@ class Dashboard extends Controller
         $this->hasSession();
         $this->isNotAdmin(get_class($this));
 
+        $data['class'] = get_class($this);
         $data['judul'] = 'Dashboard';
         $data['riwayat'] = $this->model('Riwayat_model')->getAllRiwayatActivity();
         $data['riwayat2'] = $this->model('Riwayat_model')->getAllRiwayatVoucher();

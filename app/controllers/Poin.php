@@ -9,6 +9,7 @@ class Poin extends Controller
     $this->hasSession();
     $this->isAdmin(get_class($this));
 
+    $data['class'] = get_class($this);
     $data['judul'] = 'Poin';
     $data['voucher'] = $this->model('Poin_model')->getAllVoucher();
     $data['warga'] = $_SESSION['warga'];
@@ -24,6 +25,7 @@ class Poin extends Controller
     $this->hasSession();
     $this->isNotAdmin(get_class($this));
 
+    $data['class'] = get_class($this);
     $data['judul'] = 'Poin Admin';
     $data['poin'] = $this->model('Poin_model')->getAllPoin();
     $data['voucher'] = $this->model('Poin_model')->getAllVoucher();

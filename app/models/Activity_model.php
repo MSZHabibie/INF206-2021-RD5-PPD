@@ -15,7 +15,7 @@ class Activity_model
 
     public function getAllActivity()
     {
-        $this->db->query("SELECT * FROM $this->table");
+        $this->db->query("SELECT * FROM $this->table ORDER BY tanggal DESC");
         $this->db->execute();
 
         return $this->db->resultSet();
@@ -207,7 +207,7 @@ class Activity_model
 
     public function updatePoinWarga($id_warga, $poin)
     {
-        $query = "UPDATE $this->table3 SET poin=:poin WHERE id=:id_warga";
+        $query = "UPDATE $this->table3 SET poin = poin + :poin WHERE id=:id_warga";
 
         $this->db->query($query);
         $this->db->bind('poin', $poin);
