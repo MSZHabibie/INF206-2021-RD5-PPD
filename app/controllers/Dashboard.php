@@ -8,10 +8,18 @@ class Dashboard extends Controller
         $this->hasSession();
         $this->isAdmin(get_class($this));
 
+        $data['class'] = get_class($this);
         $data['judul'] = 'Dashboard';
-        // $this->view('templates/header', $data);
-        $this->view('dashboard/index');
-        // $this->view('templates/footer');
+        $data['warga'] = $_SESSION['warga'];
+        $data['user'] = $_SESSION['warga'];
+
+        $data['jumlah_warga'] = count($this->model('Warga_model')->getAllUsers());
+        $data['jumlah_admin'] = count($this->model('Admin_model')->getAllUsers());
+
+        $data['judul'] = 'Dashboard';
+        $this->view('templates/appheader', $data);
+        $this->view('dashboard/index', $data);
+        $this->view('templates/appfooter');
     }
 
     public function admin()

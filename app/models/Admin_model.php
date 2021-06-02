@@ -29,6 +29,14 @@ class Admin_model
         return $this->db->single();
     }
 
+    public function getAllUsers()
+    {
+        $this->db->query("SELECT * FROM $this->table");
+        $this->db->execute();
+
+        return $this->db->resultSet();
+    }
+
     public function cekUsername($username)
     {
         $this->db->query("SELECT * FROM $this->table WHERE username=:username");

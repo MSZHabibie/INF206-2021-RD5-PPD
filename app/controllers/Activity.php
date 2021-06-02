@@ -124,6 +124,19 @@ class Activity extends Controller
         header('Location: ' . BASEURL . '/activity/admin');
         exit;
     }
+
+    public function confirm()
+    {
+        $this->hasSession();
+        $this->isNotAdmin($this);
+
+        $poin = $this->model('Activity_model')->getPoinAktivitas($_POST['id_aktivitas'])['poin'];
+
+        $this->model('Activity_model')->updatePoinWarga($_POST['id_warga'], $poin);
+        $this->model('Activity_model')->updateConfirmedWargaAktivitas($_POST['id_warga'], $_POST['id_aktivitas']);
+
+        $this->detailAdmin($_POST['id_aktivitas']);
+    }
     public function notify($id_warga, $id_notify)
     {
         $this->hasSession();
