@@ -104,7 +104,7 @@
         <div class="col">
             <div class="card">
                 <div class="card-header">
-                    <div class="float-right"> <a href="" class="btn btn-primary">Total: <?= count($data['peserta']) ?> peserta</a> </div>
+                    <div class="float-right"> <a href="#total" id="total" class="btn btn-primary">Total: <?= count($data['peserta']) ?> peserta</a> </div>
                     <h4>Participants</h4>
                 </div>
                 <div class="card-body">
