@@ -207,7 +207,7 @@ class Activity_model
 
     public function updatePoinWarga($id_warga, $poin)
     {
-        $query = "UPDATE $this->table3 SET poin=:poin WHERE id=:id_warga";
+        $query = "UPDATE $this->table3 SET poin = poin + :poin WHERE id=:id_warga";
 
         $this->db->query($query);
         $this->db->bind('poin', $poin);

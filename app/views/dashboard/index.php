@@ -52,9 +52,9 @@
 								<div class="card-body">
 			
 									<canvas id="myChart" height="158" data-total-statistic="<?= count($data['data_statistic']) ?>"
-										<?php $counter=0; foreach ($data['data_statistic'] as $data) : ?>
-											data-statistic-<?= $counter ?> = "<?= $data["COUNT(created_at)"] ?>"
-											data-statistic-label-<?= $counter++ ?> = "<?= $data["DATE(created_at)"] ?>"
+										<?php $counter=0; foreach ($data['data_statistic'] as $statistic) : ?>
+											data-statistic-<?= $counter ?> = "<?= $statistic["COUNT(created_at)"] ?>"
+											data-statistic-label-<?= $counter++ ?> = "<?= $statistic["DATE(created_at)"] ?>"
 										<?php endforeach ?>
 									></canvas>
 									<!-- <div class="statistic-details mt-sm-4">
@@ -81,26 +81,26 @@
 						<div class="col-lg-4 col-md-12 col-12 col-sm-12">
 							<div class="card">
 								<div class="card-header">
-									<h4>Recent Activities</h4>
+									<h4>Member Quotes</h4>
 								</div>
 								<div class="card-body">
 									<ul class="list-unstyled list-unstyled-border">
 										<li class="media"> <img class="mr-3 rounded-circle" width="50" src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-1.jpeg" alt="avatar">
 											<div class="media-body">
 												<div class="float-right"><small>10m</small></div>
-												<div class="media-title">Muhammad Syah Zichrullah Habibie</div> <small>Cita citaku bersamamu.</small>
+												<div class="media-title">Muhammad Syah Zichrullah Habibie</div> <small>Belajar selagi mampu.</small>
 											</div>
 										</li>
 										<li class="media"> <img class="mr-3 rounded-circle" width="50" src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-2.jpeg" alt="avatar">
 											<div class="media-body">
 												<div class="float-right"><small>10m</small></div>
-												<div class="media-title">Siti Mawaddah</div> <small>Cita citaku bersamamu.</small>
+												<div class="media-title">Siti Mawaddah</div> <small>Hidup hanya sekali.</small>
 											</div>
 										</li>
 										<li class="media"> <img class="mr-3 rounded-circle" width="50" src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-3.jpeg" alt="avatar">
 											<div class="media-body">
 												<div class="float-right"><small>10m</small></div>
-												<div class="media-title">Fiya yufita</div> <small>Cita citaku bersamamu.</small>
+												<div class="media-title">Fiya yufita</div> <small>Hiduplah yang berarti.</small>
 											</div>
 										</li>
 										<li class="media"> <img class="mr-3 rounded-circle" width="50" src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-4.jpeg" alt="avatar">
