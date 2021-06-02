@@ -27,9 +27,9 @@ class Activity extends Controller
         $data['class'] = get_class($this);
         $data['judul'] = 'Activity Admin';
         $data['aktivitas'] = $this->model('Activity_model')->getAllActivity();
-        $data['notifikasi'] = $this->model('Notify_model')->getAllNotify();
         $data['admin'] = $_SESSION['admin'];
         $data['user'] = $_SESSION['admin'];
+        $data['notifikasi'] = $this->model('Notify_model')->getAllNotifyById($data['admin']['id']);
         $this->view('templates/appheader', $data);
         $this->view('activity/admin', $data);
         $this->view('templates/modal-aktivitas');

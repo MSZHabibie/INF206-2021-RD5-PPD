@@ -27,9 +27,9 @@ class Poin extends Controller
     $data['judul'] = 'Poin Admin';
     $data['poin'] = $this->model('Poin_model')->getAllPoin();
     $data['voucher'] = $this->model('Poin_model')->getAllVoucher();
-    $data['notifikasi'] = $this->model('Notify_model')->getAllNotify();
     $data['admin'] = $_SESSION['admin'];
     $data['user'] = $_SESSION['admin'];
+    $data['notifikasi'] = $this->model('Notify_model')->getAllNotifyById($data['admin']['id']);
     $this->view('templates/appheader', $data);
     $this->view('poin/admin', $data);
     $this->view('templates/appfooter');

@@ -45,7 +45,7 @@
                                     <img alt="image" src=" <?= BASEURL; ?>/img/<?= $notify['jenis']; ?>/<?= $notify['gambar']; ?>" class="rounded-circle dropdown-item-img">
                                 <!-- Ternary Condition untuk menampilkan jenis tapi bukan kata poin melaikan voucher -->
                                     <div class="dropdown-item-desc"> <b><?= $notify['jenis'] === 'poin' ?  'Voucher' : 'Activity'; ?></b> "<?= $notify['nama']; ?>" Telah <b><?= $notify['crud']; ?></b>
-                                        <div class="time">15 Hours Ago</div>
+                                        <!-- <div class="time"><?= $notify['waktu']; ?></div> -->
                                     </div>
                                 </a>
                                 <?php endforeach; ?>
@@ -58,8 +58,6 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="<?= BASEURL; ?>/profile" class="dropdown-item has-icon"> <i class="ion ion-android-person"></i> Profile </a>
-                            <a href="<?= BASEURL; ?>/riwayat" class="dropdown-item has-icon"> <i class="ion ion-document-text"></i> Riwayat </a>
-                            <a href="<?= BASEURL; ?>/riwayat" class="dropdown-item has-icon"> <i class="ion ion-ios-bell"></i> Notifikasi </a>
                             <a href="<?= BASEURL; ?>/profile/ubahPassword" class="dropdown-item has-icon"> <i class="ion ion-locked"></i> Ubah Password </a>
                             <a href="<?= BASEURL; ?>/logout" class="dropdown-item has-icon"> <i class="ion ion-log-out"></i> Logout </a>
                         </div>

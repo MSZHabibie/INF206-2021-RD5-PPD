@@ -1,18 +1,9 @@
 <div class="main-content">
-	<section class="section">
-		<h1 class="section-header">
-			<div>Activity</div>
-		</h1>
-	</section>
-	<div class="col d-flex justify-content-center">
-		<table width="300">
-			<tr>
-				<?php foreach ($data['aktivitas'] as $aktivitas) : ?>
-					<td>
-						<img width="300px" height="200px" src="<?= BASEURL; ?>/img/activity/<?= $aktivitas['gambar'] ?>" alt="<?= $aktivitas['nama'] ?>">
-					</td>
-				<?php endforeach; ?>
-			</tr>
+				<section class="section">
+					<h1 class="section-header">
+						<div>Activity</div>
+					</h1>
+				</section>
 
 				<!-- <table width="300">
 					<tr>
@@ -23,11 +14,11 @@
 						<?php endforeach; ?>
 					</tr>
 
-			<tr>
-				<?php foreach ($data['aktivitas'] as $aktivitas) : ?>
-					<td><?= $aktivitas['deskripsi'] ?></td>
-				<?php endforeach; ?>
-			</tr>
+					<tr align="center">
+						<?php foreach ($data['aktivitas'] as $aktivitas) : ?>
+							<td><b><?= $aktivitas['nama'] ?></b></td>
+						<?php endforeach; ?>
+					</tr>
 
 					<tr>
 						<?php foreach ($data['aktivitas'] as $aktivitas) : ?>
