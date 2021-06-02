@@ -40,17 +40,24 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-8 col-md-12 col-12 col-sm-12">
+					<div class="col-lg-8 col-md-12 col-12 col-sm-12">
 							<div class="card">
 								<div class="card-header">
-									<div class="float-right">
-										<div class="btn-group"> <a href="#" class="btn active">Week</a> <a href="#" class="btn">Month</a> <a href="#" class="btn">Year</a> </div>
+									<div class="float-right text-secondary">
+										<!-- <div class="btn-group"> <a href="#" class="btn active">Week</a> <a href="#" class="btn">Month</a> <a href="#" class="btn">Year</a> </div> -->
+										Our Villagers in last 7-days
 									</div>
 									<h4>Statistics</h4>
 								</div>
 								<div class="card-body">
-									<canvas id="myChart" height="158"></canvas>
-									<div class="statistic-details mt-sm-4">
+			
+									<canvas id="myChart" height="158" data-total-statistic="<?= count($data['data_statistic']) ?>"
+										<?php $counter=0; foreach ($data['data_statistic'] as $data) : ?>
+											data-statistic-<?= $counter ?> = "<?= $data["COUNT(created_at)"] ?>"
+											data-statistic-label-<?= $counter++ ?> = "<?= $data["DATE(created_at)"] ?>"
+										<?php endforeach ?>
+									></canvas>
+									<!-- <div class="statistic-details mt-sm-4">
 										<div class="statistic-details-item"> <small class="text-muted"><span class="text-primary"><i class="ion-arrow-up-b"></i></span> 7%</small>
 											<div class="detail-value">43 points</div>
 											<div class="detail-name">Hari ini</div>
@@ -67,7 +74,7 @@
 											<div class="detail-value">320 points</div>
 											<div class="detail-name">Tahun</div>
 										</div>
-									</div>
+									</div> -->
 								</div>
 							</div>
 						</div>
