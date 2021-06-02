@@ -42,7 +42,15 @@ class Warga_model
         $this->db->bind('start', $start);
         $this->db->bind('limit', $limit);
         $this->db->execute();
-
+        
+        return $this->db->resultSet();
+    }
+    
+    public function getStatisticdata()
+    {
+        $this->db->query("SELECT DATE(created_at), COUNT(created_at) FROM $this->table GROUP BY DATE(created_at)");
+        $this->db->execute();
+        
         return $this->db->resultSet();
     }
 

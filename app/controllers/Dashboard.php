@@ -12,6 +12,9 @@ class Dashboard extends Controller
         $data['judul'] = 'Dashboard';
         $data['warga'] = $_SESSION['warga'];
         $data['user'] = $_SESSION['warga'];
+        $data['data_statistic'] = $this->model('Warga_model')->getStatisticdata();
+        // var_dump($data['data_statistic']);
+        // die;
 
         $data['jumlah_warga'] = count($this->model('Warga_model')->getAllUsers());
         $data['jumlah_admin'] = count($this->model('Admin_model')->getAllUsers());
