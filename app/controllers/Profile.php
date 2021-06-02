@@ -14,6 +14,7 @@ class Profile extends Controller
         $data['user'] = $_SESSION['warga'];
         $data['aktivitas_warga'] = $this->model('Activity_model')->getActivityWarga($data['warga']['id']);
         $data['komunitas_warga'] = $this->model('Community_model')->getKomunitasWarga($data['warga']['id']);
+        $data['notifikasi'] = $this->model('Notify_model')->getAllNotifyById($data['warga']['id']);
 
         $this->view('templates/appheader', $data);
         $this->view('profile/index', $data);
@@ -29,6 +30,7 @@ class Profile extends Controller
         $data['judul'] = 'Profile';
         $data['admin'] = $_SESSION['admin'];
         $data['user'] = $_SESSION['admin'];
+        $data['notifikasi'] = $this->model('Notify_model')->getAllNotifyById($data['admin']['id']);
         
         $this->view('templates/appheader', $data);
         $this->view('profile/admin', $data);

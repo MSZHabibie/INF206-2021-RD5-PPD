@@ -1,3 +1,9 @@
+<div class="main-content ">
+  <section class="section">
+    <h1 class="section-header">
+      <div>Poin</div>
+    </h1>
+  </section>
 <div class="container mt-3 mb-3">
   <div class="row">
     <div class="col-lg-6">

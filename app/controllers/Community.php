@@ -13,7 +13,8 @@ class Community extends Controller
     $data['warga'] = $_SESSION['warga'];
     $data['user'] = $_SESSION['warga'];
     $data['communities'] = $this->model('Community_model')->getAllCommunity();
-    
+    $data['notifikasi'] = $this->model('Notify_model')->getAllNotifyById($data['warga']['id']);
+
     $jumlahWarga = count($this->model('Warga_model')->getAllUsers());
     $limit = 5;
     $start = ($limit * $halamanAktif) - $limit;
@@ -72,7 +73,8 @@ class Community extends Controller
     $data['admin'] = $_SESSION['admin'];
     $data['user'] = $_SESSION['admin'];
     $data['communities'] = $this->model('Community_model')->getAllCommunity();
-
+    $data['notifikasi'] = $this->model('Notify_model')->getAllNotifyById($data['admin']['id']);
+    
     $jumlahWarga = count($this->model('Warga_model')->getAllUsers());
     $limit = 5;
     $start = ($limit * $halamanAktif) - $limit;
