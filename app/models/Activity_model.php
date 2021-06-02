@@ -167,7 +167,9 @@ class Activity_model
 
     public function getPeserta($id_aktivitas)
     {
-        $query = "SELECT nama, username, email, no_hp FROM $this->table3 WHERE id IN
+        $query = "SELECT id, nama, username, email, no_hp, confirmed FROM $this->table3 
+                    JOIN $this->table2 ON id_warga=id AND id_aktivitas=:id_aktivitas
+                    WHERE id IN
                 (SELECT id_warga FROM $this->table2 WHERE id_aktivitas = :id_aktivitas )";
 
         $this->db->query($query);
@@ -175,5 +177,40 @@ class Activity_model
         $this->db->execute();
 
         return $this->db->resultSet();
+    }
+
+    public function updatePoinWarga($id_warga, $poin)
+    {
+        $query = "UPDATE $this->table3 SET poin=:poin WHERE id=:id_warga";
+
+        $this->db->query($query);
+        $this->db->bind('poin', $poin);
+        $this->db->bind('id_warga', $id_warga);
+        $this->db->execute();
+    }
+
+    public function getPoinAktivitas($id_aktivitas)
+    {
+        $query = "SELECT poin FROM $this->table WHERE id=:id_aktivitas";
+    
+        $this->db->query($query);
+        $this->db->bind('id_aktivitas', $id_aktivitas);
+        $this->db->execute();
+        
+        return $this->db->single();
+    }
+
+    public function updateConfirmedWargaAktivitas($id_warga, $id_aktivitas)
+    {
+        $confirmed = 1;
+        $query = "UPDATE $this->table2 SET confirmed=:confirmed WHERE id_warga=:id_warga AND id_aktivitas=:id_aktivitas";
+
+        $this->db->query($query);
+        $this->db->bind('confirmed', $confirmed);
+        $this->db->bind('id_warga', $id_warga);
+        $this->db->bind('id_aktivitas', $id_aktivitas);
+        $this->db->execute();
+
+        return $this->db->rowCount();
     }
 }

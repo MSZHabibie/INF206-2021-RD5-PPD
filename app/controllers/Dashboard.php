@@ -13,9 +13,12 @@ class Dashboard extends Controller
         $data['warga'] = $_SESSION['warga'];
         $data['user'] = $_SESSION['warga'];
 
+        $data['jumlah_warga'] = count($this->model('Warga_model')->getAllUsers());
+        $data['jumlah_admin'] = count($this->model('Admin_model')->getAllUsers());
+
         $data['judul'] = 'Dashboard';
         $this->view('templates/appheader', $data);
-        $this->view('dashboard/index');
+        $this->view('dashboard/index', $data);
         $this->view('templates/appfooter');
     }
 
