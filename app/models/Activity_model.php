@@ -15,7 +15,7 @@ class Activity_model
 
     public function getAllActivity()
     {
-        $this->db->query("SELECT * FROM $this->table");
+        $this->db->query("SELECT * FROM $this->table ORDER BY tanggal DESC");
         $this->db->execute();
 
         return $this->db->resultSet();
