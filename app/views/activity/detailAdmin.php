@@ -1,3 +1,11 @@
+<?php $waktu = round((strtotime($data['aktivitas']['tanggal']) - strtotime(date("Y-m-d"))) / (60 * 60 * 24));
+    if ($waktu < 0) {
+        $selesai = true;
+    } else {
+        $selesai = false;
+    }
+?>
+
 <div class="main-content">
     <section class="section">
         <h1 class="section-header">
@@ -108,7 +116,9 @@
                                     <th scope="col">Nama/Username</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">No HP</th>
-                                    <th scope="col"></th>
+                                    <?php if($selesai) : ?>
+                                        <th scope="col"></th>
+                                    <?php endif ?>
                                 </tr>
                             </thead>
                             <tbody>
@@ -119,17 +129,19 @@
                                         <td><?= $peserta['nama'] ?> / <?= $peserta['username'] ?></td>
                                         <td><?= $peserta['email'] ?></td>
                                         <td><?= $peserta['no_hp'] ?></td>
-                                        <td>
-                                        <?php if ($peserta['confirmed'] == 0) : ?>
-                                            <form action="<?= BASEURL; ?>/activity/confirm" method="post">
-                                                <input type="hidden" name="id_warga" value="<?= $peserta['id'] ?>">
-                                                <input type="hidden" name="id_aktivitas" value="<?= $data['aktivitas']['id'] ?>">
-                                                <button type="submit" class="btn btn-outline-primary btn-sm">Confirm</button>
-                                            </form>
-                                        <?php else : ?>
-                                            Confirmed!
+                                        <?php if($selesai) : ?>
+                                            <td>
+                                            <?php if ($peserta['confirmed'] == 0) : ?>
+                                                <form action="<?= BASEURL; ?>/activity/confirm" method="post">
+                                                    <input type="hidden" name="id_warga" value="<?= $peserta['id'] ?>">
+                                                    <input type="hidden" name="id_aktivitas" value="<?= $data['aktivitas']['id'] ?>">
+                                                    <button type="submit" class="btn btn-outline-primary btn-sm">Confirm</button>
+                                                </form>
+                                            <?php else : ?>
+                                                Confirmed!
+                                            <?php endif ?>
+                                            </td>
                                         <?php endif ?>
-                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
