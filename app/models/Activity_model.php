@@ -5,6 +5,7 @@ class Activity_model
     private $table = 'aktivitas';
     private $table2 = 'aktivitas_warga';
     private $table3 = 'warga';
+    private $table4 = 'notifikasi';
     private $db;
 
     public function __construct()
@@ -27,6 +28,15 @@ class Activity_model
         $this->db->execute();
 
         return $this->db->single();
+    }
+
+    public function getActivityWarga($id_warga)
+    {
+        $this->db->query("SELECT id, nama FROM $this->table JOIN $this->table2 ON id=id_aktivitas WHERE id_warga=:id_warga");
+        $this->db->bind('id_warga', $id_warga);
+        $this->db->execute();
+
+        return $this->db->resultSet();
     }
 
     public function cekActivityWarga($id_warga, $id_aktivitas)
@@ -111,6 +121,14 @@ class Activity_model
         $this->db->bind('tempat', $data['tempat']);
         $this->db->bind('poin', $data['poin']);
         $this->db->bind('gambar', $data['gambar']);
+        
+        $this->db->execute();
+
+        $this->db->query("INSERT INTO $this->table4 VALUES ('', :jenis, :nama, :gambar, :crud, NOW())");
+        $this->db->bind('jenis', 'activity');
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('gambar', $data['gambar']);
+        $this->db->bind('crud', 'Di Tambahkan');
         $this->db->execute();
 
         return $this->db->rowCount();
@@ -120,6 +138,15 @@ class Activity_model
     {
         $this->db->query("DELETE FROM $this->table WHERE id=:id");
         $this->db->bind('id', $id);
+
+        $this->db->execute();
+
+        $this->db->query("INSERT INTO $this->table4 VALUES ('', :jenis, :nama, :gambar, :crud, NOW())");
+        $this->db->bind('jenis', 'activity');
+        $this->db->bind('nama', $id['nama']);
+        $this->db->bind('gambar', $id['gambar']);
+        $this->db->bind('crud', 'Di Hapus');
+
         $this->db->execute();
 
         return $this->db->rowCount();
@@ -153,12 +180,22 @@ class Activity_model
 
         $this->db->execute();
 
+        $this->db->query("INSERT INTO $this->table4 VALUES ('', :jenis, :nama, :gambar, :crud, NOW())");
+        $this->db->bind('jenis', 'activity');
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('gambar', $data['gambar']);
+        $this->db->bind('crud', 'Di Update');
+
+        $this->db->execute();
+
         return $this->db->rowCount();
     }
 
     public function getPeserta($id_aktivitas)
     {
-        $query = "SELECT nama, username, email, no_hp FROM $this->table3 WHERE id IN
+        $query = "SELECT id, nama, username, email, no_hp, confirmed FROM $this->table3 
+                    JOIN $this->table2 ON id_warga=id AND id_aktivitas=:id_aktivitas
+                    WHERE id IN
                 (SELECT id_warga FROM $this->table2 WHERE id_aktivitas = :id_aktivitas )";
 
         $this->db->query($query);
@@ -166,5 +203,40 @@ class Activity_model
         $this->db->execute();
 
         return $this->db->resultSet();
+    }
+
+    public function updatePoinWarga($id_warga, $poin)
+    {
+        $query = "UPDATE $this->table3 SET poin=:poin WHERE id=:id_warga";
+
+        $this->db->query($query);
+        $this->db->bind('poin', $poin);
+        $this->db->bind('id_warga', $id_warga);
+        $this->db->execute();
+    }
+
+    public function getPoinAktivitas($id_aktivitas)
+    {
+        $query = "SELECT poin FROM $this->table WHERE id=:id_aktivitas";
+    
+        $this->db->query($query);
+        $this->db->bind('id_aktivitas', $id_aktivitas);
+        $this->db->execute();
+        
+        return $this->db->single();
+    }
+
+    public function updateConfirmedWargaAktivitas($id_warga, $id_aktivitas)
+    {
+        $confirmed = 1;
+        $query = "UPDATE $this->table2 SET confirmed=:confirmed WHERE id_warga=:id_warga AND id_aktivitas=:id_aktivitas";
+
+        $this->db->query($query);
+        $this->db->bind('confirmed', $confirmed);
+        $this->db->bind('id_warga', $id_warga);
+        $this->db->bind('id_aktivitas', $id_aktivitas);
+        $this->db->execute();
+
+        return $this->db->rowCount();
     }
 }

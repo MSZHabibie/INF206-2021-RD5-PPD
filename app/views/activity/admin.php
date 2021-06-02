@@ -7,7 +7,7 @@
 
                 <button type="button" class="btn btn-primary mb-4 tombolTambahAktivitas" data-bs-toggle="modal" data-bs-target="#formModal">Tambah</button>
 
-                <table width="300">
+                <!-- <table width="300">
                     <tr>
                         <?php foreach ($data['aktivitas'] as $aktivitas) : ?>
                             <td>
@@ -45,4 +45,29 @@
                             </td>
                         <?php endforeach; ?>
                     </tr>
-                </table>
+                </table> -->
+
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <?php foreach ($data['aktivitas'] as $aktivitas) : ?>
+                        <div class="col mb-3">
+                            <div class="card h-100" style="width: 18rem;">
+                                <img src="<?= BASEURL; ?>/img/activity/<?= $aktivitas['gambar'] ?>" class="card-img-top" alt="">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $aktivitas['nama'] ?></h5>
+                                    <p class="card-text"><?= $aktivitas['deskripsi'] ?></p>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="<?= BASEURL; ?>/activity/detailAdmin/<?= $aktivitas['id'] ?>" class="btn btn-primary">Detail</a>
+                                    <div class="text-right text-secondary">
+										<?php $waktu = round((strtotime($aktivitas['tanggal']) - strtotime(date("Y-m-d"))) / (60 * 60 * 24)); ?>
+										<?php if ($waktu >= 0) : ?>
+											<small><?= $waktu ?> Hari Lagi</small>
+										<?php else : ?>
+											<small>Selesai</small>
+										<?php endif; ?>
+									</div>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>

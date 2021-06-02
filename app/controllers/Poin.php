@@ -12,10 +12,12 @@ class Poin extends Controller
     $data['judul'] = 'Poin';
     $data['voucher'] = $this->model('Poin_model')->getAllVoucher();
     $data['warga'] = $_SESSION['warga'];
+    $data['user'] = $_SESSION['warga'];
+    $data['notifikasi'] = $this->model('Notify_model')->getAllNotifyById($data['warga']['id']);
     $data['warga'] = $this->model('Poin_model')->getPoinById($data['warga']['id']);
-    $this->view('templates/header', $data);
+    $this->view('templates/appheader', $data);
     $this->view('Poin/index', $data);
-    $this->view('templates/footer');
+    $this->view('templates/appfooter');
   }
   public function admin()
   {
@@ -26,9 +28,11 @@ class Poin extends Controller
     $data['poin'] = $this->model('Poin_model')->getAllPoin();
     $data['voucher'] = $this->model('Poin_model')->getAllVoucher();
     $data['admin'] = $_SESSION['admin'];
-    $this->view('templates/header', $data);
+    $data['user'] = $_SESSION['admin'];
+    $data['notifikasi'] = $this->model('Notify_model')->getAllNotifyById($data['admin']['id']);
+    $this->view('templates/appheader', $data);
     $this->view('poin/admin', $data);
-    $this->view('templates/footer');
+    $this->view('templates/appfooter');
   }
   public function tambah()
   {
@@ -98,8 +102,12 @@ class Poin extends Controller
       exit;
     }
   }
-  public function test()
+  public function notify($id_warga, $id_notify)
   {
-    $this->view('poin/Point');
+    $this->hasSession();
+    $this->isAdmin($this);
+
+    $this->model('Notify_model')->tekanNotify($id_warga, $id_notify);
+    header('Location: ' . BASEURL . '/poin');
   }
 }

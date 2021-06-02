@@ -29,6 +29,14 @@ class Admin_model
         return $this->db->single();
     }
 
+    public function getAllUsers()
+    {
+        $this->db->query("SELECT * FROM $this->table");
+        $this->db->execute();
+
+        return $this->db->resultSet();
+    }
+
     public function cekUsername($username)
     {
         $this->db->query("SELECT * FROM $this->table WHERE username=:username");
@@ -50,12 +58,12 @@ class Admin_model
 
         // cek username ada atau tidak
         if ($result === false) {
-            return false;
+            return -1;
         }
 
         // cek password benar atau salah
         if (!password_verify($password, $result['password'])) {
-            return false;
+            return -2;
         }
 
         return true;
@@ -83,6 +91,39 @@ class Admin_model
         $this->db->bind('alamat', $data['alamat']);
         $this->db->bind('id', $data['id']);
 
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function updatePassword($data)
+    {
+
+        $passwordLama = $data['passwordLama'];
+        $password = $data['passwordBaru'];
+        $password2 = $data['confirmPasswordBaru'];
+
+        // cek password benar atau salah
+        if (!password_verify($passwordLama, $_SESSION['admin']['password'])) {
+            return -1;
+        }
+
+        // cek password baru dan konfirmasinya
+        if ($password !== $password2) {
+            return -2;
+        }
+
+        // cek password lama dan baru sama atau berbeda
+        if ($password == $passwordLama) {
+            return -3;
+        }
+
+        // hash password
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        $this->db->query("UPDATE $this->table SET password=:password WHERE id=:id");
+        $this->db->bind('password', $password);
+        $this->db->bind('id', $_SESSION['admin']['id']);
         $this->db->execute();
 
         return $this->db->rowCount();
