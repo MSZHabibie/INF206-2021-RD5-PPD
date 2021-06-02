@@ -40,31 +40,15 @@
                                 <div class="float-right"> <a href="#">View All</a> </div>
                             </div>
                             <div class="dropdown-list-content">
-                                <a href="#" class="dropdown-item dropdown-item-unread"> <img alt="image" src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-1.jpeg" class="rounded-circle dropdown-item-img">
-                                    <div class="dropdown-item-desc"> <b>Muhammad Syah Zichrullah Habibie</b> membantu membersihkan sampah <b>dalam kegiatan kerja bakti</b> bekerja sama dengan kelompok 2 <b>Done</b>
-                                        <div class="time">15 Hours Ago</div>
+                            <?php foreach ($data['notifikasi'] as $notify) : ?>
+                                <a href="<?= BASEURL; ?>/<?= $notify['jenis']; ?>/notify/<?= $data['user']['id']; ?>/<?= $notify['id']; ?>" class="dropdown-item dropdown-item-unread" > 
+                                    <img alt="image" src=" <?= BASEURL; ?>/img/<?= $notify['jenis']; ?>/<?= $notify['gambar']; ?>" class="rounded-circle dropdown-item-img">
+                                <!-- Ternary Condition untuk menampilkan jenis tapi bukan kata poin melaikan voucher -->
+                                    <div class="dropdown-item-desc"> <b><?= $notify['jenis'] === 'poin' ?  'Voucher' : 'Activity'; ?></b> "<?= $notify['nama']; ?>" Telah <b><?= $notify['crud']; ?></b>
+                                        <!-- <div class="time"><?= $notify['waktu']; ?></div> -->
                                     </div>
                                 </a>
-                                <a href="#" class="dropdown-item dropdown-item-unread"> <img alt="image" src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-2.jpeg" class="rounded-circle dropdown-item-img">
-                                    <div class="dropdown-item-desc"> <b>Siti Mawaddah</b> membantu menyedikan makanan <b>dalam kegiatan maulid</b> bekerja sama dengan kelompok 3 <b>Progress</b>
-                                        <div class="time">12 Hours Ago</div>
-                                    </div>
-                                </a>
-                                <a href="#" class="dropdown-item"> <img alt="image" src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-4.jpeg" class="rounded-circle dropdown-item-img">
-                                    <div class="dropdown-item-desc"> <b>Khairul Barri Faiz</b> membantu menjemput tamu <b>dalam kegiatan maulid</b> bekerjasama dengan kelompok 3 <b>Done</b>
-                                        <div class="time">16 Hours Ago</div>
-                                    </div>
-                                </a>
-                                <a href="#" class="dropdown-item"> <img alt="image" src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-3.jpeg" class="rounded-circle dropdown-item-img">
-                                    <div class="dropdown-item-desc"> <b>Fiya Yufita</b> membantu menyiapkan keperluan maulid <b>dalam kegiatan maulid</b> bekerjasama dengan kelompok 3 <b>Done</b>
-                                        <div class="time">16 Hours Ago</div>
-                                    </div>
-                                </a>
-                                <a href="#" class="dropdown-item"> <img alt="image" src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-5.jpeg" class="rounded-circle dropdown-item-img">
-                                    <div class="dropdown-item-desc"> <b>Yovie Pramudya Sabri</b> membantu menyiapkan keperluan dimesjid <b>dalam kegiatan maulid</b> bekerjasama dengan kelompok 3 <b>Done</b>
-                                        <div class="time">Yesterday</div>
-                                    </div>
-                                </a>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     </li>
@@ -74,8 +58,6 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="<?= BASEURL; ?>/profile" class="dropdown-item has-icon"> <i class="ion ion-android-person"></i> Profile </a>
-                            <a href="<?= BASEURL; ?>/riwayat" class="dropdown-item has-icon"> <i class="ion ion-document-text"></i> Riwayat </a>
-                            <a href="<?= BASEURL; ?>/riwayat" class="dropdown-item has-icon"> <i class="ion ion-ios-bell"></i> Notifikasi </a>
                             <a href="<?= BASEURL; ?>/profile/ubahPassword" class="dropdown-item has-icon"> <i class="ion ion-locked"></i> Ubah Password </a>
                             <a href="<?= BASEURL; ?>/logout" class="dropdown-item has-icon"> <i class="ion ion-log-out"></i> Logout </a>
                         </div>
@@ -104,3 +86,4 @@
                     </ul>
                 </aside>
             </div>
+            

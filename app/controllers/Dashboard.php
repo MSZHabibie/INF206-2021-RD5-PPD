@@ -16,8 +16,11 @@ class Dashboard extends Controller
         // var_dump($data['data_statistic']);
         // die;
 
+        $data['riwayat'] = $this->model('Riwayat_model')->getRiwayatActivityById($data['warga']['id']);
+        $data['riwayat2'] = $this->model('Riwayat_model')->getRiwayatVoucherById($data['warga']['id']);
         $data['jumlah_warga'] = count($this->model('Warga_model')->getAllUsers());
         $data['jumlah_admin'] = count($this->model('Admin_model')->getAllUsers());
+        $data['notifikasi'] = $this->model('Notify_model')->getAllNotifyById($data['warga']['id']);
 
         $data['judul'] = 'Dashboard';
         $this->view('templates/appheader', $data);
@@ -31,8 +34,16 @@ class Dashboard extends Controller
         $this->isNotAdmin(get_class($this));
 
         $data['judul'] = 'Dashboard Admin';
-        $this->view('templates/header', $data);
-        $this->view('dashboard/admin');
-        $this->view('templates/footer');
+        $data['riwayat'] = $this->model('Riwayat_model')->getAllRiwayatActivity();
+        $data['riwayat2'] = $this->model('Riwayat_model')->getAllRiwayatVoucher();
+        $data['admin'] = $_SESSION['admin'];
+        $data['user'] = $_SESSION['admin'];
+        $data['jumlah_warga'] = count($this->model('Warga_model')->getAllUsers());
+        $data['jumlah_admin'] = count($this->model('Admin_model')->getAllUsers());
+        $data['notifikasi'] = $this->model('Notify_model')->getAllNotifyById($data['admin']['id']);
+
+        $this->view('templates/appheader', $data);
+        $this->view('dashboard/admin', $data);
+        $this->view('templates/appfooter');
     }
 }

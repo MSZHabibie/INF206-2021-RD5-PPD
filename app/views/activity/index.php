@@ -1,4 +1,4 @@
-			<div class="main-content">
+<div class="main-content">
 				<section class="section">
 					<h1 class="section-header">
 						<div>Activity</div>

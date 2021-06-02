@@ -5,6 +5,7 @@ class Activity_model
     private $table = 'aktivitas';
     private $table2 = 'aktivitas_warga';
     private $table3 = 'warga';
+    private $table4 = 'notifikasi';
     private $db;
 
     public function __construct()
@@ -120,6 +121,14 @@ class Activity_model
         $this->db->bind('tempat', $data['tempat']);
         $this->db->bind('poin', $data['poin']);
         $this->db->bind('gambar', $data['gambar']);
+        
+        $this->db->execute();
+
+        $this->db->query("INSERT INTO $this->table4 VALUES ('', :jenis, :nama, :gambar, :crud, NOW())");
+        $this->db->bind('jenis', 'activity');
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('gambar', $data['gambar']);
+        $this->db->bind('crud', 'Di Tambahkan');
         $this->db->execute();
 
         return $this->db->rowCount();
@@ -129,6 +138,15 @@ class Activity_model
     {
         $this->db->query("DELETE FROM $this->table WHERE id=:id");
         $this->db->bind('id', $id);
+
+        $this->db->execute();
+
+        $this->db->query("INSERT INTO $this->table4 VALUES ('', :jenis, :nama, :gambar, :crud, NOW())");
+        $this->db->bind('jenis', 'activity');
+        $this->db->bind('nama', $id['nama']);
+        $this->db->bind('gambar', $id['gambar']);
+        $this->db->bind('crud', 'Di Hapus');
+
         $this->db->execute();
 
         return $this->db->rowCount();
@@ -159,6 +177,14 @@ class Activity_model
         $this->db->bind('poin', $data['poin']);
         $this->db->bind('gambar', $data['gambar']);
         $this->db->bind('id', $data['id']);
+
+        $this->db->execute();
+
+        $this->db->query("INSERT INTO $this->table4 VALUES ('', :jenis, :nama, :gambar, :crud, NOW())");
+        $this->db->bind('jenis', 'activity');
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('gambar', $data['gambar']);
+        $this->db->bind('crud', 'Di Update');
 
         $this->db->execute();
 

@@ -13,6 +13,7 @@ class Activity extends Controller
         $data['aktivitas'] = $this->model('Activity_model')->getAllActivity();
         $data['warga'] = $_SESSION['warga'];
         $data['user'] = $_SESSION['warga'];
+        $data['notifikasi'] = $this->model('Notify_model')->getAllNotifyById($data['warga']['id']);
         $this->view('templates/appheader', $data);
         $this->view('activity/index', $data);
         $this->view('templates/appfooter');
@@ -28,6 +29,7 @@ class Activity extends Controller
         $data['aktivitas'] = $this->model('Activity_model')->getAllActivity();
         $data['admin'] = $_SESSION['admin'];
         $data['user'] = $_SESSION['admin'];
+        $data['notifikasi'] = $this->model('Notify_model')->getAllNotifyById($data['admin']['id']);
         $this->view('templates/appheader', $data);
         $this->view('activity/admin', $data);
         $this->view('templates/modal-aktivitas');
@@ -134,5 +136,13 @@ class Activity extends Controller
         $this->model('Activity_model')->updateConfirmedWargaAktivitas($_POST['id_warga'], $_POST['id_aktivitas']);
 
         $this->detailAdmin($_POST['id_aktivitas']);
+    }
+    public function notify($id_warga, $id_notify)
+    {
+        $this->hasSession();
+        $this->isAdmin($this);
+
+        $this->model('Notify_model')->tekanNotify($id_warga, $id_notify);
+        header('Location: ' . BASEURL . '/activity');
     }
 }

@@ -5,6 +5,7 @@ class Poin_model
     private $table = 'warga';
     private $table2 = 'voucher';
     private $table3 = 'voucher_warga';
+    private $table4 = 'notifikasi';
 
     private $db;
 
@@ -57,14 +58,31 @@ class Poin_model
         $this->db->bind('jumlah', $data['jumlah']);
 
         $this->db->execute();
+        
+        $this->db->query("INSERT INTO $this->table4 VALUES ('', :jenis, :nama, :gambar, :crud, NOW())");
+        $this->db->bind('jenis', 'poin');
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('gambar', $data['gambar']);
+        $this->db->bind('crud', 'Di Tambahkan');
+
+        $this->db->execute();
 
         return $this->db->rowCount();
     }
 
     public function deleteVoucher($id)
     {
+        $this->db->query("INSERT INTO $this->table4 VALUES ('', :jenis, :nama, :gambar, :crud, NOW())");
+        $this->db->bind('jenis', 'poin');
+        $this->db->bind('nama', $id['nama']);
+        $this->db->bind('gambar', $id['gambar']);
+        $this->db->bind('crud', 'Di Hapus');
+
+        $this->db->execute();
+
         $this->db->query("DELETE FROM $this->table2 WHERE id=:id");
         $this->db->bind('id', $id);
+
         $this->db->execute();
 
         return $this->db->rowCount();
@@ -90,6 +108,14 @@ class Poin_model
 
         $this->db->execute();
 
+        $this->db->query("INSERT INTO $this->table4 VALUES ('', :jenis, :nama, :gambar, :crud, NOW())");
+        $this->db->bind('jenis', 'poin');
+        $this->db->bind('nama', $data['nama']);
+        $this->db->bind('gambar', $data['gambar']);
+        $this->db->bind('crud', 'Di Update');
+
+        $this->db->execute();
+
         return $this->db->rowCount();
     }
 
@@ -98,6 +124,10 @@ class Poin_model
         $warga = $this->getPoinById($id_warga);
         $voucher = $this->getVoucherById($id_voucher);
 
+        // Voucher tidak tersedia
+        if ($voucher['jumlah'] <= 0) {
+            return false;
+        }
 
         if (($warga['poin'] - $voucher['poin']) < 0) {
             return false;
@@ -128,7 +158,6 @@ class Poin_model
         $this->db->query("INSERT INTO $this->table3 VALUES (:id_warga, :id_voucher, NOW())");
         $this->db->bind('id_warga', $id_warga);
         $this->db->bind('id_voucher', $id_voucher);
-
         $this->db->execute();
 
         return $this->db->rowCount();

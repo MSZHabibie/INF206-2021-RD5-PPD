@@ -144,64 +144,61 @@
 						<div class="col-lg-12 col-md-12 col-12 col-sm-12">
 							<div class="card">
 								<div class="card-header">
-									<div class="float-right"> <a href="#" class="btn btn-primary">View All</a> </div>
-									<h4>Latest Posts</h4>
+									<h4>Riwayat Aktivitas</h4>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
 										<table class="table table-striped">
 											<thead>
 												<tr>
-													<th>Title</th>
-													<th>Author</th>
-													<th>Action</th>
+													<th>Waktu</th>
+													<th>Aktivitas</th>
+													<th>Poin</th>
 												</tr>
 											</thead>
 											<tbody>
+												<?php foreach ($data['riwayat'] as $riwayat) : ?>
+													<tr>
+														<td> <?= $riwayat['waktu']; ?>
+															<div class="table-links"> in | <a href="<?= BASEURL; ?>/activity/detail/<?= $riwayat['id'] ?>">View</a>
+															</div>
+														</td>
+														<td>
+															<a href="#"><img src="<?= BASEURL; ?>/img/activity/<?= $riwayat['gambar'] ?>" alt="avatar" width="30" height="30" class="rounded-circle mr-1"><?= $riwayat['nama']; ?></a>
+														</td>
+														<td><p class="badge bg-success"> + <?= $riwayat['poin']; ?> </p></td>
+													</tr>
+												<?php endforeach; ?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="card-header">
+									<h4>Riwayat Voucher</h4>
+								</div>
+								<div class="card-body">
+									<div class="table-responsive">
+										<table class="table table-striped">
+											<thead>
 												<tr>
-													<td> Membuat Kegiatan
-														<div class="table-links"> in <a href="#">Kegiatan</a>
-															<div class="bullet"></div> <a href="#">View</a>
-														</div>
-													</td>
-													<td>
-														<a href="#"><img src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-5.jpeg" alt="avatar" width="30" class="rounded-circle mr-1">Yovie Pramudya Sabri</a>
-													</td>
-													<td> <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="ion ion-edit"></i></a> <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"><i class="ion ion-trash-b"></i></a> </td>
+													<th>Waktu</th>
+													<th>Voucher</th>
+													<th>Poin</th>
 												</tr>
-												<tr>
-													<td> Membuat Kegiatan
-														<div class="table-links"> in <a href="#">Kegiatan</a>
-															<div class="bullet"></div> <a href="#">View</a>
-														</div>
-													</td>
-													<td>
-														<a href="#"><img src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-5.jpeg" alt="avatar" width="30" class="rounded-circle mr-1">Yovie Pramudya Sabri</a>
-													</td>
-													<td> <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="ion ion-edit"></i></a> <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"><i class="ion ion-trash-b"></i></a> </td>
-												</tr>
-												<tr>
-													<td> Membuat Kegiatan
-														<div class="table-links"> in <a href="#">Kegiatan</a>
-															<div class="bullet"></div> <a href="#">View</a>
-														</div>
-													</td>
-													<td>
-														<a href="#"><img src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-5.jpeg" alt="avatar" width="30" class="rounded-circle mr-1">Yovie Pramudya Sabri</a>
-													</td>
-													<td> <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="ion ion-edit"></i></a> <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"><i class="ion ion-trash-b"></i></a> </td>
-												</tr>
-												<tr>
-													<td> Membuat Kegiatan
-														<div class="table-links"> in <a href="#">Kegiatan</a>
-															<div class="bullet"></div> <a href="#">View</a>
-														</div>
-													</td>
-													<td>
-														<a href="#"><img src="<?= BASEURL; ?>/img/img_yovie/img/avatar/avatar-5.jpeg" alt="avatar" width="30" class="rounded-circle mr-1">Yovie Pramudya Sabri</a>
-													</td>
-													<td> <a class="btn btn-primary btn-action mr-1" data-toggle="tooltip" title="Edit"><i class="ion ion-edit"></i></a> <a class="btn btn-danger btn-action" data-toggle="tooltip" title="Delete"><i class="ion ion-trash-b"></i></a> </td>
-												</tr>
+											</thead>
+											<tbody>
+												<?php foreach ($data['riwayat2'] as $riwayat2) : ?>
+													<tr>
+														<td> <?= $riwayat2['waktu']; ?>
+															<div class="table-links"> in | <a href="<?= BASEURL; ?>/poin">View</a>
+															</div>
+														</td>
+														<td>
+															<a href="#"><img src="<?= BASEURL; ?>/img/poin/<?= $riwayat2['gambar'] ?>" alt="avatar" width="30" height="30" class="rounded-circle mr-1"><?= $riwayat2['nama']; ?></a>
+														</td>
+														<td><p class="badge bg-danger"> - <?= $riwayat2['poin']; ?> </p></td>
+													</tr>
+												<?php endforeach; ?>
 											</tbody>
 										</table>
 									</div>
