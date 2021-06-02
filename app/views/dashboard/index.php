@@ -74,7 +74,7 @@
 						<div class="col-lg-4 col-md-12 col-12 col-sm-12">
 							<div class="card">
 								<div class="card-header">
-									<h4>Recent Activities</h4>
+									<h4>Member Quotes</h4>
 								</div>
 								<div class="card-body">
 									<ul class="list-unstyled list-unstyled-border">

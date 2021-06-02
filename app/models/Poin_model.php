@@ -138,9 +138,9 @@ class Poin_model
         $voucher['jumlah'] -= 1;
 
         // Menghapus Voucher ketika jumlah = 0
-        if ($voucher['jumlah'] <= 0) {
-            $this->deleteVoucher($id_voucher);
-        }
+        // if ($voucher['jumlah'] <= 0) {
+        //     $this->deleteVoucher($id_voucher);
+        // }
 
         // mengupdate jumlah poin di table warga
         $this->db->query("UPDATE $this->table SET poin = :poin WHERE id = :id");
