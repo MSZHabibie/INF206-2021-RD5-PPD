@@ -12,6 +12,8 @@ class Profile extends Controller
         $data['judul'] = 'Profile';
         $data['warga'] = $_SESSION['warga'];
         $data['user'] = $_SESSION['warga'];
+        $data['aktivitas_warga'] = $this->model('Activity_model')->getActivityWarga($data['warga']['id']);
+        $data['komunitas_warga'] = $this->model('Community_model')->getKomunitasWarga($data['warga']['id']);
 
         $this->view('templates/appheader', $data);
         $this->view('profile/index', $data);
@@ -23,10 +25,14 @@ class Profile extends Controller
         $this->hasSession();
         $this->isNotAdmin(get_class($this));
 
-        $data['judul'] = 'Profile Admin';
-        $this->view('templates/header', $data);
+        $data['class'] = get_class($this);
+        $data['judul'] = 'Profile';
+        $data['admin'] = $_SESSION['admin'];
+        $data['user'] = $_SESSION['admin'];
+        
+        $this->view('templates/appheader', $data);
         $this->view('profile/admin', $data);
-        $this->view('templates/footer');
+        $this->view('templates/appfooter');
     }
 
     public function edit()

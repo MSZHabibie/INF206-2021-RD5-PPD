@@ -29,6 +29,15 @@ class Activity_model
         return $this->db->single();
     }
 
+    public function getActivityWarga($id_warga)
+    {
+        $this->db->query("SELECT id, nama FROM $this->table JOIN $this->table2 ON id=id_aktivitas WHERE id_warga=:id_warga");
+        $this->db->bind('id_warga', $id_warga);
+        $this->db->execute();
+
+        return $this->db->resultSet();
+    }
+
     public function cekActivityWarga($id_warga, $id_aktivitas)
     {
         $this->db->query("SELECT * FROM $this->table2 WHERE id_warga=:id_warga AND id_aktivitas=:id_aktivitas");

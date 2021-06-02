@@ -7,8 +7,8 @@
     <title>PPD | <?= $data['judul']; ?></title>
     <!--favicon-->
     <link rel="icon" href="<?= BASEURL; ?>/img/logo.png" type="image">
-    <link rel="stylesheet" href="<?= BASEURL; ?>/modules/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/modules/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/modules/ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/modules/fontawesome/web-fonts-with-css/css/fontawesome-all.min.css">
     <link rel="stylesheet" href="<?= BASEURL; ?>/modules/summernote/summernote-lite.css">
@@ -22,8 +22,8 @@
     <div id="app">
         <div class="main-wrapper">
             <div class="navbar-bg"></div>
-            <nav class="navbar navbar-expand-lg main-navbar">
-                <form class="form-inline mr-auto">
+            <nav class="navbar navbar-expand-lg main-navbar d-flex justify-content-end">
+                <!-- <form class="form-inline mr-auto">
                     <ul class="navbar-nav mr-3">
                         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="ion ion-navicon-round"></i></a></li>
                         <li><a href="#" data-toggle="search" class="nav-link nav-link-lg d-sm-none"><i class="ion ion-search"></i></a></li>
@@ -32,7 +32,7 @@
                         <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn" type="submit"><i class="ion ion-search"></i></button>
                     </div>
-                </form>
+                </form> -->
                 <ul class="navbar-nav navbar-right">
                     <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="ion ion-ios-bell-outline"></i></a>
                         <div class="dropdown-menu dropdown-list dropdown-menu-right">
@@ -101,29 +101,6 @@
                         <li class="<?= $data['class'] === 'Activity' ? "active" : ""; ?>"> <a href="<?= BASEURL; ?>/activity"><i class="fas fa-american-sign-language-interpreting"></i><span>Activity</span></a></li>
                         <li class="<?= $data['class'] === 'Poin' ? "active" : ""; ?>"> <a href="<?= BASEURL; ?>/poin"><i class="fas fa-burn"></i><span>Points</span></a></li>
                         <li class="<?= $data['class'] === 'Community' ? "active" : ""; ?>"> <a href="<?= BASEURL; ?>/community"><i class="far fa-address-card"></i><span>Community</span></a> </li>
-
-                        <li class="menu-header">More</li>
-                        <li> <a href="#" class="has-dropdown"><i class="ion ion-ios-nutrition"></i> About us</a>
-                            <ul class="menu-dropdown">
-                                <li><a href="#"><i class="ion ion-ios-circle-outline"></i> Menu 1</a></li>
-                                <li><a href="#" class="has-dropdown"><i class="ion ion-ios-circle-outline"></i> Menu 2</a>
-                                    <ul class="menu-dropdown">
-                                        <li><a href="#"><i class="ion ion-ios-circle-outline"></i> Child Menu 1</a></li>
-                                        <li><a href="#"><i class="ion ion-ios-circle-outline"></i> Child Menu 2</a></li>
-                                        <li><a href="#" class="has-dropdown"><i class="ion ion-ios-circle-outline"></i> Child Menu 3</a>
-                                            <ul class="menu-dropdown">
-                                                <li><a href="#"><i class="ion ion-ios-circle-outline"></i> Child Menu 1</a></li>
-                                                <li><a href="#"><i class="ion ion-ios-circle-outline"></i> Child Menu 2</a></li>
-                                                <li><a href="#"><i class="ion ion-ios-circle-outline"></i> Child Menu 3</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#"><i class="ion ion-ios-circle-outline"></i> Child Menu 4</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li> <a href="#"><i class="ion ion-heart"></i> Contact <div class="badge badge-primary">10</div></a> </li>
-                        <li> <a href="credits.html"><i class="ion ion-ios-information-outline"></i> Alert</a> </li>
                     </ul>
                 </aside>
             </div>

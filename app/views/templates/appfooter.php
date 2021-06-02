@@ -10,6 +10,7 @@
 <script src="<?= BASEURL; ?>/modules/jquery.min.js"></script>
 <script src="<?= BASEURL; ?>/modules/popper.js"></script>
 <script src="<?= BASEURL; ?>/modules/tooltip.js"></script>
+<script src="<?= BASEURL; ?>/js/bootstrap.js"></script>
 <script src="<?= BASEURL; ?>/modules/bootstrap/js/bootstrap.min.js"></script>
 <script src="<?= BASEURL; ?>/modules/nicescroll/jquery.nicescroll.min.js"></script>
 <script src="<?= BASEURL; ?>/modules/scroll-up-bar/dist/scroll-up-bar.min.js"></script>
@@ -58,7 +59,6 @@
 <script src="<?= BASEURL; ?>/js/js_yovie/js/custom.js"></script>
 <script src="<?= BASEURL; ?>/js/js_yovie/js/demo.js"></script>
 
-<script src="<?= BASEURL; ?>/js/bootstrap.js"></script>
 <script src="<?= BASEURL; ?>/js/script.js"></script>
 
 </body>

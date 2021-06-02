@@ -50,11 +50,11 @@ class Community_model
         return $this->db->resultSet();
     }
 
-    public function getKomunitasWarga($id)
+    public function getKomunitasWarga($id_warga)
     {
-        $query = "SELECT id_komunitas FROM $this->table2 WHERE id_warga=:id";
+        $query = "SELECT id, nama FROM $this->table JOIN $this->table2 ON id=id_komunitas WHERE id_warga=:id_warga";
         $this->db->query($query);
-        $this->db->bind('id', $id);
+        $this->db->bind('id_warga', $id_warga);
         $this->db->execute();
 
         return $this->db->resultSet();
