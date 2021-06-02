@@ -71,7 +71,7 @@
 									</tr>
 									<?php $no = 1 ?>
 									<?php foreach ($data['communities'] as $community) : ?>
-									<tr>
+									<tr id="c<?= $community['id'] ?>">
 										<td width="5%"><?= $no++ ?></td>
 										<td width="30%"><?= $community['nama'] ?></td>
 										<td width="30%"><?= $community['kegiatan'] ?></td>

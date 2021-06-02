@@ -12,6 +12,8 @@ class Profile extends Controller
         $data['judul'] = 'Profile';
         $data['warga'] = $_SESSION['warga'];
         $data['user'] = $_SESSION['warga'];
+        $data['aktivitas_warga'] = $this->model('Activity_model')->getActivityWarga($data['warga']['id']);
+        $data['komunitas_warga'] = $this->model('Community_model')->getKomunitasWarga($data['warga']['id']);
 
         $this->view('templates/appheader', $data);
         $this->view('profile/index', $data);

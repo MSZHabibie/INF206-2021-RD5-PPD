@@ -25,7 +25,7 @@ class Community extends Controller
     
     $data['warga_aktif'] = array_column($this->model('Community_model')->getWargaAktif(), 'id_warga');
     $data['warga_komunitas'] = $this->model('Community_model')->getWargaKomunitas();
-    $data['komunitas_warga'] = array_column($this->model('Community_model')->getKomunitasWarga($data['warga']['id']), 'id_komunitas');
+    $data['komunitas_warga'] = array_column($this->model('Community_model')->getKomunitasWarga($data['warga']['id']), 'id');
 
     if ( !$data['komunitas_warga'] ) {
       $data['komunitas_warga'] = [];
