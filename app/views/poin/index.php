@@ -1,19 +1,25 @@
-<div class="container mt-3 mb-3 ">
-  <div class="row">
-    <div class="col-lg-6">
-      <?php Flasher::flash() ?>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-lg-6">
-      <!-- Button trigger modal -->
-      <br></br>
-      <div class="text-center">
-        <h3>Daftar Poin Pemuda</h3>
-        <h1><?= $data['warga']['poin']; ?></h1>
+<div class="main-content ">
+  <section class="section">
+    <h1 class="section-header">
+      <div>Poin</div>
+    </h1>
+  </section>
+  <div class="container mt-3 mb-3 ">
+    <div class="row">
+      <div class="col-lg-6">
+        <?php Flasher::flash() ?>
       </div>
-      <br />
-      <div class="card-group">
+    </div>
+    <!-- <div class="row">
+      <div class="col-lg-8"> -->
+        <!-- Button trigger modal -->
+    <div class="text-center">
+      <h3>Jumlah Poin</h3>
+      <h1><?= $data['warga']['poin']; ?></h1>
+    </div>
+    <br />
+    <div class="col d-flex justify-content-center">
+      <div class="card-group" style="width: 40rem;">
         <?php foreach ($data['voucher'] as $voucher) : ?>
         <!-- Persyaratan agar ketika voucher sudah == 0 tidak ditampilkan -->
           <?php if ($voucher['jumlah'] > 0) { ?>
@@ -45,6 +51,7 @@
       </div>
     </div>
   </div>
+</div>
 
   <!-- Modal -->
   <div class="modal fade" id="formModal2" tabindex="-1" aria-labelledby="judulModal2" aria-hidden="true">

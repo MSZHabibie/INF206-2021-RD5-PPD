@@ -13,6 +13,7 @@ class Activity extends Controller
         $data['aktivitas'] = $this->model('Activity_model')->getAllActivity();
         $data['warga'] = $_SESSION['warga'];
         $data['user'] = $_SESSION['warga'];
+        $data['notifikasi'] = $this->model('Notify_model')->getAllNotifyById($data['warga']['id']);
         $this->view('templates/appheader', $data);
         $this->view('activity/index', $data);
         $this->view('templates/appfooter');
@@ -26,6 +27,7 @@ class Activity extends Controller
         $data['class'] = get_class($this);
         $data['judul'] = 'Activity Admin';
         $data['aktivitas'] = $this->model('Activity_model')->getAllActivity();
+        $data['notifikasi'] = $this->model('Notify_model')->getAllNotify();
         $data['admin'] = $_SESSION['admin'];
         $data['user'] = $_SESSION['admin'];
         $this->view('templates/appheader', $data);
@@ -121,5 +123,13 @@ class Activity extends Controller
 
         header('Location: ' . BASEURL . '/activity/admin');
         exit;
+    }
+    public function notify($id_warga, $id_notify)
+    {
+        $this->hasSession();
+        $this->isAdmin($this);
+
+        $this->model('Notify_model')->tekanNotify($id_warga, $id_notify);
+        header('Location: ' . BASEURL . '/activity');
     }
 }
