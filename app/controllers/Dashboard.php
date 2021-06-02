@@ -12,6 +12,9 @@ class Dashboard extends Controller
         $data['judul'] = 'Dashboard';
         $data['warga'] = $_SESSION['warga'];
         $data['user'] = $_SESSION['warga'];
+        $data['data_statistic'] = $this->model('Warga_model')->getStatisticdata();
+        // var_dump($data['data_statistic']);
+        // die;
 
         $data['riwayat'] = $this->model('Riwayat_model')->getRiwayatActivityById($data['warga']['id']);
         $data['riwayat2'] = $this->model('Riwayat_model')->getRiwayatVoucherById($data['warga']['id']);
