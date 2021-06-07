@@ -52,9 +52,9 @@
 								<div class="card-body">
 			
 									<canvas id="myChart" height="158" data-total-statistic="<?= count($data['data_statistic']) ?>"
-										<?php $counter=0; foreach ($data['data_statistic'] as $data) : ?>
-											data-statistic-<?= $counter ?> = "<?= $data["COUNT(created_at)"] ?>"
-											data-statistic-label-<?= $counter++ ?> = "<?= $data["DATE(created_at)"] ?>"
+										<?php $counter=0; foreach ($data['data_statistic'] as $statistic) : ?>
+											data-statistic-<?= $counter ?> = "<?= $statistic["COUNT(created_at)"] ?>"
+											data-statistic-label-<?= $counter++ ?> = "<?= $statistic["DATE(created_at)"] ?>"
 										<?php endforeach ?>
 									></canvas>
 									<!-- <div class="statistic-details mt-sm-4">
